@@ -1,124 +1,116 @@
 <template>
-  <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-    <div
-      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
-    >
-      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img
-          src="https://flowbite.com/docs/images/logo.svg"
-          class="h-8"
-          alt="Flowbite Logo"
-        />
-        <span
-          class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-          >Flowbite</span
+  <nav class="bg-gray-800 text-white px-6 py-3 z-30">
+    <ul class="flex space-x-6">
+      <li v-for="(item, index) in menu" :key="index" class="relative group">
+        <router-link
+          v-if="!item.children"
+          :to="item.route"
+          class="hover:bg-gray-700 px-3 py-2 rounded z-30 block"
         >
-      </a>
-      <button
-        @click="isMenuOpen = !isMenuOpen"
-        type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          fill="none"
-          viewBox="0 0 17 14"
-          xmlns="http://www.w3.org/2000/svg"
+          {{ item.label }}
+        </router-link>
+        <button
+          v-else
+          class="hover:bg-gray-700 px-3 py-2 rounded z-30"
+          @click="toggle(index)"
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15"
-          />
-        </svg>
-      </button>
-      <div
-        :class="['w-full md:block md:w-auto', isMenuOpen ? 'block' : 'hidden']"
-      >
+          {{ item.label }}
+        </button>
+
+        <!-- Dropdown menu -->
         <ul
-          class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700"
+          v-if="item.children"
+          class="absolute left-0 top-full mt-1 bg-gray-700 rounded shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
+          :class="{ block: openIndex === index, hidden: openIndex !== index }"
         >
-          <li >
-            <a
-              href="#"
-              class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              aria-current="page"
-              >Trang Chủ</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Máy Tính</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Điện Thoại</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Camera</a
-            >
-          </li>
-
-          <li>
-            <a
-              href="#"
-              class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Tài Khoản</a
-            >
-
-            <ul>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  >Đăng nhập</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  >Đăng xuất</a
-                >
-              </li>
-            </ul>
+          <li
+            v-for="(child, cIndex) in item.children"
+            :key="cIndex"
+            class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
+          >
+            <router-link :to="child.route" class="block w-full">
+              {{ child.label }}
+            </router-link>
           </li>
         </ul>
-      </div>
-    </div>
+      </li>
+
+      <!-- Tài khoản -->
+      <li class="relative group ml-auto">
+        <button
+          class="hover:bg-gray-700 px-3 py-2 rounded z-30"
+          @click="toggle(menu.length)"
+        >
+          Tài khoản
+        </button>
+        <ul
+          class="absolute left-0 top-full mt-1 bg-gray-700 rounded shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
+          :class="{ block: openIndex === menu.length, hidden: openIndex !== menu.length }"
+        >
+          <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap">
+            <router-link to="/logout" class="block w-full">Đăng xuất</router-link>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </nav>
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
   data() {
     return {
-      isMenuOpen: false,
+      openIndex: null,
+      menu: [
+        { label: "Trang chủ", route: "/homePage" },
+        {
+          label: "Điện Thoại",
+          children: [
+            { label: "Samsung", route: "/dien-thoai/samsung" },
+            { label: "Apple", route: "/dien-thoai/apple" },
+            { label: "Xiaomi", route: "/dien-thoai/xiaomi" },
+            { label: "Oppo", route: "/dien-thoai/oppo" },
+            { label: "Bphone", route: "/dien-thoai/bphone" },
+            { label: "Google Pixel", route: "/dien-thoai/google-pixel" },
+          ],
+        },
+        {
+          label: "Camera",
+          children: [
+            { label: "Hikvision", route: "/camera/hikvision" },
+            { label: "Dahua", route: "/camera/dahua" },
+            { label: "Ezviz", route: "/camera/ezviz" },
+            { label: "Imou", route: "/camera/imou" },
+            { label: "Sony", route: "/camera/sony" },
+            { label: "Bosch", route: "/camera/bosch" },
+          ],
+        },
+        {
+          label: "Laptop",
+          children: [
+            { label: "Acer", route: "/laptop/acer" },
+            { label: "Apple", route: "/laptop/apple" },
+            { label: "Asus", route: "/laptop/asus" },
+            { label: "Dell", route: "/laptop/dell" },
+            { label: "Hp", route: "/laptop/hp" },
+            { label: "Lenovo", route: "/laptop/lenovo" },
+          ],
+        },
+        {
+          label: "Dịch vụ",
+          children: [
+            { label: "Giao hàng tận nhà", route: "/dich-vu/giao-hang" },
+            { label: "Tư vấn mua hàng", route: "/dich-vu/tu-van" },
+          ],
+        },
+        { label: "Liên hệ", route: "/lien-he" },
+      ],
     };
-  }
+  },
+  methods: {
+    toggle(index) {
+      this.openIndex = this.openIndex === index ? null : index;
+    },
+  },
 };
-
-methods: {
-        
-}
 </script>
-<style scoped>
-ul ul{
-  display: none;
-}
-</style>

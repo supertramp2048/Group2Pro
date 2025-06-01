@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @layer base{
     header{
-        @apply justify-center bg-gradient-to-b from-red-700 to-red-400 justify-items-center h-fit sticky z-50
+        @apply justify-center bg-gradient-to-b from-red-700 to-red-600 justify-items-center h-fit sticky z-50
              
         }
     footer {

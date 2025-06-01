@@ -4,7 +4,7 @@
   <div class="relative w-full">
     <input
       type="text"
-      class="block w-full h-10 pl-4 pr-10 text-sm font-medium text-gray-900 bg-white rounded-2xl"
+      class="block w-full h-12 text-xl pl-4 pr-10 font-medium text-gray-900 bg-white rounded-2xl"
       placeholder="Tìm kiếm"
       v-model="keySearch"
     />
@@ -19,12 +19,12 @@
 
 
     <div
-      class="absolute top-full left-0 flex flex-col w-full border border-gray-200 z-50"
+      class="absolute top-full left-0 flex flex-col w-full  z-50"
     >
       <div
         v-for="object in recomendData"
         :key="object.id"
-        class=" block px-4 py-2 bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-200 z-50"
+        class=" block px-4 py-2 text-xl bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-200 z-50"
       >
         {{ object.title }}
       </div>

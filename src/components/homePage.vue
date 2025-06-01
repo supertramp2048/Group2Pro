@@ -13,41 +13,50 @@
         <cowndownClock></cowndownClock>
         <div class="flex flex-col">
           <h2>Điện thoại</h2>
-          <div class="grid grid-flow-col grid-col-4 gap-4">
+          <div class="grid grid-flow-col grid-col-4 gap-4 ">
             <div
               v-for="product in phoneProducts"
               :key="product.id"
               class="shadow-black shadow-xs"
             >
-              <router-link :to="{ name: 'productDetail', params: { id: product.id } } ">
+              <router-link
+                :to="{ name: 'productDetail', params: { id: product.id } }"
+              >
                 <img :src="product.src" alt="" class="w-[200px] h-[250px]" />
                 <p class="font-bold text-gray-600">{{ product.title }}</p>
                 <p>
                   <span class="text-red-600"
-                    >Giá {{ formatPrice(product.price) }} </span
-                  >
+                    >Giá {{ formatPrice(product.price) }}
+                  </span>
                 </p>
               </router-link>
-              <button @click="cart.push(product)">Them vao gio hang</button>
+              <button @click="addProduct(product)" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+                Them vao gio hang
+              </button>
             </div>
           </div>
           <br />
           <h2>Laptop</h2>
-          <div class="grid grid-flow-col grid-col-4 gap-4">
+          <div class="grid grid-flow-col grid-col-4 gap-4 p-1.5">
             <div
               v-for="product in laptopProducts"
               :key="product.id"
               class="shadow-black shadow-xs"
             >
-            <router-link :to="{ name: 'productDetail', params: { id: product.id } } ">
-              <img :src="product.src" alt="" class="w-[200px] h-[300px]" />
-              <p class="font-bold text-gray-600">{{ product.title }}</p>
-              <p>
-                <span class="text-red-600"
-                  >Giá {{ formatPrice(product.price) }}</span
-                >
-              </p>
-            </router-link>
+              <router-link
+                :to="{ name: 'productDetail', params: { id: product.id } }"
+              >
+                <img :src="product.src" alt="" class="w-[200px] h-[200px]" />
+                <p class="font-bold text-gray-600">{{ product.title }}</p>
+                <p>
+                  <span class="text-red-600"
+                    >Giá {{ formatPrice(product.price) }}</span
+                  >
+                </p>
+              </router-link>
+              <button @click="addProduct(product)" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+                Them vao gio hang
+              </button>
             </div>
           </div>
         </div>
@@ -64,8 +73,8 @@ import cowndownClock from "./baseComponent/cowdownClock.vue";
 import search from "./baseComponent/search.vue";
 import headerPro from "./baseComponent/headerPro.vue";
 import footerPro from "./baseComponent/footerPro.vue";
+import useCartStore from "../stores/cartStore";
 export default {
- 
   components: {
     menuBar,
     carosel,
@@ -79,8 +88,11 @@ export default {
       allProducts: [],
       phoneProducts: [],
       laptopProducts: [],
-      cart: [],
+      cart: null,
     };
+  },
+  created() {
+    this.cart = useCartStore();
   },
   methods: {
     async loadProduct() {
@@ -95,10 +107,10 @@ export default {
       if (typeof value !== "number") return "N/A";
       return value.toLocaleString("vi-VN");
     },
-    testId(data){
-         console.log(data);
-         
-    }
+    addProduct(product) {
+      this.cart.addToCart(product); // gọi action thêm sp vào giỏ (theo tên action trong store)
+      console.log(this.cart.cart); // in ra giỏ hàng để kiểm tra
+    },
   },
 
   mounted() {

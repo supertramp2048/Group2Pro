@@ -2,7 +2,7 @@
   <div>
     <headerPro></headerPro>
     <menuBar></menuBar>
-    <div v-for="productObj in product " :key="productObj.id">
+    <div v-for="productObj in product" :key="productObj.id">
       <div
         class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-300 text-white w-full max-w-7xl mx-auto shadow-lg h-full"
       >
@@ -159,10 +159,10 @@
       </table>
 
       <!-- Cha bao ngoài để canh giữa thanh -->
-      <div class="sticky bottom-0 left-0  flex justify-center z-50">
+      <div class="sticky bottom-0 left-0 flex justify-center z-50">
         <!-- Thanh mua hàng -->
         <div
-          class="w-full max-w-7xl mx-auto shadow-lg md:w-8/12  bg-white px-4 py-3 flex items-center justify-between rounded-t-xl"
+          class="w-full max-w-7xl mx-auto shadow-lg md:w-8/12 bg-white px-4 py-3 flex items-center justify-between rounded-t-xl"
         >
           <!-- Hình ảnh + tên sản phẩm -->
           <div class="flex items-center gap-3 overflow-hidden">
@@ -172,14 +172,15 @@
               class="w-24 h-24 object-cover rounded-md"
             />
             <div class="text-black font-semibold text-sm truncate w-full">
-              iPhone 16 Pro Max 256GB | Chính hãng sadhfjksadlf asdjfasdj
-              adsfasdfs asdfhadsjfdas
+              {{ productObj.title }}
             </div>
           </div>
 
           <!-- Giá tiền -->
           <div class="flex flex-col items-end mr-4">
-            <span class="text-red-600 font-bold text-lg">{{formatPrice(productObj.price)}}</span>
+            <span class="text-red-600 font-bold text-lg">{{
+              formatPrice(productObj.price)
+            }}</span>
             <span class="text-gray-400 line-through text-sm">34.990.000₫</span>
           </div>
 
@@ -191,27 +192,15 @@
               Trả góp 0%
             </button>
             <button
-              class="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold"
+              class="bg-red-600 text-white px-4 py-2 rounded-md font-semibold"
             >
               Mua Ngay
             </button>
             <button
-              class="border border-red-600 text-red-600 px-2 py-2 rounded-md"
+              @click="addProduct(productObj)"
+              class="bg-transparent hover:bg-red-600 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-md"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1 5m13-5l1 5M6 18h12a1 1 0 001-1v-1H5v1a1 1 0 001 1z"
-                />
-              </svg>
+              Them vao gio hang
             </button>
           </div>
         </div>
@@ -224,30 +213,41 @@
 import headerPro from "./baseComponent/headerPro.vue";
 import menuBar from "./baseComponent/menuBar.vue";
 import footerPro from "./baseComponent/footerPro.vue";
+import useCartStore from "../stores/cartStore";
 export default {
   props: ["id"],
   data() {
     return {
       product: {},
+      cartStore: null,
     };
+  },
+  created() {
+    this.cartStore = useCartStore();
   },
   components: {
     headerPro,
     menuBar,
     footerPro,
   },
+  computed: {
+    cart() {
+      return this.cartStore.cart; // reactive!
+    },
+  },
   methods: {
     async loadProduct(data) {
-      console.log(this.id);
-
       let res = await fetch(`http://localhost:3000/posts?id=${this.id}`);
       const dataObj = await res.json();
       this.product = dataObj;
-      console.log(this.product);
     },
     formatPrice(value) {
       if (typeof value !== "number") return "N/A";
       return value.toLocaleString("vi-VN");
+    },
+    addProduct(product) {
+      this.cartStore.addToCart(product); // gọi action thêm sp vào giỏ (theo tên action trong store)
+      console.log(this.cartStore.cart); // in ra giỏ hàng để kiểm tra
     },
   },
   mounted() {

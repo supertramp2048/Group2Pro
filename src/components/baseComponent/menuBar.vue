@@ -62,7 +62,7 @@ export default {
     return {
       openIndex: null,
       menu: [
-        { label: "Trang chủ", route: "/homePage" },
+        { label: "Trang chủ", route: "/" },
         {
           label: "Điện Thoại",
           children: [

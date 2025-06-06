@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-[900px] h-[500px] max-w-7xl  mx-auto  ">
+  <div class="relative  h-[600px] max-w-full  mx-0  ">
     <!-- Hình ảnh -->
     <div class="overflow-hidden rounded-lg h-full w-full relative ">
       <a href="#">
@@ -50,10 +50,10 @@ export default {
   name: "Carousel",
   setup() {
     const images = [
-      "/images/img1.png",
+      "/images/ads.png",
       "/images/img2.png",
       "/images/img3.png",
-      "/images/img1.png",
+      "/images/ads.png",
     ];
 
     const currentIndex = ref(0);

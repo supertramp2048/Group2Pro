@@ -46,10 +46,11 @@
         <ul
           class="absolute left-0 top-full mt-1 bg-gray-700 rounded shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
           :class="{ block: openIndex === menu.length, hidden: openIndex !== menu.length }"
-        >
+        > 
           <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap">
-            <router-link to="/logout" class="block w-full">Đăng xuất</router-link>
+            <router-link to="login" class="block w-full">Đăng nhập</router-link>
           </li>
+          <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap" @click="logOut()">Đăng xuất</li>
         </ul>
       </li>
     </ul>
@@ -62,7 +63,7 @@ export default {
     return {
       openIndex: null,
       menu: [
-        { label: "Trang chủ", route: "/homePage" },
+        { label: "Trang chủ", route: "/" },
         {
           label: "Điện Thoại",
           children: [
@@ -111,6 +112,10 @@ export default {
     toggle(index) {
       this.openIndex = this.openIndex === index ? null : index;
     },
+    logOut(){
+      localStorage.removeItem("accessToken")
+      sessionStorage.removeItem("accessToken")
+    }
   },
 };
 </script>

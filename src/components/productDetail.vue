@@ -2,6 +2,26 @@
   <div>
     <headerPro></headerPro>
     <menuBar></menuBar>
+
+     <button @click="prevPage()" class="text-2xl text-black block">
+        <!-- Icon mũi tên trái -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-10"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+      </button>
+
+
     <div v-for="productObj in product" :key="productObj.id">
       <div
         class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-300 text-white w-full max-w-7xl mx-auto shadow-lg h-full"
@@ -202,6 +222,15 @@
             >
               Them vao gio hang
             </button>
+
+            <transition name="fade">
+              <div
+                v-if="showNotification"
+                class="absolute left-8/12  w-[200px]  bottom-24 right-4 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+              >
+                ✅ Thêm vào giỏ hàng thành công!
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -220,6 +249,7 @@ export default {
     return {
       product: {},
       cartStore: null,
+      showNotification: false,
     };
   },
   created() {
@@ -236,6 +266,9 @@ export default {
     },
   },
   methods: {
+    prevPage(){
+        window.history.back()
+    },
     async loadProduct(data) {
       let res = await fetch(`http://localhost:3000/posts?id=${this.id}`);
       const dataObj = await res.json();
@@ -247,9 +280,16 @@ export default {
     },
     addProduct(product) {
       this.cartStore.addToCart(product); // gọi action thêm sp vào giỏ (theo tên action trong store)
-      console.log(this.cartStore.cart); // in ra giỏ hàng để kiểm tra
+      console.log("Da them vao gio hang"); // in ra giỏ hàng để kiểm tra
+      this.showNotification = true; // Hiện thông báo
+
+      // Ẩn thông báo sau 1 giây
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 1000);
     },
   },
+
   mounted() {
     this.loadProduct();
   },
@@ -260,4 +300,13 @@ td {
   border: 1px solid rgb(240, 236, 236);
   background: rgb(210, 207, 207);
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </style>

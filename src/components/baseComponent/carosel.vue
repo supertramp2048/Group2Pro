@@ -1,12 +1,12 @@
 <template>
-  <div class="relative w-full max-w-xl mx-auto">
+  <div class="relative  h-[600px] max-w-full  mx-0  ">
     <!-- Hình ảnh -->
-    <div class="overflow-hidden rounded-lg h-64 relative">
+    <div class="overflow-hidden rounded-lg h-full w-full relative ">
       <a href="#">
         <img
           :src="images[currentIndex]"
           alt="carousel image"
-          class="w-full h-full object-cover transition-opacity duration-700"
+          class=" w-full h-full object-cover transition-opacity duration-700 "
         />
       </a>
     </div>
@@ -14,7 +14,7 @@
     <!-- Nút điều hướng -->
     <button
       @click="prevSlide"
-      class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2"
+      class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 z-50"
     >
       ‹
     </button>
@@ -50,10 +50,10 @@ export default {
   name: "Carousel",
   setup() {
     const images = [
-      "/images/img1.png",
+      "/images/ads.png",
       "/images/img2.png",
       "/images/img3.png",
-      "/images/img1.png",
+      "/images/ads.png",
     ];
 
     const currentIndex = ref(0);

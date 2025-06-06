@@ -44,11 +44,15 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  const isLoggedIn = !!localStorage.getItem("accessToken"); // hoặc sessionStorage
+  const tokenInLocal = localStorage.getItem("accessToken");
+  const tokenInSession = sessionStorage.getItem("accessToken");
+  const isLoggedIn = !!tokenInLocal || !!tokenInSession;
+
   if (to.meta.requiresAuth && !isLoggedIn) {
-    next({ name: 'login' });  // chuyển hướng đến trang đăng nhập
+    next({ name: 'login' });  // chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
   } else {
-    next(); // tiếp tục đi đến route đó
+    next(); // tiếp tục đi đến route
   }
 });
+
 export default router;

@@ -1,18 +1,25 @@
 <template>
-    <span >
-        <searchObject v-for="(sObject) in searchList" :key="sObject.id" :searchObject="sObject"></searchObject>
-    </span>
+  <div v-show="isFocused">
+    <searchObject
+      v-for="(sObject) in searchList"
+      :key="sObject.id"
+      :searchObject="sObject"
+    />
+  </div>
 </template>
-<script>
 
+<script>
 import searchObject from './searchObject.vue'
+
 export default {
-     props:["searchList"],
-    data(){
-        components: {searchObject}
-        return{
-           
-        }
+  components: {
+    searchObject
+  },
+  props: ['searchList', 'isFocused'],
+  data() {
+    return {
+      // Có thể khai báo thêm nếu cần
     }
+  }
 }
 </script>

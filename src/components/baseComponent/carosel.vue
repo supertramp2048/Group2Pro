@@ -1,26 +1,29 @@
 <template>
-  <div class="relative  h-[600px] max-w-full  mx-0  ">
-    <!-- Hình ảnh -->
-    <div class="overflow-hidden rounded-lg h-full w-full relative ">
-      <a href="#">
+  <div class="relative h-[30vh] md:h-[50vh] w-full mx-0 box-border overflow-hidden">
+    <!-- Slide show ảnh -->
+    <div class="relative h-full w-full overflow-hidden rounded-lg">
+      <div class="absolute inset-0" v-for="(img, index) in images" :key="index">
         <img
-          :src="images[currentIndex]"
-          alt="carousel image"
-          class=" w-full h-full object-cover transition-opacity duration-700 "
+          :src="img"
+          :alt="`Ảnh ${index + 1}`"
+          class="w-full h-full object-cover transition-opacity duration-700"
+          :class="currentIndex === index ? 'opacity-100' : 'opacity-0'"
         />
-      </a>
+      </div>
     </div>
 
     <!-- Nút điều hướng -->
     <button
       @click="prevSlide"
       class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 z-50"
+      aria-label="Ảnh trước"
     >
       ‹
     </button>
     <button
       @click="nextSlide"
-      class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2"
+      class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 z-50"
+      aria-label="Ảnh sau"
     >
       ›
     </button>
@@ -32,17 +35,13 @@
       <span
         v-for="(img, index) in images"
         :key="index"
-        class="w-3 h-3 rounded-full cursor-pointer"
-        :class="{
-          'bg-white': currentIndex === index,
-          'bg-gray-400': currentIndex !== index,
-        }"
+        class="w-3 h-3 rounded-full cursor-pointer transition-colors duration-200"
+        :class="currentIndex === index ? 'bg-white' : 'bg-gray-400'"
         @click="goToSlide(index)"
       ></span>
     </div>
   </div>
 </template>
-
 <script>
 import { ref } from "vue";
 

@@ -5,6 +5,7 @@ import homePage from '../components/homePage.vue'
 import cart from '../components/cart.vue'
 import allProducts from '../components/allProducts.vue'
 import login from '../components/login.vue'
+import searchResult from '../components/searchResult.vue'
 const routes = [
   
    {
@@ -12,7 +13,11 @@ const routes = [
     name: 'homePage',
     component: homePage,
   },
-  
+  {
+    path: '/searchResult',
+    name: 'searchResult',
+    component: searchResult,
+  },
   {
     path: '/productDetail/:id',
     name: 'productDetail',

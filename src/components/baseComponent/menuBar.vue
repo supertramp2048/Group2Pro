@@ -66,36 +66,17 @@ export default {
         { label: "Trang chủ", route: "/" },
         {
           label: "Điện Thoại",
-          children: [
-            { label: "Samsung", route: "/dien-thoai/samsung" },
-            { label: "Apple", route: "/dien-thoai/apple" },
-            { label: "Xiaomi", route: "/dien-thoai/xiaomi" },
-            { label: "Oppo", route: "/dien-thoai/oppo" },
-            { label: "Bphone", route: "/dien-thoai/bphone" },
-            { label: "Google Pixel", route: "/dien-thoai/google-pixel" },
-          ],
+           route: {name: 'allProducts', params: {categoryId: 1} } ,
+          
         },
         {
           label: "Camera",
-          children: [
-            { label: "Hikvision", route: "/camera/hikvision" },
-            { label: "Dahua", route: "/camera/dahua" },
-            { label: "Ezviz", route: "/camera/ezviz" },
-            { label: "Imou", route: "/camera/imou" },
-            { label: "Sony", route: "/camera/sony" },
-            { label: "Bosch", route: "/camera/bosch" },
-          ],
+          
         },
         {
           label: "Laptop",
-          children: [
-            { label: "Acer", route: "/laptop/acer" },
-            { label: "Apple", route: "/laptop/apple" },
-            { label: "Asus", route: "/laptop/asus" },
-            { label: "Dell", route: "/laptop/dell" },
-            { label: "Hp", route: "/laptop/hp" },
-            { label: "Lenovo", route: "/laptop/lenovo" },
-          ],
+          route: {name: 'allProducts', params: {categoryId: 2} } ,
+          
         },
         {
           label: "Dịch vụ",

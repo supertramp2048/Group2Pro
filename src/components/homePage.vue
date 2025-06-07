@@ -2,12 +2,12 @@
   <div>
     <headerPro></headerPro>
     <menuBar class="z-20"></menuBar>
-    <section class="flex">
+    <section class="flex w-full mx-auto ">
       <!--Nội dung chính của web-->
-      <aside class="w-1/7 bg-gray-200 p-4"></aside>
-      <article class="flex-1 bg-white p-6">
+      <aside class="w-1/6 lg:block hidden bg-gray-200 p-4"></aside>
+      <article class="flex-1 lg:flex-1 w-full bg-white p-6">
         <!--Nội dung chính -->
-        <carosel class="fixed z-10"></carosel>
+        <carosel class=" z-10 w-full"></carosel>
         <cowndownClock></cowndownClock>
         <div class="flex flex-col">
           <!-- Điện thoại nổi bật -->
@@ -45,18 +45,18 @@
                 <div
                   v-for="product in phoneProducts"
                   :key="product.id"
-                  class="w-1/4 flex-shrink-0 px-3"
+                  class="w-1/4 flex-shrink-0 "
                 >
                   <div class="bg-white hover:shadow-xl shadow-lg rounded-lg p-6 mt-2 transition-shadow duration-300">
                     <router-link
                       :to="{ name: 'productDetail', params: { id: product.id } }"
                     >
-                      <img :src="product.src" alt="" class="w-full h-[220px] object-fill rounded-md mb-4 md:h-[220px] xl:h-[320px]" />
-                      <p class="text-xl font-bold text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap mb-3">
+                      <img :src="product.src" alt="" class="w-full h-[120px] object-fill rounded-md mb-4 md:h-[220px] xl:h-[320px]" />
+                      <p class="text-m md:text-2xl lg:text-2xl font-bold text-gray-700 truncate mb-3">
                         {{ product.title }}
                       </p>
                       <p class="p-2">
-                        <span class="text-red-600 text-2xl font-bold"
+                        <span class="text-red-600  sm:text-m lg:text-2xl md:text-2xl font-bold"
                           >Giá {{ formatPrice(product.price) }}
                         </span>
                       </p>
@@ -115,18 +115,18 @@
                 <div
                   v-for="product in laptopProducts"
                   :key="product.id"
-                  class="w-1/4 flex-shrink-0 px-3"
+                  class="w-1/4 flex-shrink-0 "
                 >
                   <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
                     <router-link
                       :to="{ name: 'productDetail', params: { id: product.id } }"
                     >
-                      <img :src="product.src" alt="" class="w-full h-[200px]  rounded-md mb-4 object-fill md:h-[220px]  xl:h-[320px]" />
-                      <p class="text-xl font-bold text-gray-700 mb-3">
+                      <img :src="product.src" alt="" class="w-full h-[120px]  rounded-md mb-4 object-fill md:h-[220px]  xl:h-[320px]" />
+                      <p class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3">
                         {{ product.title }}
                       </p>
                       <p class="pt-2">
-                        <span class="text-red-600 text-2xl font-bold"
+                        <span class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           >Giá {{ formatPrice(product.price) }}</span
                         >
                       </p>
@@ -149,7 +149,7 @@
           </div>
         </div>
       </article>
-      <aside class="w-1/7 bg-gray-200 p-4"></aside>
+      <aside class="w-1/6 lg:block hidden bg-gray-200 p-4"></aside>
     </section>
     <footerPro></footerPro>
   </div>

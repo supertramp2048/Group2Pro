@@ -4,8 +4,8 @@
     <menuBar class="z-20"></menuBar>
     <section class="flex w-full mx-auto">
       <!--Nội dung chính của web-->
-      <aside class="w-1/6 lg:block hidden bg-gray-200 p-4"></aside>
-      <article class="flex-1 lg:flex-1 w-full bg-white p-6">
+      <aside class="w-1/6 bg-gray-200 p-4"></aside>
+      <article class="flex-1 lg:w-4/6 lg:flex-1 w-full bg-white p-6">
         <!--Nội dung chính -->
         <carosel class="z-10 w-full"></carosel>
         <cowndownClock></cowndownClock>
@@ -321,7 +321,7 @@
 
         </div>
       </article>
-      <aside class="w-1/6 lg:block hidden bg-gray-200 p-4"></aside>
+      <aside class="w-1/6  bg-gray-200 p-4"></aside>
     </section>
     <footerPro></footerPro>
   </div>
@@ -415,13 +415,13 @@ export default {
     
      nextCams() {
       if (this.camCurrentIndex < this.camProducts.length - 4) {
-        this.laptopCurrentIndex++;
+        this.camCurrentIndex++;
       }
     },
 
     previousCams() {
-      if (this.laptopCurrentIndex > 0) {
-        this.laptopCurrentIndex--;
+      if (this.camCurrentIndex > 0) {
+        this.camCurrentIndex--;
       }
     },
 

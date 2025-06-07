@@ -87,7 +87,7 @@
     },
     {
       "id": 8,
-      "title": "Samsung Galaxy S25 Ultra ",
+      "title": "Samsung Galaxy S25 Ultra",
       "views": 200,
       "src": "/images/samsungGalaxyS25Ultra.png",
       "price": 10000000,
@@ -97,182 +97,342 @@
     {
       "id": 41,
       "title": "Logitech C920 Webcam",
+      "views": 25,
       "src": "/images/c920s.png",
-      "quantity": 25,
+      "price": 2100000,
       "categoryId": 3,
-      "price": 1200000,
-      "brand": "Logitech"
+      "description": "Webcam độ phân giải Full HD 1080p, tự động lấy nét và micro kép tích hợp.",
+      "brand": "Logitech",
+      "quantity": 25
     },
     {
       "id": 42,
       "title": "Razer Kiyo X",
+      "views": 40,
       "src": "/images/razer-kiyo-x.png",
-      "quantity": 40,
+      "price": 2300000,
       "categoryId": 3,
-      "price": 1350000,
-      "brand": "Razer"
+      "description": "Webcam 1080p 30FPS với điều chỉnh độ nghiêng, thích hợp cho streamer.",
+      "brand": "Razer",
+      "quantity": 40
     },
     {
       "id": 43,
       "title": "Microsoft LifeCam",
+      "views": 30,
       "src": "/images/microsoft-lifecam.png",
-      "quantity": 30,
+      "price": 1800000,
       "categoryId": 3,
-      "price": 980000,
-      "brand": "Microsoft"
+      "description": "Webcam HD 720p với công nghệ TrueColor cho hình ảnh rõ nét.",
+      "brand": "Microsoft",
+      "quantity": 30
     },
     {
       "id": 44,
       "title": "Dell Pro Webcam",
+      "views": 20,
       "src": "/images/dell-pro.png",
-      "quantity": 20,
+      "price": 2500000,
       "categoryId": 3,
-      "price": 1150000,
-      "brand": "Dell"
+      "description": "Webcam chuẩn 2K QHD, HDR và tự động lấy nét cực nhanh.",
+      "brand": "Dell",
+      "quantity": 20
     },
     {
       "id": 45,
       "title": "HP HD 4310",
+      "views": 50,
       "src": "/images/hp-hd-webcam.png",
-      "quantity": 50,
+      "price": 1700000,
       "categoryId": 3,
-      "price": 890000,
-      "brand": "HP"
+      "description": "Webcam nhỏ gọn, góc quay rộng 90 độ và ghi hình 720p.",
+      "brand": "HP",
+      "quantity": 50
     },
     {
       "id": 46,
       "title": "AverMedia PW513",
+      "views": 60,
       "src": "/images/PW513.png",
-      "quantity": 60,
+      "price": 3200000,
       "categoryId": 3,
-      "price": 2200000,
-      "brand": "AverMedia"
+      "description": "Webcam độ phân giải 4K Ultra HD, góc nhìn 94 độ.",
+      "brand": "AverMedia",
+      "quantity": 60
     },
     {
       "id": 47,
       "title": "Elgato Facecam",
+      "views": 22,
       "src": "/images/elgato_facecam_pro.png",
-      "quantity": 22,
+      "price": 3500000,
       "categoryId": 3,
-      "price": 2500000,
-      "brand": "Elgato"
+      "description": "Webcam chuyên nghiệp với cảm biến Sony STARVIS CMOS.",
+      "brand": "Elgato",
+      "quantity": 22
     },
     {
       "id": 48,
       "title": "Lenovo FHD Webcam",
+      "views": 33,
       "src": "/images/Lenovo-FHD-Webcam.png",
-      "quantity": 33,
+      "price": 3200000,
       "categoryId": 3,
-      "price": 990000,
-      "brand": "Lenovo"
+      "description": "Webcam 1080p, hỗ trợ chống ngược sáng và micro khử tiếng ồn.",
+      "brand": "Lenovo",
+      "quantity": 33
     },
     {
       "id": 49,
       "title": "Asus ROG Eye",
+      "views": 15,
       "src": "/images/Asus-ROG-Eye.png",
-      "quantity": 15,
+      "price": 2800000,
       "categoryId": 3,
-      "price": 1800000,
-      "brand": "Asus"
+      "description": "Webcam thiết kế gaming, ghi hình Full HD 1080p tại 60fps.",
+      "brand": "Asus",
+      "quantity": 15
     },
     {
       "id": 50,
       "title": "Creative Live! Cam",
+      "views": 45,
       "src": "/images/hero-creative-live-cam.png",
-      "quantity": 45,
+      "price": 1600000,
       "categoryId": 3,
-      "price": 1050000,
-      "brand": "Creative"
+      "description": "Webcam đơn giản, ghi hình HD và tích hợp micro lọc nhiễu.",
+      "brand": "Creative",
+      "quantity": 45
     },
     {
       "id": 51,
       "title": "MacBook Air M2",
+      "views": 17,
       "src": "/images/apple-macbook-air-m2.png",
-      "quantity": 17,
-      "categoryId": 2,
       "price": 28000000,
-      "brand": "Apple"
+      "categoryId": 2,
+      "description": "Laptop mỏng nhẹ, chip Apple M2, thời lượng pin lên đến 18 giờ.",
+      "brand": "Apple",
+      "quantity": 17
     },
     {
       "id": 52,
       "title": "Dell XPS 13",
+      "views": 12,
       "src": "/images/dell-xps-13.png",
-      "quantity": 12,
-      "categoryId": 2,
       "price": 26000000,
-      "brand": "Dell"
+      "categoryId": 2,
+      "description": "Laptop cao cấp với viền màn hình siêu mỏng và hiệu năng mạnh mẽ.",
+      "brand": "Dell",
+      "quantity": 12
     },
     {
       "id": 53,
       "title": "HP Spectre x360",
+      "views": 38,
       "src": "/images/HP-Spectre.png",
-      "quantity": 38,
-      "categoryId": 2,
       "price": 24500000,
-      "brand": "HP"
+      "categoryId": 2,
+      "description": "Laptop 2-trong-1 với màn hình cảm ứng và thiết kế sang trọng.",
+      "brand": "HP",
+      "quantity": 38
     },
     {
       "id": 54,
       "title": "Lenovo ThinkPad X1",
+      "views": 44,
       "src": "/images/lenovo-thinkpad.png",
-      "quantity": 44,
-      "categoryId": 2,
       "price": 25500000,
-      "brand": "Lenovo"
+      "categoryId": 2,
+      "description": "Laptop doanh nhân với độ bền cao, bàn phím nổi tiếng.",
+      "brand": "Lenovo",
+      "quantity": 44
     },
     {
       "id": 55,
       "title": "Asus ZenBook 14",
+      "views": 36,
       "src": "/images/Asus-ZenBook-14.png",
-      "quantity": 36,
-      "categoryId": 2,
       "price": 21500000,
-      "brand": "Asus"
+      "categoryId": 2,
+      "description": "Laptop siêu di động với thiết kế kim loại và vi xử lý Intel Gen 12.",
+      "brand": "Asus",
+      "quantity": 36
     },
     {
       "id": 56,
       "title": "Acer Swift 3",
+      "views": 29,
       "src": "/images/Acer-Swift-3.png",
-      "quantity": 29,
-      "categoryId": 2,
       "price": 19000000,
-      "brand": "Acer"
+      "categoryId": 2,
+      "description": "Laptop tầm trung hiệu năng ổn định, vỏ nhôm sang trọng.",
+      "brand": "Acer",
+      "quantity": 29
     },
     {
       "id": 57,
       "title": "MSI Modern 14",
+      "views": 21,
       "src": "/images/msi_modern_14_.png",
-      "quantity": 21,
-      "categoryId": 2,
       "price": 18500000,
-      "brand": "MSI"
+      "categoryId": 2,
+      "description": "Laptop dành cho sinh viên và nhân viên văn phòng.",
+      "brand": "MSI",
+      "quantity": 21
     },
     {
       "id": 58,
       "title": "Samsung Galaxy Book",
+      "views": 26,
       "src": "/images/Samsung-Galaxy-Book.png",
-      "quantity": 26,
-      "categoryId": 2,
       "price": 20000000,
-      "brand": "Samsung"
+      "categoryId": 2,
+      "description": "Laptop mỏng nhẹ với màn hình AMOLED sắc nét.",
+      "brand": "Samsung",
+      "quantity": 26
     },
     {
       "id": 59,
       "title": "Huawei MateBook D15",
+      "views": 30,
       "src": "/images/huaweimatebookd15.png",
-      "quantity": 30,
-      "categoryId": 2,
       "price": 17000000,
-      "brand": "Huawei"
+      "categoryId": 2,
+      "description": "Laptop phổ thông với thiết kế thanh lịch và màn hình lớn.",
+      "brand": "Huawei",
+      "quantity": 30
     },
     {
       "id": 60,
       "title": "Razer Blade 14",
+      "views": 19,
       "src": "/images/razer-blade-14.png",
-      "quantity": 19,
-      "categoryId": 2,
       "price": 32000000,
+      "categoryId": 2,
+      "description": "Laptop gaming siêu mỏng với card đồ họa RTX mạnh mẽ.",
+      "brand": "Razer",
+      "quantity": 19
+    },
+    {
+      "id": 61,
+      "title": "Logitech StreamCam",
+      "views": 28,
+      "src": "/images/logitech-streamcam.png",
+      "price": 2200000,
+      "categoryId": 3,
+      "description": "Webcam Full HD với khả năng ghi hình 60fps, lý tưởng cho streamer.",
+      "brand": "Logitech"
+    },
+    {
+      "id": 62,
+      "title": "Razer Kiyo Pro",
+      "views": 35,
+      "src": "/images/razer-kiyo-pro.png",
+      "price": 3000000,
+      "categoryId": 3,
+      "description": "Webcam chất lượng cao với cảm biến CMOS và HDR hỗ trợ điều kiện thiếu sáng.",
       "brand": "Razer"
+    },
+    {
+      "id": 63,
+      "title": "AverMedia PW315",
+      "views": 27,
+      "src": "/images/pw315.png",
+      "price": 2600000,
+      "categoryId": 3,
+      "description": "Webcam 1080p hỗ trợ khử nhiễu và góc nhìn rộng 95 độ.",
+      "brand": "AverMedia"
+    },
+    {
+      "id": 64,
+      "title": "Elgato Cam Link 4K",
+      "views": 18,
+      "src": "/images/elgato-cam-link.png",
+      "price": 2800000,
+      "categoryId": 3,
+      "description": "Thiết bị ghi hình chuyển đổi camera sang webcam 4K chuyên nghiệp.",
+      "brand": "Elgato"
+    },
+    {
+      "id": 65,
+      "title": "Lenovo 500 FHD Webcam",
+      "views": 32,
+      "src": "/images/lenovo-500.png",
+      "price": 1900000,
+      "categoryId": 3,
+      "description": "Webcam Full HD với khả năng cắm vào là chạy, tiện dụng cho mọi thiết bị.",
+      "brand": "Lenovo"
+    },
+    {
+      "id": 66,
+      "title": "HP 5MP Webcam",
+      "views": 24,
+      "src": "/images/hp-5mp.png",
+      "price": 2100000,
+      "categoryId": 3,
+      "description": "Webcam độ phân giải cao với mic kép khử tiếng ồn.",
+      "brand": "HP"
+    },
+    {
+      "id": 67,
+      "title": "Asus Webcam C3",
+      "views": 29,
+      "src": "/images/asus-c3.png",
+      "price": 2300000,
+      "categoryId": 3,
+      "description": "Webcam 1080p với thiết kế xoay linh hoạt và chân đế tiện lợi.",
+      "brand": "ASUS"
+    },
+    {
+      "id": 68,
+      "title": "Creative Live! Sync 1080p V2",
+      "views": 38,
+      "src": "/images/creative-v2.png",
+      "price": 1700000,
+      "categoryId": 3,
+      "description": "Webcam Full HD với micro tích hợp và khả năng điều chỉnh ánh sáng.",
+      "brand": "Creative"
+    },
+    {
+      "id": 69,
+      "title": "Microsoft Modern Webcam",
+      "views": 20,
+      "src": "/images/ms-modern.png",
+      "price": 2400000,
+      "categoryId": 3,
+      "description": "Webcam thiết kế tối giản, tích hợp TrueColor và HDR.",
+      "brand": "Microsoft"
+    },
+    {
+      "id": 70,
+      "title": "Dell UltraSharp Webcam",
+      "views": 14,
+      "src": "/images/dell-ultrasharp.png",
+      "price": 3600000,
+      "categoryId": 3,
+      "description": "Webcam 4K cao cấp với AI tự động lấy nét và nhận diện khuôn mặt.",
+      "brand": "Dell"
+    },
+    {
+      "id": 71,
+      "title": "iPhone 15 Pro Max",
+      "views": 20,
+      "src": "/images/iphone-15-pro-max.png",
+      "price": 33990000,
+      "categoryId": 1,
+      "description": "Màn hình Super Retina XDR 6.7\", chip A17 Pro, camera chuyên nghiệp.",
+      "brand": "Apple"
+    },
+    {
+      "id": 72,
+      "title": "Samsung Galaxy S24 Ultra",
+      "views": 18,
+      "src": "/images/galaxy-s24-ultra.png",
+      "price": 31990000,
+      "categoryId": 1,
+      "description": "Màn hình Dynamic AMOLED 2X, camera zoom 100x, S-Pen tích hợp.",
+      "brand": "Samsung"
     }
   ],
   "comments": [

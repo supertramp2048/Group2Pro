@@ -15,9 +15,7 @@
           <search class="z-50"></search>
         </td>
         <td>
-          <router-link :to="{name: 'cart'}">
-            <img src="/images/cart.png" class="w-[80px] h-[80px]" alt="" />
-          </router-link>
+          <CartIcon></CartIcon>
         </td>
       </tr>
     </table>
@@ -25,9 +23,11 @@
 </template>
 <script>
 import search from "./search.vue";
+import CartIcon from "../CartIcon.vue";
 export default {
   components: {
     search,
+    CartIcon,
   },
 };
 </script>

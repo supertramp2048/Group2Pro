@@ -3,24 +3,23 @@
     <headerPro></headerPro>
     <menuBar></menuBar>
 
-     <button @click="prevPage()" class="text-2xl text-black block">
-        <!-- Icon mũi tên trái -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-10"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-          />
-        </svg>
-      </button>
-
+    <button @click="prevPage()" class="text-2xl text-black block">
+      <!-- Icon mũi tên trái -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-10"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+        />
+      </svg>
+    </button>
 
     <div v-for="productObj in product" :key="productObj.id">
       <div
@@ -39,25 +38,13 @@
         <div class="flex-1 px-8">
           <h2 class="text-2xl font-bold mb-4">TÍNH NĂNG NỔI BẬT</h2>
           <ul class="space-y-2 text-white text-base list-disc list-inside">
-            <li>
-              Màn hình Super Retina XDR 6,9 inch lớn hơn có viền mỏng hơn, đem
-              đến cảm giác tuyệt vời với khi cầm trên tay.
-            </li>
-            <li>
-              Điều khiển Camera – Chỉ cần trượt ngón tay để điều chỉnh camera
-              giúp chụp ảnh hoặc quay video đẹp hoàn hảo và siêu nhanh.
-            </li>
-            <li>
-              iPhone 13 có thiết kế titan cấp 5 với lớp hoàn thiện mới, tinh tế
-              được xử lý bề mặt vi điểm.
-            </li>
-            <li>
-              iPhone 13 được cài đặt sẵn hệ điều hành iOS 18, cho giao diện trực
-              quan.
+            <li v-for="(desc, index) in descriptions" :key="index">
+              {{ desc }}
             </li>
           </ul>
         </div>
       </div>
+
       <div class="w-full max-w-7xl mx-auto shadow-lg h-full p-4">
         <h2 class="text-xl font-semibold mb-4">Cam kết sản phẩm</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -226,7 +213,7 @@
             <transition name="fade">
               <div
                 v-if="showNotification"
-                class="absolute left-8/12  w-[200px]  bottom-24 right-4 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+                class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-50"
               >
                 ✅ Thêm vào giỏ hàng thành công!
               </div>
@@ -250,6 +237,7 @@ export default {
       product: {},
       cartStore: null,
       showNotification: false,
+      descriptions: [],
     };
   },
   created() {
@@ -266,14 +254,16 @@ export default {
     },
   },
   methods: {
-    prevPage(){
-        window.history.back()
+    prevPage() {
+      window.history.back();
     },
-    async loadProduct(data) {
+    async loadProduct() {
       let res = await fetch(`http://localhost:3000/posts?id=${this.id}`);
       const dataObj = await res.json();
       this.product = dataObj;
+      this.descriptions = dataObj[0].description.split(";").filter(Boolean);
     },
+
     formatPrice(value) {
       if (typeof value !== "number") return "N/A";
       return value.toLocaleString("vi-VN");
@@ -287,6 +277,11 @@ export default {
       setTimeout(() => {
         this.showNotification = false;
       }, 1000);
+    },
+    subString(string) {
+      this.descriptions = string.split(";").filter(Boolean);
+      console.log(descriptions);
+      
     },
   },
 
@@ -308,5 +303,4 @@ td {
 .fade-leave-to {
   opacity: 0;
 }
-
 </style>

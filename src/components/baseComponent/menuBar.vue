@@ -71,6 +71,7 @@ export default {
         },
         {
           label: "Camera",
+          route: {name: 'allProducts', params: {categoryId: 3} } ,
           
         },
         {

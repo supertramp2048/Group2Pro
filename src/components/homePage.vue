@@ -44,20 +44,20 @@
               >
                 <div
                   v-for="product in phoneProducts"
-                  :key="product.id"
+                  :key="product.Id"
                   class="w-1/4 flex-shrink-0 "
                 >
                   <div class="bg-white hover:shadow-xl shadow-lg rounded-lg p-6 mt-2 transition-shadow duration-300">
                     <router-link
-                      :to="{ name: 'productDetail', params: { id: product.id } }"
+                      :to="{ name: 'productDetail', params: { id: product.Id } }"
                     >
-                      <img :src="product.src" alt="" class="w-full h-[120px] object-fill rounded-md mb-4 md:h-[220px] xl:h-[320px]" />
+                      <img :src="product.Src" alt="" class="w-full h-[120px] object-fill rounded-md mb-4 md:h-[220px] xl:h-[320px]" />
                       <p class="text-m md:text-2xl lg:text-2xl font-bold text-gray-700 truncate mb-3">
-                        {{ product.title }}
+                        {{ product.Title }}
                       </p>
                       <p class="p-2">
                         <span class="text-red-600  sm:text-m lg:text-2xl md:text-2xl font-bold"
-                          >Giá {{ formatPrice(product.price) }}
+                          >Giá {{ formatPrice(product.Price) }}
                         </span>
                       </p>
                     </router-link>
@@ -114,20 +114,20 @@
               >
                 <div
                   v-for="product in laptopProducts"
-                  :key="product.id"
+                  :key="product.Id"
                   class="w-1/4 flex-shrink-0 "
                 >
                   <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
                     <router-link
-                      :to="{ name: 'productDetail', params: { id: product.id } }"
+                      :to="{ name: 'productDetail', params: { id: product.Id } }"
                     >
-                      <img :src="product.src" alt="" class="w-full h-[120px]  rounded-md mb-4 object-fill md:h-[220px]  xl:h-[320px]" />
+                      <img :src="product.Src" alt="" class="w-full h-[120px]  rounded-md mb-4 object-fill md:h-[220px]  xl:h-[320px]" />
                       <p class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3">
-                        {{ product.title }}
+                        {{ product.Title }}
                       </p>
                       <p class="pt-2">
                         <span class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
-                          >Giá {{ formatPrice(product.price) }}</span
+                          >Giá {{ formatPrice(product.Price) }}</span
                         >
                       </p>
                     </router-link>
@@ -188,11 +188,12 @@ export default {
   },
   methods: {
     async loadProduct() {
-      let res = await fetch("http://localhost:3000/posts");
+      //let res = await fetch("http://localhost:3000/posts");
+      let res = await fetch("http://localhost:3000/API/index.php"); // Thay đổi URL cho phù hợp với API của bạn
       this.allProducts = await res.json();
 
-      this.phoneProducts = this.allProducts.filter((p) => p.categoryId === 1).slice(0, 15);
-      this.laptopProducts = this.allProducts.filter((p) => p.categoryId === 2).slice(0, 15);
+      this.phoneProducts = this.allProducts.filter((p) => p.Category === 1).slice(0, 15);
+      this.laptopProducts = this.allProducts.filter((p) => p.Category === 2).slice(0, 15);
     },
 
     formatPrice(value) {

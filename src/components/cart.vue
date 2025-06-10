@@ -40,15 +40,15 @@
       <ul class="checkout-list">
         <transition-group name="fade">
           <li
-            v-for="product in cart"
-            :key="product.id"
+            v-for="(product,index) in cart"
+            :key="index"
             class="checkout-product"
           >
             <img :src="product.src" alt="" class="product-image" />
             <h3 class="product-name text-2xl">{{ product.title }}</h3>
             <span class="product-price">{{ formatPrice(product.price) }} </span>
 
-            <button class="product-remove" @click="remove(product.id)">
+            <button class="product-remove" @click="remove(index)">
               X
             </button>
           </li>
@@ -78,10 +78,7 @@ import useCartStore from "../stores/cartStore";
 import headerPro from "./baseComponent/headerPro.vue";
 import footerPro from "./baseComponent/footerPro.vue";
 import menuBar from "./baseComponent/menuBar.vue";
-import MenuBar from "./baseComponent/menuBar.vue";
-import FooterPro from "./baseComponent/footerPro.vue";
 export default {
-  components: { headerPro, MenuBar, FooterPro },
   component: {
     headerPro,
     footerPro,
@@ -101,8 +98,8 @@ export default {
     },
   },
   methods: {
-    remove(data) {
-      this.cartStore.removeFromCart(data);
+    remove(index) {
+      this.cartStore.removeFromCart(index);
     },
     clearAllProduct() {
       this.cartStore.clearCart();

@@ -218,6 +218,15 @@
                 ✅ Thêm vào giỏ hàng thành công!
               </div>
             </transition>
+
+            <transition name="fade">
+              <div
+                v-if="showNotificationErr"
+                class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-red-700 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+              >
+                Đăng nhập để thêm vào giỏ hàng
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -237,6 +246,7 @@ export default {
       product: {},
       cartStore: null,
       showNotification: false,
+      showNotificationErr: false,
       descriptions: [],
     };
   },
@@ -269,19 +279,30 @@ export default {
       return value.toLocaleString("vi-VN");
     },
     addProduct(product) {
-      this.cartStore.addToCart(product); // gọi action thêm sp vào giỏ (theo tên action trong store)
-      console.log("Da them vao gio hang"); // in ra giỏ hàng để kiểm tra
-      this.showNotification = true; // Hiện thông báo
+      let uid = localStorage.getItem("userId");
 
-      // Ẩn thông báo sau 1 giây
-      setTimeout(() => {
-        this.showNotification = false;
-      }, 1000);
+      if (uid) {
+        this.cartStore.addToCart(product); // gọi action thêm sp vào giỏ (theo tên action trong store)
+        console.log("Da them vao gio hang"); // in ra giỏ hàng để kiểm tra
+        this.showNotification = true; // Hiện thông báo
+
+        // Ẩn thông báo sau 1 giây
+        setTimeout(() => {
+          this.showNotification = false;
+        }, 1000);
+      }
+      else {
+        this.showNotificationErr = true; 
+
+        setTimeout(() => {
+          this.showNotificationErr = false;
+        }, 1500);
+      }
+
     },
     subString(string) {
       this.descriptions = string.split(";").filter(Boolean);
       console.log(descriptions);
-      
     },
   },
 

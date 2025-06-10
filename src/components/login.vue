@@ -39,7 +39,8 @@ export default {
         
         // Store token and user info
         const { accessToken, user } = response.data
-        
+        localStorage.setItem("token",accessToken);
+        localStorage.setItem("userId",user.id);
         // Save to localStorage if remember me is checked
         if (this.remember) {
           localStorage.setItem('accessToken', accessToken)

@@ -15,8 +15,8 @@ import { defineStore } from 'pinia'
         this.cart.push({ ...product, qty: 1 }) // Nếu chưa có, thêm mới với qty = 1
       // }
     },
-    removeFromCart(id){
-      this.cart = this.cart.filter(item => item.id !== id)
+    removeFromCart(index){
+      this.cart.splice(index,1)
     },
     clearCart(){
       this.cart = []

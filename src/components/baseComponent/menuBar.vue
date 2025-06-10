@@ -1,5 +1,6 @@
 <template>
-  <nav class="bg-gray-800 text-white px-6 py-3 z-30">
+  <nav class="bg-gray-800  text-white px-6 py-3 z-30 justify-items-center">
+    <div class="lg:w-4/6 w-full">
     <ul class="flex space-x-6">
       <li v-for="(item, index) in menu" :key="index" class="relative group">
         <router-link
@@ -48,12 +49,13 @@
           :class="{ block: openIndex === menu.length, hidden: openIndex !== menu.length }"
         > 
           <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap">
-            <router-link to="login" class="block w-full">Đăng nhập</router-link>
+            <router-link :to="{name: 'admin'}" class="block w-full">Đăng nhập</router-link>
           </li>
           <li class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap" @click="logOut()">Đăng xuất</li>
         </ul>
       </li>
     </ul>
+    </div>
   </nav>
 </template>
 
@@ -96,7 +98,13 @@ export default {
     },
     logOut(){
       localStorage.removeItem("accessToken")
+      localStorage.removeItem("userId")
+      console.log("User id local",localStorage.getItem("userId"));
+      
       sessionStorage.removeItem("accessToken")
+      sessionStorage.removeItem("userId")
+      console.log("User id session",sessionStorage.getItem("userId"));
+      
     }
   },
 };

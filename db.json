@@ -433,8 +433,35 @@
       "categoryId": 1,
       "description": "Màn hình Dynamic AMOLED 2X, camera zoom 100x, S-Pen tích hợp.",
       "brand": "Samsung"
+    },
+    {
+      "username": "1",
+      "password": "1",
+      "id": 73
+    },
+    {
+      "title": "1",
+      "content": "1",
+      "id": 74
+    },
+    {
+      "id": "100",
+      "title": "q",
+      "src": "asd",
+      "price": "12",
+      "categoryId": "1",
+      "brand": "ap"
+    },
+    {
+      "id": "101",
+      "title": "w",
+      "src": "qwe",
+      "price": "12",
+      "categoryId": "3",
+      "brand": "apple"
     }
   ],
+  "userCart": [],
   "comments": [
     {
       "id": 1,

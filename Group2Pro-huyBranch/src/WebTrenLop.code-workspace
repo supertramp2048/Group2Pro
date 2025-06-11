@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../WebTrenLop"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "WebTrenLop"
+	}
+}

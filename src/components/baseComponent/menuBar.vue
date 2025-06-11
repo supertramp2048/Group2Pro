@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-800 text-white px-6 py-3 z-30 justify-items-center">
+  <nav class="bg-gradient-to-r from-blue-400 to-yellow-200 text-white px-6 py-3 z-30 justify-items-center">
     <div class="lg:w-4/5 w-full">
       <ul class="flex space-x-6">
         <li v-for="(item, index) in menu" :key="index" class="relative group">

@@ -9,7 +9,7 @@
     }
     
     header {
-        @apply justify-center bg-gradient-to-b from-violet-950 to-blue-600 justify-items-center h-fit sticky top-0 z-50;
+        @apply justify-center bg-gradient-to-r from-pink-500 to-orange-300 justify-items-center h-fit sticky top-0 z-50;
     }
     
     main {

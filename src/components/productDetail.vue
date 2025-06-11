@@ -23,7 +23,7 @@
 
     <div v-for="productObj in product" :key="productObj.id" class="flex flex-col grow">
       <div
-        class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-300 text-white w-full max-w-7xl mx-auto shadow-lg h-full"
+        class="flex items-center justify-between p-6 rounded-2xl  bg-slate-400  text-white w-full max-w-7xl mx-auto shadow-lg h-full"
       >
         <!-- Ảnh sản phẩm -->
         <div class="flex-shrink-0 bg-white rounded-2xl p-4 w-4/12 h-4/12">
@@ -131,39 +131,7 @@
         </div>
       </div>
 
-      <table class="table-fixed border w-full max-w-5xl mx-auto shadow-lg">
-        <thead>
-          <tr>
-            <th class="w-1/3 bg-gray-200 text-left px-2 py-1">
-              Thông số kỹ thuật
-            </th>
-            <th class="w-2/3 bg-gray-200 text-left px-2 py-1">Chi tiết</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="w-1/3 bg-gray-300 px-2 py-1">Kích thước màn hình</td>
-            <td class="w-2/3 bg-gray-300 px-2 py-1">10.1 inches</td>
-          </tr>
-          <tr>
-            <td class="bg-gray-300 px-2 py-1">Kích thước màn hình</td>
-            <td class="bg-gray-300 px-2 py-1">10.1 inches</td>
-          </tr>
-          <tr>
-            <td class="bg-gray-300 px-2 py-1">Kích thước màn hình</td>
-            <td class="bg-gray-300 px-2 py-1">10.1 inches</td>
-          </tr>
-          <tr>
-            <td class="bg-gray-300 px-2 py-1">Kích thước màn hình</td>
-            <td class="bg-gray-300 px-2 py-1">10.1 inches</td>
-          </tr>
-          <tr>
-            <td class="bg-gray-300 px-2 py-1">Kích thước màn hình</td>
-            <td class="bg-gray-300 px-2 py-1">10.1 inches</td>
-          </tr>
-          <!-- Thêm dòng nếu cần -->
-        </tbody>
-      </table>
+      
 
       <!-- Cha bao ngoài để canh giữa thanh -->
       <div class="sticky bottom-0 left-0 flex justify-center z-50">

@@ -34,7 +34,7 @@
 export default {
   data() {
     return {
-      targetDate: new Date(2025, 5, 15, 0, 0, 0), // 15/06/2025 00:00:00
+      targetDate: new Date(2025, 5, 20, 0, 0, 0), // 15/06/2025 00:00:00
       days: 0,
       hours: 0,
       minutes: 0,

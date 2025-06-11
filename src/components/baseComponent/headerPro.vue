@@ -1,8 +1,8 @@
 <template>
   <header class="w-full shadow-md bg-white">
     <!-- Thanh trên cùng -->
-    <div class="bg-blend-color text-white text-sm px-4 py-2 flex justify-between">
-      <div class="text-3xl text-shadow-black">Da Sun Kid - Ưu đãi mỗi ngày!</div>
+    <div class="bg-blend-color text-white text-sm px-1 py-0 flex justify-between">
+      <div class="text-3xl text-shadow-black"><img src="/images/logoName.png"  class=" h-[80px]" alt=""></div>
       
     </div>
 

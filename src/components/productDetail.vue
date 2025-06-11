@@ -23,7 +23,7 @@
 
     <div v-for="productObj in product" :key="productObj.id" class="flex flex-col grow">
       <div
-        class="flex items-center justify-between p-6 rounded-2xl  bg-slate-400  text-white w-full max-w-7xl mx-auto shadow-lg h-full"
+        class="flex items-center justify-between p-6 rounded-2xl  bg-gradient-to-r from-slate-800 via-slate-500 to-yellow-100  text-white w-full max-w-7xl mx-auto shadow-lg h-full"
       >
         <!-- Ảnh sản phẩm -->
         <div class="flex-shrink-0 bg-white rounded-2xl p-4 w-4/12 h-4/12">

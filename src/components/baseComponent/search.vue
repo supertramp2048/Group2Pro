@@ -11,7 +11,7 @@
         />
         <button
           type="submit"
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-white   bg-blue-700 hover:bg-blue-800 rounded-2xl px-4 py-1"
+          class="absolute right-2 top-1/2 -translate-y-1/2 text-white   bg-blue-400 hover:bg-blue-600 rounded-2xl px-4 py-1"
         >
           Tìm
         </button>

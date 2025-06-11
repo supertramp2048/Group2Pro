@@ -1,9 +1,32 @@
 <template>
-  <div class=" flex p-1 lead-[40px] border-b">
-    Countdown to Sale: 
-    <br>
-    <span class="block bg-red-800 w-[30px] h-[30px] m-2 text-amber-50 text-center" > {{ days }}</span> days <span class="block bg-red-800 w-[30px] h-[30px] m-2 text-amber-50 text-center"> {{ hours }} </span> hours 
-    <span class="block bg-red-800 w-[30px] h-[30px] m-2 text-amber-50 text-center"> {{ minutes }} </span> minutes <span class="block bg-red-800 w-[30px] h-[30px] m-2 text-amber-50 text-center"> {{ seconds }} </span>  seconds
+  <div class="flex flex-col items-center p-4 bg-white shadow-md rounded-md max-w-md mx-auto">
+    <p class="text-lg font-semibold text-red-600 mb-4">⏰ Countdown to Sale</p>
+    <div class="flex space-x-2">
+      <div class="flex flex-col items-center">
+        <span class="bg-red-700 text-white text-xl font-bold w-12 h-12 flex items-center justify-center rounded-md">
+          {{ days }}
+        </span>
+        <span class="text-xs mt-1 text-gray-600">Days</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="bg-red-700 text-white text-xl font-bold w-12 h-12 flex items-center justify-center rounded-md">
+          {{ hours }}
+        </span>
+        <span class="text-xs mt-1 text-gray-600">Hours</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="bg-red-700 text-white text-xl font-bold w-12 h-12 flex items-center justify-center rounded-md">
+          {{ minutes }}
+        </span>
+        <span class="text-xs mt-1 text-gray-600">Minutes</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="bg-red-700 text-white text-xl font-bold w-12 h-12 flex items-center justify-center rounded-md">
+          {{ seconds }}
+        </span>
+        <span class="text-xs mt-1 text-gray-600">Seconds</span>
+      </div>
+    </div>
   </div>
 </template>
 

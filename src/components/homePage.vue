@@ -2,12 +2,42 @@
   <div>
     <headerPro></headerPro>
     <menuBar class="z-20"></menuBar>
-    <section class="flex w-full mx-auto">
+    <section class="flex w-full md:w-4/5 mx-auto">
       <!--Nội dung chính của web-->
-      <aside class="w-1/6 bg-gray-200 p-4"></aside>
+
       <article class="flex-1 lg:w-4/6 lg:flex-1 w-full bg-white p-6">
         <!--Nội dung chính -->
-        <carosel class="z-10 w-full"></carosel>
+        <div class="flex flex-col lg:flex-row">
+          <aside class="w-2/6 hidden lg:block bg-gray-200 p-4">
+          <router-link
+            :to="{ name: 'productDetail', params: { id: 74 } }">
+            <img src="/images/ads4.png" alt="" class="rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+          </aside>
+          <carosel class="z-10"></carosel>
+          <aside class="w-2/6 hidden lg:block bg-gray-200 p-4">
+          <router-link :to="{ name: 'productDetail', params: { id: 8 } }">
+            <img src="/images/galaxyM55Ads.png" alt="" class="rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+            
+          </aside>
+        </div>
         <cowndownClock></cowndownClock>
         <div class="flex flex-col">
           <!-- Điện thoại nổi bật -->
@@ -318,10 +348,8 @@
               </svg>
             </button>
           </div>
-
         </div>
       </article>
-      <aside class="w-1/6  bg-gray-200 p-4"></aside>
     </section>
     <footerPro></footerPro>
   </div>
@@ -354,7 +382,7 @@ export default {
       cart: null,
       phoneCurrentIndex: 0,
       laptopCurrentIndex: 0,
-      camCurrentIndex: 0
+      camCurrentIndex: 0,
     };
   },
   created() {
@@ -411,9 +439,9 @@ export default {
         this.laptopCurrentIndex--;
       }
     },
-// dieu huong camemra
-    
-     nextCams() {
+    // dieu huong camemra
+
+    nextCams() {
       if (this.camCurrentIndex < this.camProducts.length - 4) {
         this.camCurrentIndex++;
       }
@@ -424,7 +452,6 @@ export default {
         this.camCurrentIndex--;
       }
     },
-
   },
 
   mounted() {

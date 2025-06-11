@@ -435,31 +435,33 @@
       "brand": "Samsung"
     },
     {
-      "username": "1",
-      "password": "1",
-      "id": 73
+      "id": 73,
+      "title": "Poco X7 Pro",
+      "views": 15,
+      "src": "/images/pocoX7.png",
+      "price": 29990000,
+      "categoryId": 1,
+      "description": "Camera AI tiên tiến"
     },
     {
-      "title": "1",
-      "content": "1",
-      "id": 74
+      "id": 74,
+      "title": "Techno Spark 10 Pro",
+      "views": 15,
+      "src": "/images/techno.png",
+      "price": 29990000,
+      "categoryId": 1,
+      "description": "Camera AI tiên tiến"
     },
     {
-      "id": "100",
-      "title": "q",
-      "src": "asd",
-      "price": "12",
-      "categoryId": "1",
-      "brand": "ap"
-    },
-    {
-      "id": "101",
-      "title": "w",
-      "src": "qwe",
-      "price": "12",
-      "categoryId": "3",
-      "brand": "apple"
+      "id": 75,
+      "title": "Techno Spark 10 Pro",
+      "views": 15,
+      "src": "/images/techno.png",
+      "price": 29990000,
+      "categoryId": 3,
+      "description": "Camera AI tiên tiến"
     }
+    
   ],
   "userCart": [],
   "comments": [

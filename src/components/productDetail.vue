@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col">
     <headerPro></headerPro>
     <menuBar></menuBar>
 
@@ -21,7 +21,7 @@
       </svg>
     </button>
 
-    <div v-for="productObj in product" :key="productObj.id">
+    <div v-for="productObj in product" :key="productObj.id" class="flex flex-col grow">
       <div
         class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-300 text-white w-full max-w-7xl mx-auto shadow-lg h-full"
       >
@@ -290,15 +290,13 @@ export default {
         setTimeout(() => {
           this.showNotification = false;
         }, 1000);
-      }
-      else {
-        this.showNotificationErr = true; 
+      } else {
+        this.showNotificationErr = true;
 
         setTimeout(() => {
           this.showNotificationErr = false;
         }, 1500);
       }
-
     },
     subString(string) {
       this.descriptions = string.split(";").filter(Boolean);
@@ -312,6 +310,11 @@ export default {
 };
 </script>
 <style scoped>
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 td {
   border: 1px solid rgb(240, 236, 236);
   background: rgb(210, 207, 207);

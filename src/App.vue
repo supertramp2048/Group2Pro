@@ -1,15 +1,26 @@
 
 
 <template>
-  <div>
-    <!-- <router-link :to="{ name: 'homePage' }"> home </router-link> -->
-    <router-view></router-view>
+   <div class="min-h-screen flex flex-col">
+    
+    <router-view class="flex flex-col grow"></router-view>
+    <footerPro></footerPro>
   </div>
+  
 </template>
 <script>
+import footerPro from './components/baseComponent/footerPro.vue';
+
 export default {
+  component: {footerPro}
 
 };
 </script>
 
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+</style>
 

@@ -351,7 +351,7 @@
         </div>
       </article>
     </section>
-    <footerPro></footerPro>
+    
   </div>
 </template>
 

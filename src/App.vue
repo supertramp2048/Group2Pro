@@ -12,7 +12,7 @@
 import footerPro from './components/baseComponent/footerPro.vue';
 
 export default {
-  component: {footerPro}
+  components: {footerPro}
 
 };
 </script>

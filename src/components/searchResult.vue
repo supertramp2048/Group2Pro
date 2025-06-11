@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="flex flex-col" >
     <headerPro></headerPro>
     <menuBar></menuBar>
 
-    <div class="w-full md:w-10/12 shadow-sm mx-auto">
+    <div class="w-full h-full md:w-10/12 shadow-sm mx-auto">
       <div class="flex justify-between">
         <button
           @click="prevPage()"
@@ -162,7 +162,6 @@
       </button>
     </div>
 
-    <footerPro></footerPro>
   </div>
 </template>
 
@@ -334,3 +333,6 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+</style>

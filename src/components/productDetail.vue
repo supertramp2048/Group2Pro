@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="h-full flex flex-col">
     <headerPro></headerPro>
     <menuBar></menuBar>
 
@@ -199,7 +199,7 @@
         </div>
       </div>
     </div>
-    <footerPro></footerPro>
+    
   </div>
 </template>
 <script>

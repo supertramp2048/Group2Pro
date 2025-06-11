@@ -69,7 +69,6 @@
       </button>
       </div>
     </div>
-    <footerPro></footerPro>
   </div>
 </template>
 

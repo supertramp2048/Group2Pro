@@ -135,7 +135,7 @@
       </div>
     </main>
     
-    <footerPro></footerPro>
+
   </div>
 </template>
 

@@ -90,7 +90,7 @@
                   class="w-1/4 flex-shrink-0"
                 >
                   <div
-                    class="bg-white hover:shadow-xl shadow-lg rounded-lg p-6 mt-2 transition-shadow duration-300"
+                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
                   >
                     <router-link
                       :to="{

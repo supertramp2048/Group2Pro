@@ -163,7 +163,7 @@ export default {
       
       // ✅ Thêm các thuộc tính bị thiếu
       totalItems: 0,           // Tổng số sản phẩm
-      limit: 20,              // Số sản phẩm mỗi trang
+      limit: 5,              // Số sản phẩm mỗi trang
       maxVisibleButtons: 5,   // Số nút pagination hiển thị
       showDebug: false,       // Hiển thị thông tin debug (set true để debug)
       loading: false,         // Trạng thái loading
@@ -254,7 +254,9 @@ export default {
         this.products = await res.json();
         
         // Kiểm tra header X-Total-Count
-        const totalCount = res.headers.get("X-Total-Count");
+       
+        //  const totalCount = res.headers.get("X-Total-Count");
+        const totalCount = this.originalProducts.length;
         console.log("X-Total-Count header:", totalCount);
         
         if (totalCount) {

@@ -6,13 +6,18 @@ import cart from '../components/cart.vue'
 import allProducts from '../components/allProducts.vue'
 import login from '../components/login.vue'
 import searchResult from '../components/searchResult.vue'
-import admin from '../components/admin.vue'
+import contact from '../components/contact.vue'
 const routes = [
   
    {
     path: '/',
     name: 'homePage',
     component: homePage,
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: contact,
   },
   {
     path: '/searchResult',
@@ -42,12 +47,7 @@ const routes = [
     component :allProducts,
     props: true
   },
-  {
-    path: '/admin',
-    name: 'admin',
-    component :admin,
-    needAdmin: true
-  },
+  
 ];
 
 const router = createRouter({

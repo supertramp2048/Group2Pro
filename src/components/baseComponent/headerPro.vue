@@ -2,7 +2,7 @@
   <header class="w-full shadow-md bg-white">
     <!-- Thanh trên cùng -->
     <div class="bg-blend-color text-white text-sm px-1 py-0 flex justify-between">
-      <div class="text-3xl text-shadow-black"><img src="/images/logoName.png"  class=" h-[80px]" alt=""></div>
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-slate-600 from-sky-500">WHALER</span> <span class="bg-blue-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-2">.COM</span> </h1>
       
     </div>
 

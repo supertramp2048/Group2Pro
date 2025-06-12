@@ -100,7 +100,7 @@ export default {
             { label: "Tư vấn mua hàng", route: "/dich-vu/tu-van" },
           ],
         },
-        { label: "Liên hệ", route: "/lien-he" },
+        { label: "Liên hệ", route: {name: "contact"} },
       ],
     };
   },

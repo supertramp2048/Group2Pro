@@ -451,15 +451,6 @@
       "price": 29990000,
       "categoryId": 1,
       "description": "Camera AI tiên tiến"
-    },
-    {
-      "id": 75,
-      "title": "Techno Spark 10 Pro",
-      "views": 15,
-      "src": "/images/techno.png",
-      "price": 29990000,
-      "categoryId": 3,
-      "description": "Camera AI tiên tiến"
     }
     
   ],

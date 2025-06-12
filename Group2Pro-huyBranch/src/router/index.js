@@ -31,11 +31,6 @@ const routes = [
      meta: { requiresAuth: true }
   },
   {
-   path: '/login',
-   name: 'login',
-   component: login
-  },
-  {
     path: '/allProducts/:categoryId',
     name: 'allProducts',
     component :allProducts,

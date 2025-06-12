@@ -16,13 +16,16 @@ class productControler {
     $this->gateway = $gateway;
   }
 
-  public function processRequest(string $method, ?string $id, ?string $category) :void {
+  public function processRequest(string $method, ?string $id, ?string $category, ?string $page, ?string $limit) :void {
     /*có 2 phần: 1 có id, 1 không
      + phần có id -> truy cập vào dòng cụ thể với id cho trước (resource request )
      + phần k có id -> truy cập tất cả các dòng (collection request) */
      if($id) {
       $this->processResourceRequest($method, $id);
      } 
+     else if($category && $page && $limit) {
+      $this->processPaginationRequest($method, $category, $page, $limit);
+     }
      else if($category) {
       $this->processCategoryRequest($method, $category);
      }
@@ -173,6 +176,18 @@ class productControler {
       case 'GET':
         // lấy danh sách giỏ hàng của tất cả người dùng
         echo json_encode($this->gateway->getAllCarts());
+        break;
+      default:
+        http_response_code(405); // trả về mã trạng thái 405 Method Not Allowed
+        header('Allow: GET'); // thông báo các phương thức được hỗ trợ
+        break;
+    }
+  }
+  private function processPaginationRequest(string $method, string $category, string $page, string $limit) :void {
+    switch($method) {
+      case 'GET':
+        // lấy danh sách sản phẩm theo phân trang
+        echo json_encode($this->gateway->paginate($category, $page, $limit));
         break;
       default:
         http_response_code(405); // trả về mã trạng thái 405 Method Not Allowed

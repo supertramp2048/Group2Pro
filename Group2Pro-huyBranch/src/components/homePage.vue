@@ -2,12 +2,42 @@
   <div>
     <headerPro></headerPro>
     <menuBar class="z-20"></menuBar>
-    <section class="flex w-full mx-auto">
+    <section class="flex w-full md:w-4/5 mx-auto">
       <!--Nội dung chính của web-->
-      <aside class="w-1/6 bg-gray-200 p-4"></aside>
+
       <article class="flex-1 lg:w-4/6 lg:flex-1 w-full bg-white p-6">
         <!--Nội dung chính -->
-        <carosel class="z-10 w-full"></carosel>
+       <div class="flex flex-col lg:flex-row">
+          <aside class="w-2/6 hidden lg:block bg-gray-200 p-4">
+          <router-link
+            :to="{ name: 'productDetail', params: { id: 74 } }">
+            <img src="/images/ads4.png" alt="" class="rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+          </aside>
+          <carosel class="z-10"></carosel>
+          <aside class="w-2/6 hidden lg:block bg-gray-200 p-4">
+          <router-link :to="{ name: 'productDetail', params: { id: 8 } }">
+            <img src="/images/galaxyM55Ads.png" alt="" class="rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+            <router-link
+              :to="{ name: 'productDetail', params: { id: 73 } }">
+            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            </router-link>
+            
+          </aside>
+        </div>
         <cowndownClock></cowndownClock>
         <div class="flex flex-col">
           <!-- Điện thoại nổi bật -->
@@ -60,7 +90,7 @@
                   class="w-1/4 flex-shrink-0"
                 >
                   <div
-                    class="bg-white hover:shadow-xl shadow-lg rounded-lg p-6 mt-2 transition-shadow duration-300"
+                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
                   >
                     <router-link
                       :to="{
@@ -164,7 +194,7 @@
                   class="w-1/4 flex-shrink-0"
                 >
                   <div
-                    class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
+                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
                   >
                     <router-link
                       :to="{
@@ -267,7 +297,7 @@
                   class="w-1/4 flex-shrink-0"
                 >
                   <div
-                    class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
+                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
                   >
                     <router-link
                       :to="{
@@ -318,12 +348,10 @@
               </svg>
             </button>
           </div>
-
         </div>
       </article>
-      <aside class="w-1/6  bg-gray-200 p-4"></aside>
     </section>
-    <footerPro></footerPro>
+    
   </div>
 </template>
 
@@ -335,7 +363,6 @@ import search from "./baseComponent/search.vue";
 import headerPro from "./baseComponent/headerPro.vue";
 import footerPro from "./baseComponent/footerPro.vue";
 import useCartStore from "../stores/cartStore";
-import {useUserStore} from "../stores/user";
 export default {
   components: {
     menuBar,
@@ -354,7 +381,7 @@ export default {
       cart: null,
       phoneCurrentIndex: 0,
       laptopCurrentIndex: 0,
-      camCurrentIndex: 0
+      camCurrentIndex: 0,
     };
   },
   created() {
@@ -364,9 +391,9 @@ export default {
     async loadProduct() {
       let res = await fetch("http://localhost:3000/API/index.php");
       this.allProducts = await res.json();
-
+      console.log(localStorage.getItem('username'))
       this.phoneProducts = this.allProducts
-        .filter((p) => p.category=== 1)
+        .filter((p) => p.category === 1)
         .slice(0, 15);
       this.laptopProducts = this.allProducts
         .filter((p) => p.category === 2)
@@ -411,9 +438,9 @@ export default {
         this.laptopCurrentIndex--;
       }
     },
-// dieu huong camemra
-    
-     nextCams() {
+    // dieu huong camemra
+
+    nextCams() {
       if (this.camCurrentIndex < this.camProducts.length - 4) {
         this.camCurrentIndex++;
       }
@@ -424,15 +451,10 @@ export default {
         this.camCurrentIndex--;
       }
     },
-
   },
 
   mounted() {
     this.loadProduct();
   },
 };
-</script>
-<script setup>
-import { useUserStore } from "../stores/user";
-console.log("userStore", localStorage.getItem("username"));
 </script>

@@ -1,10 +1,9 @@
 // stores/user.js
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('user', {
+export const useUserStoreToken = defineStore('user', {
   state: () => ({
     username: null,
-    userId: null,
     logedin: false
   }),
   actions: {
@@ -15,7 +14,6 @@ export const useUserStore = defineStore('user', {
         });
         const data = await res.json();
         this.username = data.username || null;
-        this.userId = data.userId || null;
         if (data.username != null) {
           localStorage.setItem("username", data.username);
         } else {

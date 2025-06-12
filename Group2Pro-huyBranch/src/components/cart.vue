@@ -3,7 +3,7 @@
     <headerPro></headerPro>
 
     <div
-      class="w-full max-w-[80%] flex justify-self-center items-center justify-start gap-4 px-4 py-3 border-b border-gray-400"
+      class="w-full flex justify-self-center items-center justify-start gap-4 px-4 py-3 border-b border-gray-400"
     >
       <router-link :to="{ name: 'homePage' }" class="text-2xl text-black block">
         <!-- Icon mũi tên trái -->
@@ -69,7 +69,6 @@
       </button>
       </div>
     </div>
-    <footerPro></footerPro>
   </div>
 </template>
 

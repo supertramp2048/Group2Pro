@@ -1,30 +1,50 @@
 <template>
-  <header>
-    <div class="bg-violet-100 leading-20 text-2xl w-full">Da sun kid</div>
-    <!--Nội dung phần header của web-->
-    <table class="w-full">
-      <tr class="align-middle">
-        <td class="w-[100px] p-2">
+  <header class="w-full shadow-md bg-white">
+    <!-- Thanh trên cùng -->
+    <div class="bg-blend-color text-white text-sm px-1 py-0 flex justify-between">
+      <div class="text-3xl text-shadow-black"><img src="/images/logoName.png"  class=" h-[80px]" alt=""></div>
+      
+    </div>
+
+    <!-- Thanh chính: Logo - Search - Cart -->
+    <div class="container w-full mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="w-[200px] flex-shrink-0">
+        <img
+          src="/images/logo.png"
+          alt="Logo"
+          class="w-[180px] h-[80px] object-contain"
+        />
+      </div>
+
+      <!-- Search -->
+      <div class="flex-1 mx-4">
+        <search class="w-full" />
+      </div>
+
+      <!-- Cart -->
+      <div class="flex items-center justify-end">
+        <router-link :to="{ name: 'cart' }" class="relative group">
           <img
-            src="/images/logo.png"
-            alt="Logo"
-            class="w-[300px] h-[100px] object-contain"
+            src="/images/cart.png"
+            alt="Cart"
+            class="w-[80px] h-[80px] transition-transform group-hover:scale-110"
           />
-        </td>
-        <td class="px-4">
-          <search class="z-50"></search>
-        </td>
-        <td>
-          <router-link :to="{name: 'cart'}">
-            <img src="/images/cart.png" class="w-[80px] h-[80px]" alt="" />
-          </router-link>
-        </td>
-      </tr>
-    </table>
+          <!-- Badge số lượng giỏ hàng (nếu có) -->
+          <span
+            class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1.5"
+          >
+            "."
+          </span>
+        </router-link>
+      </div>
+    </div>
   </header>
 </template>
+
 <script>
 import search from "./search.vue";
+
 export default {
   components: {
     search,

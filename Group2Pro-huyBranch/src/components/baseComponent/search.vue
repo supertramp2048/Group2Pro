@@ -4,16 +4,16 @@
       <div class="relative w-full">
         <input
           type="text"
-          class="block w-full h-12 text-xl pl-4 pr-10 font-medium text-gray-900 bg-white rounded-2xl"
-          placeholder="Tìm kiếm"
+          class="block w-full h-12 text-xl pl-4 pr-10 font-medium text-white border border-amber-50 bg-blend-color-burn rounded-2xl placeholder-gray-200"
+          placeholder="Tìm kiếm sản phẩm công nghệ..."
           v-model="keySearch"
           @focus="onFocus"
         />
         <button
           type="submit"
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:text-gray-700 bg-red-500 rounded-2xl p-1"
+          class="absolute right-2 top-1/2 -translate-y-1/2 text-white   bg-blue-400 hover:bg-blue-600 rounded-2xl px-4 py-1"
         >
-          search
+          Tìm
         </button>
       </div>
     </form>
@@ -21,26 +21,20 @@
     <!-- Dropdown suggestions -->
     <div
       v-if="isFocused && recomendData.length"
-      class="absolute top-full left-0 flex flex-col w-full z-50 max-h-60 overflow-y-auto bg-white shadow-lg rounded-b-lg"
+      class="absolute top-full left-0 flex flex-col w-full z-50 max-h-60 overflow-y-auto bg-gray-800 shadow-lg rounded-b-lg"
     >
       <div
         v-for="object in recomendData"
         :key="object.id"
-        class="block px-4 py-2 text-xl bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-b-0"
+        class="block px-4 py-2 text-lg text-white hover:bg-gray-700 cursor-pointer border-b border-gray-700 last:border-b-0"
         @click="selectSuggestion(object)"
       >
         {{ object.title }}
       </div>
     </div>
-
-    <!-- Search List Component -->
-    <!-- <searchList 
-      :searchList="recomendData" 
-      :isFocused="isFocused"
-      @select-item="selectSuggestion"
-    ></searchList> -->
   </div>
 </template>
+
 
 <script>
 import searchList from "./searchList.vue";

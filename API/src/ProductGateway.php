@@ -54,7 +54,6 @@
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":category", $category, PDO::PARAM_INT);
         $stmt->execute();
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // trả về tất cả sản phẩm trong danh mục
     }
 
@@ -132,6 +131,23 @@
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+    public function paginate(int $category, int $page, int $limit) : array {
+        $offset = ($page - 1) * $limit; // tính toán offset dựa trên trang hiện tại và giới hạn số sản phẩm trên mỗi trang
+        $sql = "SELECT * FROM products WHERE category = :category LIMIT :limit OFFSET :offset"; // câu lệnh SQL để lấy sản phẩm theo phân trang
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":category", $category, PDO::PARAM_INT);
+        $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // trả về tất cả sản phẩm trong trang hiện tại
+    }
+    public function getTotalProducts(int $category) : int {
+        $sql = "SELECT COUNT(*) FROM products WHERE category = :category"; // câu lệnh SQL để đếm số sản phẩm trong danh mục
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":category", $category, PDO::PARAM_INT);
+        $stmt->execute();
+        return (int)$stmt->fetchColumn(); // trả về tổng số sản phẩm trong danh mục
     }
 }
 ?>

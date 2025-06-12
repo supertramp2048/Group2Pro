@@ -1,7 +1,6 @@
 <template>
   <div>
     <headerPro></headerPro>
-
     <menuBar></menuBar>
 
     <!-- noi dung chinh -->
@@ -59,6 +58,15 @@
           </p>
         </div>
 
+        <!-- Debug info -->
+        <div v-if="showDebug" class="mb-4 p-2 bg-gray-100 text-sm">
+          <p>Current Page: {{ currentPage }}</p>
+          <p>Total Items: {{ totalItems }}</p>
+          <p>Total Pages: {{ totalPages }}</p>
+          <p>Products Count: {{ products.length }}</p>
+          <p>Is Filtered: {{ isFiltered }}</p>
+        </div>
+
         <div class="grid grid-cols-4">
           <div
             v-for="product in displayProducts"
@@ -66,7 +74,7 @@
             class="mt-3.5"
           >
             <div
-              class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
             >
               <router-link
                 :to="{ name: 'productDetail', params: { id: product.id } }"
@@ -92,12 +100,13 @@
 
       <!-- Chỉ hiển thị pagination khi không có filter -->
       <div
-        v-if="!isFiltered"
+        v-if="!isFiltered && totalPages > 1"
         class="flex justify-center space-x-2 mt-6 sticky bottom-0"
       >
         <button
           @click="goToPage(currentPage - 1)"
           :disabled="currentPage === 1"
+          class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           «
         </button>
@@ -109,7 +118,7 @@
           :disabled="btn === '...'"
           :class="[
             'px-3 py-1 rounded text',
-            btn === currentPage ? 'bg-red-700 text-white' : 'bg-gray-200',
+            btn === currentPage ? 'bg-red-700 text-white' : 'bg-gray-200 hover:bg-gray-300',
             btn === '...' && 'cursor-default',
           ]"
         >
@@ -119,12 +128,14 @@
         <button
           @click="goToPage(currentPage + 1)"
           :disabled="currentPage === totalPages"
+          class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           »
         </button>
       </div>
-      </main>
-    <footerPro></footerPro>
+    </main>
+    
+
   </div>
 </template>
 
@@ -149,6 +160,13 @@ export default {
       filteredProducts: [], // Sản phẩm đã được lọc từ component con
       currentPage: 1,
       isFiltered: false, // Trạng thái có đang lọc hay không
+      
+      // ✅ Thêm các thuộc tính bị thiếu
+      totalItems: 0,           // Tổng số sản phẩm
+      limit: 10,              // Số sản phẩm mỗi trang
+      maxVisibleButtons: 5,   // Số nút pagination hiển thị
+      showDebug: false,       // Hiển thị thông tin debug (set true để debug)
+      loading: false,         // Trạng thái loading
     };
   },
   computed: {
@@ -158,6 +176,7 @@ export default {
     },
 
     totalPages() {
+      if (this.totalItems === 0) return 1;
       return Math.ceil(this.totalItems / this.limit);
     },
 
@@ -213,41 +232,116 @@ export default {
     clearFilter() {
       this.isFiltered = false;
       this.filteredProducts = [];
+      // Reset về trang đầu khi clear filter
+      this.currentPage = 1;
+      this.loadProduct();
     },
 
-    // Load sản phẩm với phân trang
+    // ✅ Cải thiện load product với error handling
     async loadProduct() {
-      console.log(this.categoryId)
-      let res = await fetch(
-        `http://localhost:3000/API/index.php?category=${this.categoryId}&_page=${this.currentPage}&_limit=20`
-      );
-      this.products = await res.json();
-      this.totalItems = parseInt(res.headers.get("X-Total-Count")) || 0;
-      console.log(this.products);
+      try {
+        this.loading = true;
+        console.log(`Loading page ${this.currentPage} for category ${this.categoryId}`);
+        
+        const res = await fetch(
+          `http://localhost:3000/API/index.php?category=${this.categoryId}&page=${this.currentPage}&limit=${this.limit}`
+        );
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        this.products = await res.json();
+        
+        // Kiểm tra header X-Total-Count
+        /*.then(res=> {
+          const totalCount = res.headers.get("X-Total-Count");
+          console.log("X-Total-Count:", totalCount);
+
+        });*/
+        //const totalCount = this.originalProducts.length; 
+        const totalCount = res.headers.get("X-Total-Count"); // Lấy giá trị từ header, nếu không có thì trả về null
+        console.log("độ dài của mảng originalProducts:", this.originalProducts.length);
+        //const total = res.headers.get("X-Total-Count"); // Lấy giá trị từ header, nếu không có thì trả về null
+        console.log("X-Total-Count:", totalCount);
+
+        if (totalCount) {
+          this.totalItems = parseInt(totalCount);
+        } else {
+          // Fallback: nếu không có header, tính từ số sản phẩm nhận được
+          console.warn("X-Total-Count header not found, using fallback method");
+          this.totalItems = this.products.length < this.limit ? 
+            (this.currentPage - 1) * this.limit + this.products.length : 
+            this.currentPage * this.limit + 1; // Giả định có ít nhất 1 trang nữa
+        }
+        
+        console.log(`Loaded ${this.products.length} products, total: ${this.totalItems}`);
+        
+      } catch (error) {
+        console.error("Error loading products:", error);
+        this.products = [];
+        this.totalItems = 0;
+      } finally {
+        this.loading = false;
+      }
     },
 
     // Load tất cả sản phẩm cho filter (không phân trang)
     async loadAllProducts() {
-      let res = await fetch(
-        `http://localhost:3000/API/index.php?category=${this.categoryId}`
-      );
-      this.originalProducts = await res.json();
+      try {
+        console.log(`Loading all products for category ${this.categoryId}`);
+        const res = await fetch(
+          `http://localhost:3000/API/index.php?category=${this.categoryId}`
+        );
+  
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
+        this.originalProducts = await res.json();
+        console.log(`Loaded ${this.originalProducts.length} total products for filtering`);
+        
+      } catch (error) {
+        console.error("Error loading all products:", error);
+        this.originalProducts = [];
+      }
     },
 
+    // ✅ Cải thiện goToPage
     goToPage(page) {
-      if (page >= 1 && page <= this.totalPages && !this.isFiltered) {
+      // Kiểm tra điều kiện hợp lệ
+      if (page < 1 || page > this.totalPages || this.isFiltered || this.loading) {
+        return;
+      }
+      
+      if (page !== this.currentPage) {
+        console.log(`Going to page ${page}`);
         this.currentPage = page;
         this.loadProduct();
+        
+        // Scroll to top khi chuyển trang
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     },
   },
+  
   watch: {
     categoryId: {
       immediate: true,
-      handler(newVal) {
-        this.currentPage = 1;
-        this.loadProduct();
-        this.loadAllProducts();
+      async handler(newVal) {
+        if (newVal) {
+          console.log(`Category changed to: ${newVal}`);
+          this.currentPage = 1;
+          this.isFiltered = false;
+          this.filteredProducts = [];
+          
+          // Load cả hai loại data
+          await Promise.all([
+            
+            this.loadAllProducts(),
+            this.loadProduct(),
+          ]);
+        }
       },
     },
   },

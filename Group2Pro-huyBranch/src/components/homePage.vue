@@ -79,7 +79,7 @@
             <!-- Container sản phẩm -->
             <div class="overflow-hidden mx-8">
               <div
-                class="flex transition-transform duration-300 ease-in-out"
+                class="flex transition-transform duration-300 ease-in-out gap-x-6"
                 :style="{
                   transform: `translateX(-${phoneCurrentIndex * 25}%)`,
                 }"
@@ -87,10 +87,10 @@
                 <div
                   v-for="product in phoneProducts"
                   :key="product.id"
-                  class="w-1/4 flex-shrink-0"
+                  class="w-1/5 flex-shrink-0 py-4"
                 >
                   <div
-                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
+                    class="bg-white h-full min-h-[400px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
                   >
                     <router-link
                       :to="{
@@ -183,7 +183,7 @@
             <!-- Container sản phẩm -->
             <div class="overflow-hidden mx-8">
               <div
-                class="flex transition-transform duration-300 ease-in-out"
+                class="flex transition-transform duration-300 ease-in-out gap-x-6"
                 :style="{
                   transform: `translateX(-${laptopCurrentIndex * 25}%)`,
                 }"
@@ -191,10 +191,10 @@
                 <div
                   v-for="product in laptopProducts"
                   :key="product.id"
-                  class="w-1/4 flex-shrink-0"
+                  class="w-1/5 flex-shrink-0 py-4"
                 >
                   <div
-                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
+                    class="bg-white h-full min-h-[400px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
                   >
                     <router-link
                       :to="{
@@ -205,10 +205,10 @@
                       <img
                         :src="product.src"
                         alt=""
-                        class="w-full h-[120px] rounded-md mb-4 object-fill md:h-[220px] xl:h-[320px]"
+                        class="w-full h-[220px] object-contain rounded-md mb-4"
                       />
                       <p
-                        class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3"
+                        class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3 line-clamp-2"
                       >
                         {{ product.title }}
                       </p>
@@ -286,7 +286,7 @@
             <!-- Container sản phẩm -->
             <div class="overflow-hidden mx-8">
               <div
-                class="flex transition-transform duration-300 ease-in-out"
+                class="flex transition-transform duration-300 ease-in-out gap-x-6"
                 :style="{
                   transform: `translateX(-${camCurrentIndex * 25}%)`,
                 }"
@@ -294,10 +294,10 @@
                 <div
                   v-for="product in camProducts"
                   :key="product.id"
-                  class="w-1/4 flex-shrink-0"
+                  class="w-1/5 flex-shrink-0 py-4"
                 >
                   <div
-                    class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
+                    class="bg-white h-full min-h-[400px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
                   >
                     <router-link
                       :to="{

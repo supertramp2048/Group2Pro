@@ -25,6 +25,11 @@ const routes = [
     props: true
   },
   {
+   path: '/login',
+   name: 'login',
+   component: login
+  },
+  {
     path: '/cart',
     name: 'cart',
     component :cart,

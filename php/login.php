@@ -46,8 +46,8 @@
 
         // Chuyển hướng về Vue (ở localhost:5173) và truyền token trong URL
         $redirectUrl = 'http://localhost:5173/login?accessToken=' . $token;
-        echo "<script>window.location.href = '$redirectUrl';</script>";
-        //header("Location: $redirectUrl");
+        //echo "<script>window.location.href = '$redirectUrl';</script>";
+        header("Location: $redirectUrl");
         exit();
       } else {
         echo "<script>alert('Invalid username or password');</script>";

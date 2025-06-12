@@ -1,4 +1,22 @@
 @import "tailwindcss";
+
+@keyframes colorChange {
+  0% {
+    color: #1e3a8a; /* red-600 */
+  }
+  50% {
+    color: #ef4444; /* amber-500 */
+  }
+  100% {
+    color: #1e3a8a; /* red-600 again */
+  }
+}
+
+.animate-color-change {
+  animation: colorChange 1.5s linear infinite;
+}
+
+
 @layer base {
     html, body {
         @apply h-full;

@@ -88,13 +88,13 @@ export default {
   },
   data() {
     return {
-      cart: []
+      cartStore: useCartStore(),
     };
   },
   computed: {
-    /*cart() {
+    cart() {
       return this.cartStore.cart; // reactive!
-    },*/
+    },
     total() {
       return this.cart.reduce((sum, product) => sum + product.price, 0);
     },
@@ -103,27 +103,20 @@ export default {
     this.cartStore = useCartStore(); // khai báo store 
   },
   methods: {
-    async fetchCart() {
-      const response = await fetch(`http://localhost:3000/API/cart.php?id=${localStorage.getItem("userId")}`);
-      this.cart = await response.json();
-      console.log(localStorage.getItem("userId"));
-    },
-
     remove(data) {
       this.cartStore.removeFromCart(data);
-      this.fetchCart(); // cập nhật lại giỏ hàng sau khi xóa
     },
     clearAllProduct() {
       this.cartStore.clearCart();
-      this.fetchCart(); // cập nhật lại giỏ hàng sau khi xóa tất cả
     },
     formatPrice(value) {
       if (typeof value !== "number") return "N/A";
       return value.toLocaleString("vi-VN");
     },
   },
-  mounted() {
-    this.fetchCart();
+  
+  async mounted() {
+    this.cartStore.fetchCart();
   },
 };
 </script>

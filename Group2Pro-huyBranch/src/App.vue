@@ -18,11 +18,16 @@ export default {
 <script setup>
 import { onMounted } from 'vue';
 import { useUserStore } from './stores/user';
+import useCartStore from './stores/cartStore';
 
+const cartStore = useCartStore();
 const user = useUserStore();
 
-onMounted(() => {
-  user.fetchSession();
+onMounted(async() => {
+  await user.fetchSession(); // đợi lấy user xong
+  if (localStorage.getItem("userId")) {
+    cartStore.fetchCart();  // gọi sau khi có userId
+  }
 });
 
 </script>

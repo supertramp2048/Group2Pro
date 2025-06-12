@@ -67,11 +67,10 @@
           <p>Is Filtered: {{ isFiltered }}</p>
         </div>
 
-        <div class="grid grid-cols-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div
             v-for="product in displayProducts"
             :key="product.id"
-            class="mt-3.5"
           >
             <div
               class="bg-white hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
@@ -82,9 +81,9 @@
                 <img
                   :src="product.src"
                   alt=""
-                  class="w-full h-[200px] rounded-md mb-4 object-fill md:h-[240px] lg:h-[250px] xl:h-[400px]"
+                  class="w-full h-[180px] rounded-md mb-3 object-contain md:h-[200px] lg:h-[220px] xl:h-[240px]"
                 />
-                <p class="text-xl font-bold text-gray-700 mb-3">
+                <p class="text-sm font-semibold text-gray-800 mb-1 truncate">
                   {{ product.title }}
                 </p>
                 <p class="pt-2">

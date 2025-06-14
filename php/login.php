@@ -39,16 +39,21 @@
     }
     foreach($user as $u){
       if($password == $u['password']){
-        session_start();
-        $_SESSION['userName'] = $u['userName'];
-        $_SESSION['userId'] = $u['id'];
-        $token = bin2hex(random_bytes(16)); // tạo token giả
-
-        // Chuyển hướng về Vue (ở localhost:5173) và truyền token trong URL
-        $redirectUrl = 'http://localhost:5173/login?accessToken=' . $token;
-        //echo "<script>window.location.href = '$redirectUrl';</script>";
-        header("Location: $redirectUrl");
-        exit();
+        if($u['admin'] == 1) {
+          header("Location: http://localhost:8000/dashboard");
+          exit();
+        }
+        else {
+          session_start();
+          $_SESSION['userName'] = $u['userName'];
+          $_SESSION['userId'] = $u['id'];
+          $token = bin2hex(random_bytes(16)); // tạo token giả
+          // Chuyển hướng về Vue (ở localhost:5173) và truyền token trong URL
+          $redirectUrl = 'http://localhost:5173/login?accessToken=' . $token;
+          //echo "<script>window.location.href = '$redirectUrl';</script>";
+          header("Location: $redirectUrl");
+          exit();
+        }
       } else {
         echo "<script>alert('Invalid username or password');</script>";
       }

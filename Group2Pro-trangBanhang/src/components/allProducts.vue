@@ -4,29 +4,10 @@
     <menuBar></menuBar>
 
     <!-- noi dung chinh -->
-    <main class="flex-1 w-full md:w-10/12 shadow-sm mx-auto">
+    <main class="flex-1 w-full md:w-10/12 shadow-sm mx-auto ">
       <div class="w-full md:w-10/12 shadow-sm mx-auto">
-        <div class="flex justify-between">
-          <button
-            @click="prevPage()"
-            class="text-2xl text-black block hover:bg-gray-200"
-          >
-            <!-- Icon mũi tên trái -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-10"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-              />
-            </svg>
-          </button>
+        <div class="flex flex-row-reverse">
+          
 
           <!-- Lắng nghe event từ component con -->
           <filterVue

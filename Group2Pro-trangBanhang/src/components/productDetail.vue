@@ -3,24 +3,24 @@
     <headerPro></headerPro>
     <menuBar></menuBar>
 
-    <button @click="prevPage()" class="text-2xl text-black block">
-      <!-- Icon mũi tên trái -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-10"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-        />
-      </svg>
-    </button>
-
+   <!--
+<button @click="prevPage()" class="text-2xl text-black block">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="size-10"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+    />
+  </svg>
+</button>
+-->
     <div v-if="product" :key="product.id">
       <div
         class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-slate-800 via-slate-500 to-yellow-100 text-white w-full max-w-7xl mx-auto shadow-lg h-full"

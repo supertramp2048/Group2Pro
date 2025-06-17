@@ -3,7 +3,7 @@
     <headerPro></headerPro>
     <menuBar></menuBar>
 
-   <!--
+    <!--
 <button @click="prevPage()" class="text-2xl text-black block">
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,6 @@
           </div>
         </div>
       </div>
-        
 
       <!-- Cha bao ngoài để canh giữa thanh -->
       <div class="sticky bottom-0 left-0 flex justify-center z-50">
@@ -152,9 +151,12 @@
 
           <!-- Giá tiền -->
           <div class="flex flex-col items-end mr-4">
-            <span class="text-red-600 font-bold text-lg">{{
-              formatPrice(product.price)
-            }}</span>
+            <span
+              v-if="product.price != 0"
+              class="text-red-600 font-bold text-lg"
+              >{{ formatPrice(product.price) }}</span
+            >
+            <span v-else class="text-red-600 font-bold text-lg">Liên Hệ</span>
             <span class="text-gray-400 line-through text-sm">34.990.000₫</span>
           </div>
 
@@ -166,6 +168,7 @@
               Trả góp 0%
             </button>
             <button
+              @click="buyNow(product)"
               class="bg-red-600 text-white px-4 py-2 rounded-md font-semibold"
             >
               Mua Ngay
@@ -186,7 +189,7 @@
               </div>
             </transition>
 
-             <transition name="fade">
+            <transition name="fade">
               <div
                 v-if="showNotificationErr"
                 class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-red-700 text-white px-4 py-3 rounded-lg shadow-lg z-50"
@@ -194,7 +197,6 @@
                 ❌ Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!
               </div>
             </transition>
-            
           </div>
         </div>
       </div>
@@ -211,6 +213,7 @@ export default {
   data() {
     return {
       product: {},
+      selectedItems: [],
       cartStore: null,
       showNotification: false,
       showNotificationErr: false,
@@ -235,7 +238,9 @@ export default {
       window.history.back();
     },
     async loadProduct() {
-      let res = await fetch(`http://localhost:3000/API/index.php?id=${this.id}`);
+      let res = await fetch(
+        `http://localhost:3000/API/index.php?id=${this.id}`
+      );
       //console.log("id=" + this.id);
       const dataObj = await res.json();
       //console.log(dataObj);
@@ -250,16 +255,13 @@ export default {
     },
 
     addProduct(product) {
-      if(localStorage.getItem("username") === null) {
+      if (localStorage.getItem("username") === null) {
         this.showNotificationErr = true; // Hiện thông báo lỗi
         setTimeout(() => {
           this.showNotificationErr = false; // Ẩn thông báo lỗi sau 1 giây
         }, 1000);
         return;
-        
-      }
-      else
-      {
+      } else {
         //console.log("Thêm sản phẩm vào giỏ hàng:", localStorage.getItem("username"));
         this.cartStore.addToCart(product);
         this.showNotification = true; // Hiện thông báo thành công
@@ -268,10 +270,29 @@ export default {
         }, 1000);
       }
     },
+    buyNow(product) {
+      if (localStorage.getItem("username") === null) {
+        this.showNotificationErr = true; // Hiện thông báo lỗi
+        setTimeout(() => {
+          this.showNotificationErr = false; // Ẩn thông báo lỗi sau 1 giây
+        }, 1000);
+        return;
+      } else {
+        //console.log("Thêm sản phẩm vào giỏ hàng:", localStorage.getItem("username"));
+        this.cartStore.addToCart(product);
+        this.showNotification = true; // Hiện thông báo thành công
+        setTimeout(() => {
+          this.showNotification = false; // Ẩn thông báo sau 1 giây
+        }, 1000);
+      }
+      this.selectedItems.push(product);
+      this.$router.push({
+        name: "bill",
+      });
+    },
     subString(string) {
       this.descriptions = string.split(",").filter(Boolean);
       //console.log(this.descriptions);
-
     },
   },
 

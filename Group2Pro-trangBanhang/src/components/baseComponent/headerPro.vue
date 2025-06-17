@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full shadow-md bg-white sticky top-0 z-50 transition-all duration-300">
+  <header class="w-full shadow-md bg-gray-700 sticky top-0 z-50 transition-all duration-300">
     <!-- Thanh trên cùng - ẩn khi scroll -->
     <div 
       :class="[

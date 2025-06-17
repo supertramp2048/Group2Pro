@@ -10,8 +10,7 @@
                     class="font-heading mb-4 font-bold tracking-tight text-gray-900 dark:text-white text-3xl sm:text-5xl">
                     Get in Touch
                 </h2>
-                <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-slate-400">In hac habitasse platea
-                    dictumst
+                <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-slate-400">Phản hồi trải nghiệm của bạn giúp chúng tôi cải thiện dịch vụ tốt hơn
                 </p>
             </div>
         </div>
@@ -19,9 +18,7 @@
             <div class="grid md:grid-cols-2">
                 <div class="h-full pr-6">
                     <p class="mt-3 mb-12 text-lg text-gray-600 dark:text-slate-400">
-                        Class aptent taciti sociosqu ad
-                        litora torquent per conubia nostra, per inceptos himenaeos. Duis nec ipsum orci. Ut scelerisque
-                        sagittis ante, ac tincidunt sem venenatis ut.
+                        Mọi phản hồi xin gửi tới địa chỉ sau
                     </p>
                     <ul class="mb-6 md:mb-0">
                         <li class="flex">
@@ -38,8 +35,8 @@
                             <div class="ml-4 mb-4">
                                 <h3 class="mb-2 text-lg font-medium leading-6 text-gray-900 dark:text-white">Our Address
                                 </h3>
-                                <p class="text-gray-600 dark:text-slate-400">1230 Maecenas Street Donec Road</p>
-                                <p class="text-gray-600 dark:text-slate-400">New York, EEUU</p>
+                                <p class="text-gray-600 dark:text-slate-400">141 Chiến thắng - Tân Triều - Thanh Trì - Hà Nội</p>
+                                <p class="text-gray-600 dark:text-slate-400">Việt Nam</p>
                             </div>
                         </li>
                         <li class="flex">
@@ -57,8 +54,8 @@
                             <div class="ml-4 mb-4">
                                 <h3 class="mb-2 text-lg font-medium leading-6 text-gray-900 dark:text-white">Contact
                                 </h3>
-                                <p class="text-gray-600 dark:text-slate-400">Mobile: +1 (123) 456-7890</p>
-                                <p class="text-gray-600 dark:text-slate-400">Mail: tailnext@gmail.com</p>
+                                <p class="text-gray-600 dark:text-slate-400">Mobile: +84 0123456789</p>
+                                <p class="text-gray-600 dark:text-slate-400">Mail: Group2@gmail.com</p>
                             </div>
                         </li>
                         <li class="flex">
@@ -81,7 +78,7 @@
                 </div>
                 <div class="card h-fit max-w-6xl p-5 md:p-12" id="form">
                     <h2 class="mb-4 text-2xl font-bold dark:text-white">Ready to Get Started?</h2>
-                    <form id="contactForm">
+                    <!-- <form id="contactForm">
                         <div class="mb-6">
                             <div class="mx-0 mb-1 sm:mb-4">
                                 <div class="mx-0 mb-1 sm:mb-4">
@@ -98,7 +95,7 @@
                         <div class="text-center">
                             <button type="submit" class="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0">Send Message</button>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>

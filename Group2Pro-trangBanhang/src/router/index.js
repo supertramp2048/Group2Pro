@@ -7,12 +7,18 @@ import allProducts from '../components/allProducts.vue'
 import login from '../components/login.vue'
 import searchResult from '../components/searchResult.vue'
 import contact from '../components/contact.vue'
+import bill from '../components/bill.vue'
 const routes = [
   
    {
     path: '/',
     name: 'homePage',
     component: homePage,
+  },
+  {
+    path: '/bill',
+    name: 'bill',
+    component: bill,
   },
   {
     path: '/contact',

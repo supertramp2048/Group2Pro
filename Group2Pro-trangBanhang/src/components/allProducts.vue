@@ -69,8 +69,9 @@
                 </p>
                 <p class="pt-2">
                   <span class="text-red-600 text-2xl font-bold"
-                    >Giá {{ formatPrice(product.price) }}</span
+                    v-if="product.price != 0">Giá {{ formatPrice(product.price) }}</span
                   >
+                  <span v-else class="text-red-600 text-2xl font-bold">Liên Hệ</span>
                 </p>
               </router-link>
             </div>

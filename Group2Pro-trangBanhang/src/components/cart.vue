@@ -46,11 +46,12 @@
           Tổng số tiền
         <span class="text-red-500 font-bold">{{ formatPrice(total) }}</span>
         </p>
-      <button
+      <router-link
           class="bg-red-700 rounded-[10px] text-xl text-amber-50 w-fit p-3 active:bg-red-500"
+          :to="{name: 'bill'}"
         >
           Thanh toan
-      </button>
+      </router-link>
       </div>
     </div>
   </div>

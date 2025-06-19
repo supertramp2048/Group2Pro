@@ -1,7 +1,7 @@
 <template>
   <div>
     <headerPro />
-
+    <menubar></menubar>
     <!-- Tiêu đề -->
     <div
       class="w-full flex justify-center items-center gap-4 px-4 py-3 border-b border-gray-400"
@@ -23,13 +23,11 @@
             <img :src="product.src" alt="" class="product-image" />
             <h3 class="product-name text-2xl">{{ product.title }}</h3>
             <span class="product-price">{{ formatPrice(product.price) }}</span>
-            <!-- <button class="product-remove" @click="remove(product.cart_id)">
-              X
-            </button> -->
             <input
               type="checkbox"
-              :value="product"
-              v-model="selectedItems"
+              :value="product.productId"
+              v-model="selectedId"
+              @change="handleCheckbox($event, product)"
               class="mr-2 w-5 h-5"
             />
           </li>
@@ -104,12 +102,13 @@
 import useCartStore from "../stores/cartStore";
 import headerPro from "./baseComponent/headerPro.vue";
 import footerPro from "./baseComponent/footerPro.vue";
-
+import menubar from "./baseComponent/menuBar.vue"
 export default {
-  components: { headerPro, footerPro },
+  components: { headerPro, footerPro,menubar },
   data() {
     return {
-      cartStore: useCartStore(),
+      cartStore: null,
+      selectedId: [],
       selectedItems: [],
       order: {
         username: "",
@@ -119,30 +118,63 @@ export default {
       },
     };
   },
+  created() {
+    this.cartStore = useCartStore();
+  },
   computed: {
     cart() {
       return this.cartStore.cart;
     },
     total() {
+      this.selectedItems = this.cartStore.cart.filter((product) =>
+        this.selectedId.includes(product.productId)
+      );
       return this.selectedItems.reduce(
         (sum, product) => sum + product.price,
         0
       );
     },
   },
-  mounted() {
-    this.cartStore.fetchCart();
-    const selectedItems = history.state.selectedItems;
-    this.selectedItems = selectedItems || [];
+  async mounted() {
+    try {
+      await this.cartStore.fetchCart();
+      
+      // Khởi tạo selectedId từ buyNowProductId
+      if (this.cartStore.buyNowProductId && this.cartStore.buyNowProductId.length > 0) {
+        this.selectedId = [...this.cartStore.buyNowProductId];
+        console.log('Initialized selectedId from store:', this.selectedId);
+      }
+    } catch (error) {
+      console.error("Lỗi khi khởi tạo trang:", error);
+    }
   },
+
+  // Sync selectedId với store khi có thay đổi
+  watch: {
+    selectedId: {
+      handler(newVal, oldVal) {
+        console.log('selectedId changed:', newVal);
+        
+        // Tìm các ID bị xóa
+        const removedIds = oldVal.filter(id => !newVal.includes(id));
+        removedIds.forEach(id => {
+          this.cartStore.removeBuyNowId(id);
+        });
+        
+        // Tìm các ID được thêm
+        const addedIds = newVal.filter(id => !oldVal.includes(id));
+        addedIds.forEach(id => {
+          this.cartStore.setBuyNowId(id);
+        });
+      },
+      deep: true
+    }
+  },
+
   methods: {
-    remove(id) {
-      this.cartStore.removeFromCart(id);
-      const selectedItems = history.state.selectedItems;
-      this.selectedItems = selectedItems || [];
-    },
     clearAllProduct() {
-      this.selectedItems = [];
+      this.selectedId = [];
+      this.cartStore.clearBuyNowIds(); // Clear store cũng
     },
     formatPrice(value) {
       return typeof value === "number" ? value.toLocaleString("vi-VN") : "N/A";
@@ -169,8 +201,8 @@ export default {
         const data = await res.json();
         if (data.success) {
           alert("Đặt hàng thành công!");
-          this.selectedItems = [];
-          this.clearAllProduct();
+          this.selectedId = [];
+          this.cartStore.clearBuyNowIds(); // Clear store
           this.order = { username: "", phone: "", address: "", note: "" };
         } else {
           alert("Đặt hàng thất bại!");
@@ -178,6 +210,17 @@ export default {
       } catch (err) {
         alert("Lỗi kết nối tới server!");
         console.error(err);
+      }
+    },
+    handleCheckbox(event, product) {
+      const isChecked = event.target.checked;
+      console.log('Checkbox changed:', isChecked, 'Product ID:', product.productId);
+      
+      // Không cần xử lý logic ở đây vì watcher sẽ tự động sync với store
+      if (isChecked) {
+        console.log("Đã chọn sản phẩm:", product.productId);
+      } else {
+        console.log("Đã bỏ chọn sản phẩm:", product.productId);
       }
     },
   },

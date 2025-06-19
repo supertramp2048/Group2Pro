@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  props: ["allProductObj"],
+  props: ["allProductObj","categoryId"],
   data() {
     return {
       filteredProducts: [],

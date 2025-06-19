@@ -177,7 +177,7 @@
               @click="addProduct(product)"
               class="bg-transparent hover:bg-red-600 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-md"
             >
-              Them vao gio hang
+              Thêm vào giỏ hàng
             </button>
 
             <transition name="fade">
@@ -195,6 +195,14 @@
                 class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-red-700 text-white px-4 py-3 rounded-lg shadow-lg z-50"
               >
                 ❌ Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!
+              </div>
+            </transition>
+            <transition name="fade">
+              <div
+                v-if="showNotificationContact"
+                class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-red-700 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+              >
+                ❌ Liên hệ với cửa hàng để mua sản phẩm này nha!
               </div>
             </transition>
           </div>
@@ -217,6 +225,7 @@ export default {
       cartStore: null,
       showNotification: false,
       showNotificationErr: false,
+      showNotificationContact: false,
       descriptions: [],
     };
   },
@@ -262,6 +271,13 @@ export default {
         }, 1000);
         return;
       } else {
+        if (product.price == 0) {
+          this.showNotificationContact = true; // Hiện thông báo lỗi
+          setTimeout(() => {
+            this.showNotificationContact = false; // Ẩn thông báo lỗi sau 3,5 giây
+          }, 3500);
+          return;
+        }
         //console.log("Thêm sản phẩm vào giỏ hàng:", localStorage.getItem("username"));
         this.cartStore.addToCart(product);
         this.showNotification = true; // Hiện thông báo thành công
@@ -270,26 +286,49 @@ export default {
         }, 1000);
       }
     },
-    buyNow(product) {
-      if (localStorage.getItem("username") === null) {
-        this.showNotificationErr = true; // Hiện thông báo lỗi
-        setTimeout(() => {
-          this.showNotificationErr = false; // Ẩn thông báo lỗi sau 1 giây
-        }, 1000);
-        return;
-      } else {
-        //console.log("Thêm sản phẩm vào giỏ hàng:", localStorage.getItem("username"));
-        this.cartStore.addToCart(product);
-        this.showNotification = true; // Hiện thông báo thành công
-        setTimeout(() => {
-          this.showNotification = false; // Ẩn thông báo sau 1 giây
-        }, 1000);
-      }
-      this.selectedItems.push(product);
-      this.$router.push({
-        name: "bill",
-      });
-    },
+ async buyNow(product) {
+  if (localStorage.getItem("username") === null) {
+    this.showNotificationErr = true;
+    setTimeout(() => this.showNotificationErr = false, 1000);
+    return;
+  }
+  
+  if (product.price == 0) {
+    this.showNotificationContact = true;
+    setTimeout(() => this.showNotificationContact = false, 3500);
+    return;
+  }
+
+  try {
+    // 1. Đánh dấu sản phẩm mua ngay TRƯỚC KHI thêm vào giỏ
+    this.cartStore.setBuyNowId(product.id);
+    console.log(this.cartStore.buyNowProductId);
+    
+    // 2. Thêm vào giỏ hàng
+    await this.cartStore.addToCart(product);
+    
+    // 3. Đợi cart cập nhật xong
+    await this.cartStore.fetchCart();
+    
+    // 4. Tự động chọn sản phẩm trong store
+   // this.cartStore.autoSelectBuyNowProduct();
+    
+    // 5. Kiểm tra kết quả
+    console.log("Sản phẩm đã chọn:", 
+      JSON.parse(JSON.stringify(this.cartStore.buyNowProductId)));
+    
+    // 6. Hiển thị thông báo và chuyển trang
+    this.showNotification = true;
+    setTimeout(() => {
+      this.showNotification = false;
+      this.$router.push({ name: "bill" });
+    }, 500);
+    
+  } catch (error) {
+    console.error('Lỗi khi mua ngay:', error);
+    alert("Có lỗi xảy ra khi thực hiện mua ngay");
+  }
+},
     subString(string) {
       this.descriptions = string.split(",").filter(Boolean);
       //console.log(this.descriptions);

@@ -26,6 +26,15 @@
           v-else-if="isFiltered && displayProducts.length === 0"
           class="text-center py-8"
         >
+           <p class="text-blue-600 font-semibold">
+            Hiển thị {{ displayProducts.length }} sản phẩm từ kết quả lọc
+            <button
+              @click="clearFilter()"
+              class="ml-2 text-red-500 underline hover:text-red-700"
+            >
+              Xóa bộ lọc
+            </button>
+          </p>
           <p class="text-gray-500 text-xl">
             Không tìm thấy sản phẩm nào phù hợp với bộ lọc
           </p>

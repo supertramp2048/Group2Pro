@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full shadow-md bg-gray-700 sticky top-0 z-50 transition-all duration-300">
+  <header class="w-full shadow-md bg-slate-500 sticky top-0 z-50 transition-all duration-300">
     <!-- Thanh trên cùng - ẩn khi scroll -->
     <div 
       :class="[
@@ -19,21 +19,7 @@
         isScrolled ? 'max-h-0 opacity-0' : 'max-h-16 opacity-100'
       ]"
     >
-      <div class="flex gap-6">
-        <div class="flex items-center gap-1">
-          <span class="font-bold">🔒 Chính hãng - Xuất VAT</span>
-        </div>
-        <div class="flex items-center gap-1">
-          <span class="font-bold">🚚 Giao nhanh - Miễn phí</span>
-          <span class="text-[11px] text-gray-600">(từ 300K)</span>
-        </div>
-        <div class="flex items-center gap-1">
-          <span class="font-bold">🔁 Thu cũ - Lên đời</span>
-        </div>
-      </div>
-      <div class="px-3 font-semibold whitespace-nowrap text-[13px] text-red-600 animate-pulse">
-        🔴 Ngày hội Smember 2025 - Săn deal ngay!
-      </div>
+      
     </div>
 
     <!-- Thanh chính: Logo - Search - Cart (compact khi scroll) -->

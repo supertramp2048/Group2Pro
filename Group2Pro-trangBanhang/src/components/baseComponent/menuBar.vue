@@ -1,5 +1,7 @@
 <template>
-  <nav class="bg-gradient-to-r from-slate-600 via-50% via-gray-700 to-slate-600 text-white px-6 py-3 z-30 justify-items-center">
+  <nav
+    class="bg-gradient-to-r from-slate-600 via-50% via-gray-700 to-slate-600 text-white px-6 py-3 z-30 justify-items-center"
+  >
     <div class="lg:w-4/5 w-full">
       <ul class="flex space-x-6">
         <li v-for="(item, index) in menu" :key="index" class="relative group">
@@ -54,15 +56,20 @@
             <li
               class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
             >
-              
-                <p v-if="this.login"  >
-                  <router-link :to="{name: 'user'}" 
+              <p v-if="this.login">
+                <router-link
+                  :to="{ name: 'user' }"
                   class="block w-full h-full"
-                  >{{ this.userName }}</router-link>
-                  
-                  </p>
-                <p v-else><a href="http://localhost:3000/php/login.php" class="block w-full">Đăng nhập</a></p>
-
+                  >{{ this.userName }}</router-link
+                >
+              </p>
+              <p v-else>
+                <a
+                  href="http://localhost:3000/php/login.php"
+                  class="block w-full"
+                  >Đăng nhập</a
+                >
+              </p>
             </li>
             <li
               class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
@@ -78,7 +85,7 @@
 </template>
 
 <script>
-import { useUserStore } from '../../stores/user';
+import { useUserStore } from "../../stores/user";
 export default {
   data() {
     return {
@@ -111,10 +118,18 @@ export default {
     };
   },
   methods: {
+    handleLinkClick(route) {
+      const current = this.$route;
+      const target = this.$router.resolve(route).route;
+      console.log("Click router-link:", route);
+      if (current.fullPath === target.fullPath) {
+        this.$router.go(0); // Reload lại trang nếu route giống nhau
+      }
+    },
     toggle(index) {
       this.openIndex = this.openIndex === index ? null : index;
     },
-   logedIn() {
+    logedIn() {
       const uid = localStorage.getItem("userId");
       const username = localStorage.getItem("username");
 
@@ -132,19 +147,19 @@ export default {
       localStorage.removeItem("username");
       window.location.replace("/");
       fetch("http://localhost:3000/php/logout.php", {
-      method: "POST",
-      credentials: "include"
+        method: "POST",
+        credentials: "include",
       });
       this.login = false;
       this.userName = "";
       console.log("Đã đăng xuất");
     },
   },
- 
+
   async mounted() {
     const store = useUserStore();
     await store.fetchSession();
     this.logedIn();
-  }
+  },
 };
 </script>

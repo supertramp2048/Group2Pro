@@ -30,7 +30,7 @@
         <div class="space-y-3 text-gray-700">
           <p><span class="font-semibold">👤 Họ tên:</span> {{ userName }}</p>
           <p><span class="font-semibold">📧 Email:</span> {{ userEmail }}</p>
-          <p><span class="font-semibold">📅 Ngày tạo:</span> {{ createdAt }}</p>
+          <p><span class="font-semibold">📅 Ngày tạo:</span> {{ createdDate }}</p>
           <p><span class="font-semibold">User ID:</span> {{ userId }}</p>
         </div>
       </div>
@@ -65,7 +65,8 @@ export default {
       userName: "",
       userEmail: "",
       userId: "",
-      createDate: "",
+      
+      createdDate: "",
       //   đây là data giả lập
       orders: [],
     };
@@ -95,12 +96,16 @@ export default {
       const uid = localStorage.getItem("userId");
       const username = localStorage.getItem("username");
       const userEmail = localStorage.getItem("email");
-      const id = localStorage.getItem("userId")
+      const id = localStorage.getItem("userId");
+      const createdDate = localStorage.getItem("createdDate");
+      console.log("date "+createdDate);
+      
       if (uid && username) {
         this.login = true;
         this.userId = id;
         this.userName = username;
         this.userEmail = userEmail;
+        this.createdDate = createdDate;
       } else {
         this.login = false;
         this.userName = "";

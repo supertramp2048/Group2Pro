@@ -11,7 +11,8 @@ if (isset($_SESSION['userName'])) {
         'loggedIn' => true,
         'username' => $_SESSION['userName'],
         'userId' => $_SESSION['userId'],
-        'email' => $_SESSION['email']
+        'email' => $_SESSION['email'],
+        'createdDate' => $_SESSION['createdDate']
     ]); 
 } else {
     echo json_encode([

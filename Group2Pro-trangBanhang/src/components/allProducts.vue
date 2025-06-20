@@ -4,22 +4,26 @@
     <menuBar></menuBar>
 
     <!-- noi dung chinh -->
-    <main class="flex-1 w-full md:w-10/12 shadow-sm mx-auto ">
+    <main class="flex-1 w-full md:w-10/12 shadow-sm mx-auto">
       <div class="w-full md:w-10/12 shadow-sm mx-auto">
         <div class="flex flex-row-reverse">
-          
-
           <!-- Lắng nghe event từ component con -->
           <filterVue
             ref="filterVueComp"
             :allProductObj="originalProducts"
+            :categoryId="categoryId"
             @filtered-products-changed="handleFilteredProducts"
           ></filterVue>
         </div>
 
+        <!-- Loading state -->
+        <div v-if="loading" class="text-center py-8">
+          <p class="text-gray-500 text-xl">Đang tải sản phẩm...</p>
+        </div>
+
         <!-- Hiển thị thông báo nếu có filter -->
         <div
-          v-if="isFiltered && displayProducts.length === 0"
+          v-else-if="isFiltered && displayProducts.length === 0"
           class="text-center py-8"
         >
           <p class="text-gray-500 text-xl">
@@ -45,10 +49,12 @@
           <p>Total Items: {{ totalItems }}</p>
           <p>Total Pages: {{ totalPages }}</p>
           <p>Products Count: {{ products.length }}</p>
+          <p>Original Products Count: {{ originalProducts.length }}</p>
           <p>Is Filtered: {{ isFiltered }}</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Product Grid -->
+        <div v-if="!loading" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div
             v-for="product in displayProducts"
             :key="product.id"
@@ -77,11 +83,16 @@
             </div>
           </div>
         </div>
+
+        <!-- Empty state khi không có sản phẩm -->
+        <div v-if="!loading && !isFiltered && displayProducts.length === 0" class="text-center py-8">
+          <p class="text-gray-500 text-xl">Không có sản phẩm nào trong danh mục này</p>
+        </div>
       </div>
 
-      <!-- Chỉ hiển thị pagination khi không có filter -->
+      <!-- Chỉ hiển thị pagination khi không có filter và có nhiều trang -->
       <div
-        v-if="!isFiltered && totalPages > 1"
+        v-if="!isFiltered && !loading && totalPages > 1"
         class="flex justify-center space-x-2 mt-6 sticky bottom-0"
       >
         <button
@@ -115,8 +126,6 @@
         </button>
       </div>
     </main>
-    
-
   </div>
 </template>
 
@@ -142,9 +151,8 @@ export default {
       currentPage: 1,
       isFiltered: false, // Trạng thái có đang lọc hay không
       
-      // ✅ Thêm các thuộc tính bị thiếu
       totalItems: 0,           // Tổng số sản phẩm
-      limit: 10,              // Số sản phẩm mỗi trang
+      limit: 12,              // Số sản phẩm mỗi trang (tăng từ 10 lên 12)
       maxVisibleButtons: 5,   // Số nút pagination hiển thị
       showDebug: false,       // Hiển thị thông tin debug (set true để debug)
       loading: false,         // Trạng thái loading
@@ -157,6 +165,10 @@ export default {
     },
 
     totalPages() {
+      if (this.isFiltered) {
+        // Khi đang filter, không cần phân trang
+        return 1;
+      }
       if (this.totalItems === 0) return 1;
       return Math.ceil(this.totalItems / this.limit);
     },
@@ -206,19 +218,28 @@ export default {
     handleFilteredProducts(filteredArray) {
       console.log("Nhận được mảng đã lọc từ component con:", filteredArray);
       this.filteredProducts = filteredArray;
-      this.isFiltered = true;
+      
+      // Nếu filteredArray === originalProducts thì nghĩa là không có filter
+      this.isFiltered = filteredArray !== this.originalProducts && 
+                       filteredArray.length !== this.originalProducts.length;
     },
 
     // Xóa bộ lọc và hiển thị lại sản phẩm gốc
     clearFilter() {
       this.isFiltered = false;
       this.filteredProducts = [];
+      
+      // Reset filter component
+      if (this.$refs.filterVueComp) {
+        this.$refs.filterVueComp.removeChecked();
+      }
+      
       // Reset về trang đầu khi clear filter
       this.currentPage = 1;
       this.loadProduct();
     },
 
-    // ✅ Cải thiện load product với error handling
+    // Load sản phẩm có phân trang
     async loadProduct() {
       try {
         this.loading = true;
@@ -232,28 +253,24 @@ export default {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        this.products = await res.json();
+        const data = await res.json();
+        this.products = data;
         
-        // Kiểm tra header X-Total-Count
-        /*.then(res=> {
-          const totalCount = res.headers.get("X-Total-Count");
-          console.log("X-Total-Count:", totalCount);
-
-        });*/
-        //const totalCount = this.originalProducts.length; 
-        const totalCount = res.headers.get("X-Total-Count"); // Lấy giá trị từ header, nếu không có thì trả về null
-        console.log("độ dài của mảng originalProducts:", this.originalProducts.length);
-        //const total = res.headers.get("X-Total-Count"); // Lấy giá trị từ header, nếu không có thì trả về null
-        console.log("X-Total-Count:", totalCount);
+        // Lấy tổng số sản phẩm từ header
+        const totalCount = res.headers.get("X-Total-Count");
+        console.log("X-Total-Count from header:", totalCount);
 
         if (totalCount) {
           this.totalItems = parseInt(totalCount);
         } else {
-          // Fallback: nếu không có header, tính từ số sản phẩm nhận được
+          // Fallback: ước tính từ số sản phẩm nhận được
           console.warn("X-Total-Count header not found, using fallback method");
-          this.totalItems = this.products.length < this.limit ? 
-            (this.currentPage - 1) * this.limit + this.products.length : 
-            this.currentPage * this.limit + 1; // Giả định có ít nhất 1 trang nữa
+          if (this.products.length < this.limit) {
+            this.totalItems = (this.currentPage - 1) * this.limit + this.products.length;
+          } else {
+            // Có thể có thêm trang
+            this.totalItems = this.currentPage * this.limit + 1;
+          }
         }
         
         console.log(`Loaded ${this.products.length} products, total: ${this.totalItems}`);
@@ -272,24 +289,26 @@ export default {
       try {
         console.log(`Loading all products for category ${this.categoryId}`);
         const res = await fetch(
-          `http://localhost:3000/API/index.php?category=${this.categoryId}`
+          `http://localhost:3000/API/index.php?category=${this.categoryId}&all=true`
         );
   
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         
-        this.originalProducts = await res.json();
+        const data = await res.json();
+        this.originalProducts = data;
         console.log(`Loaded ${this.originalProducts.length} total products for filtering`);
         
       } catch (error) {
         console.error("Error loading all products:", error);
-        this.originalProducts = [];
+        // Fallback: nếu không load được tất cả, dùng products hiện tại
+        this.originalProducts = [...this.products];
       }
     },
 
-    // ✅ Cải thiện goToPage
-    goToPage(page) {
+    // Chuyển trang
+    async goToPage(page) {
       // Kiểm tra điều kiện hợp lệ
       if (page < 1 || page > this.totalPages || this.isFiltered || this.loading) {
         return;
@@ -298,33 +317,67 @@ export default {
       if (page !== this.currentPage) {
         console.log(`Going to page ${page}`);
         this.currentPage = page;
-        this.loadProduct();
+        await this.loadProduct();
         
         // Scroll to top khi chuyển trang
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    },
+
+    // Reset tất cả dữ liệu khi chuyển category
+    resetData() {
+      this.products = [];
+      this.originalProducts = [];
+      this.filteredProducts = [];
+      this.currentPage = 1;
+      this.isFiltered = false;
+      this.totalItems = 0;
+      this.loading = false;
     },
   },
   
   watch: {
     categoryId: {
       immediate: true,
-      async handler(newVal) {
-        if (newVal) {
-          console.log(`Category changed to: ${newVal}`);
-          this.currentPage = 1;
-          this.isFiltered = false;
-          this.filteredProducts = [];
+      async handler(newVal, oldVal) {
+        if (newVal && newVal !== oldVal) {
+          console.log(`Category changed from ${oldVal} to ${newVal}`);
           
-          // Load cả hai loại data
-          await Promise.all([
-            
-            this.loadAllProducts(),
-            this.loadProduct(),
-          ]);
+          // Reset data trước khi load
+          this.resetData();
+          
+          try {
+            // Load song song để tăng tốc độ
+            await Promise.all([
+              this.loadProduct(),
+              this.loadAllProducts()
+            ]);
+          } catch (error) {
+            console.error("Error loading category data:", error);
+          }
         }
       },
     },
   },
+
+  // Cleanup khi component bị destroy
+  beforeDestroy() {
+    this.resetData();
+  },
 };
 </script>
+
+<style scoped>
+/* Thêm một số style cải thiện UX */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>

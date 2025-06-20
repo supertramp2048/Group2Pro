@@ -55,7 +55,12 @@
               class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
             >
               
-                <p v-if="this.login">{{ this.userName }}</p>
+                <p v-if="this.login"  >
+                  <router-link :to="{name: 'user'}" 
+                  class="block w-full h-full"
+                  >{{ this.userName }}</router-link>
+                  
+                  </p>
                 <p v-else><a href="http://localhost:3000/php/login.php" class="block w-full">Đăng nhập</a></p>
 
             </li>
@@ -135,10 +140,7 @@ export default {
       console.log("Đã đăng xuất");
     },
   },
-  watch()
-  {
-    
-  },
+ 
   async mounted() {
     const store = useUserStore();
     await store.fetchSession();

@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <footerPro />
+    
   </div>
 </template>
 

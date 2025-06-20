@@ -8,12 +8,18 @@ import login from '../components/login.vue'
 import searchResult from '../components/searchResult.vue'
 import contact from '../components/contact.vue'
 import bill from '../components/bill.vue'
+import user from '../components/user.vue'
 const routes = [
   
    {
     path: '/',
     name: 'homePage',
     component: homePage,
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: user,
   },
   {
     path: '/bill',

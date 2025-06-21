@@ -31,45 +31,42 @@
           <p><span class="font-semibold">👤 Họ tên:</span> {{ userName }}</p>
           <p><span class="font-semibold">📧 Email:</span> {{ userEmail }}</p>
           <p><span class="font-semibold">📅 Ngày tạo:</span> {{ createdDate }}</p>
+          <p><span class="font-semibold">User ID:</span> {{ userId }}</p>
         </div>
       </div>
     </div>
     <div class=" w-full h-auto px-2 py-8" v-show="this.orderOpen">
       <!-- nội dung lịch sử mua hàng chỗ này vì chưa có đơn hàng nên lấy dữ liệu tĩnh ở bên dưới -->
       
-      <h2 class="text-2xl font-semibold mb-4 px-5 ">Lịch sử đơn hàng</h2>
-      <div
-        v-for="order in orders"
-        :key="order.invoice_id"
-        class="order-card"
-      >
-        <p class="order-header">🧾 Đơn hàng #{{ order.invoice_id }}</p>
-        <p class="order-info">📅 Ngày đặt: {{ formatDate(order.created_at) }}</p>
-        <p class="order-info">👤 Người nhận: {{ order.name }}</p>
-        <p class="order-info">📞 Số điện thoại: {{ order.phone }}</p>
-        <p class="order-info">📍 Địa chỉ: {{ order.address }}</p>
-        <p class="order-info">📝 Ghi chú: {{ order.note || "Không có" }}</p>
-        <p class="order-total">Tổng tiền: {{ Number(order.total_price).toLocaleString() }}₫</p>
+      <h2 class="text-2xl font-semibold mb-4">Lịch sử đơn hàng</h2>
+      <div v-for="order in orders" :key="order.invoice_id" class="border-b pb-6 mb-6">
+        <p><strong>📅 Ngày mua:</strong> {{ formatDate(order.created_at) }}</p>
+        <p><strong>👤 Người nhận:</strong> {{ order.name }}</p>
+        <p><strong>📞 Số điện thoại:</strong> {{ order.phone }}</p>
+        <p><strong>📍 Địa chỉ:</strong> {{ order.address }}</p>
+        <p><strong>📝 Ghi chú:</strong> {{ order.note }}</p>
+        <p><strong>💰 Tổng tiền:</strong> {{ Number(order.total_price).toLocaleString() }}₫</p>
 
-        <p class="mt-3 font-semibold text-gray-700">📦 Sản phẩm:</p>
-        <div
-          v-for="(item, index) in order.items"
-          :key="index"
-          class="product-item"
-        >
-          <img
-            :src="item.product_image"
-            alt="product"
-            class="product-img"
-          />
-          <div class="product-details">
-            <div class="product-name">{{ item.product_name }}</div>
-            <div class="product-meta">Số lượng: x{{ item.quantity }}</div>
-            <div class="product-meta">Giá: {{ Number(item.product_price).toLocaleString() }}₫</div>
-          </div>
-        </div>
+        <p class="mt-3"><strong>📦 Sản phẩm:</strong></p>
+        <ul class="list-none space-y-4 mt-2">
+          <li
+            v-for="(item, index) in order.items"
+            :key="index"
+            class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl shadow-sm"
+          >
+            <img
+              :src="item.product_image"
+              alt="product"
+              class="w-20 h-20 object-cover rounded-lg border"
+            />
+            <div class="text-gray-800">
+              <p class="font-semibold text-lg">{{ item.product_name }}</p>
+              <p class="text-sm">Số lượng: x{{ item.quantity }}</p>
+              <p class="text-sm">Giá: {{ Number(item.product_price).toLocaleString() }}₫</p>
+            </div>
+          </li>
+        </ul>
       </div>
-
 
     </div>
   </div>
@@ -142,71 +139,72 @@ export default {
   },
 };
 </script>
+
 <style scoped>
-  .order-card {
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-    transition: box-shadow 0.2s ease-in-out;
-  }
+.order-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s ease-in-out;
+}
 
-  .order-card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-  }
+.order-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
 
-  .order-header {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #1f2937;
-  }
+.order-header {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1f2937;
+}
 
-  .order-info {
-    font-size: 14px;
-    color: #374151;
-    margin-bottom: 6px;
-  }
+.order-info {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 6px;
+}
 
-  .order-total {
-    font-size: 16px;
-    color: #dc2626;
-    font-weight: bold;
-    margin-top: 10px;
-  }
+.order-total {
+  font-size: 16px;
+  color: #dc2626;
+  font-weight: bold;
+  margin-top: 10px;
+}
 
-  .product-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background-color: #f9fafb;
-    border-radius: 10px;
-    padding: 12px;
-    margin-top: 12px;
-  }
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+}
 
-  .product-img {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-  }
+.product-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
 
-  .product-details {
-    flex-grow: 1;
-    color: #1f2937;
-  }
+.product-details {
+  flex-grow: 1;
+  color: #1f2937;
+}
 
-  .product-name {
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
+.product-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
 
-  .product-meta {
-    font-size: 14px;
-    color: #6b7280;
-  }
+.product-meta {
+  font-size: 14px;
+  color: #6b7280;
+}
 </style>

@@ -123,10 +123,10 @@
                         {{ product.title }}
                       </p>
                       <p class="p-2">
-                        <span v-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
                         <span
-                          v-else-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
-                        <span
+                          v-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
+                          <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+                          <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           v-else
                         >
@@ -232,9 +232,10 @@
                         {{ product.title }}
                       </p>
                       <p class="pt-2">
-                        <span v-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
-                        <span v-else-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
                         <span
+                          v-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
+                          <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+                          <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           v-else
                         >
@@ -339,13 +340,14 @@
                         {{ product.title }}
                       </p>
                       <p class="pt-2">
-                        <span v-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
                         <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
-                          v-else-if="product.price === '0'"
+                          v-if="product.price === '0'"
                         >
                           Liên Hệ
                         </span>
+
+                        <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
                         <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           v-else

@@ -287,13 +287,6 @@ export default {
             this.showNotificationContact = false; // Ẩn thông báo lỗi sau 3,5 giây
           }, 3500);
           return;
-        } 
-        if (product.quantity == 0) {
-          this.showNotificationOutOfStock = true;
-          setTimeout(() => {
-            this.showNotificationOutOfStock = false;
-          }, 3500);
-          return;
         }
         //console.log("Thêm sản phẩm vào giỏ hàng:", localStorage.getItem("username"));
         this.cartStore.addToCart(product);
@@ -326,7 +319,7 @@ export default {
 
   try {
     
-    // 1. Thêm vào giỏ hàng
+    // 2. Thêm vào giỏ hàng
     await this.cartStore.addToCart(product);
     
     // 2. Đợi cart cập nhật xong
@@ -336,16 +329,16 @@ export default {
     
     const addedCartItem = this.cartStore.cart[this.cartStore.cart.length - 1];
 
-    if (addedCartItem) {
-      // ✅ Lưu đúng cart_id vào buyNowProductId
-      this.cartStore.setBuyNowId(addedCartItem.cart_id);
-    } else {
-      console.warn("Không tìm thấy sản phẩm trong giỏ sau khi thêm.");
-    }
+      if (addedCartItem) {
+        // ✅ Lưu đúng cart_id vào buyNowProductId
+        this.cartStore.setBuyNowId(addedCartItem.cart_id);
+      } else {
+        console.warn("Không tìm thấy sản phẩm trong giỏ sau khi thêm.");
+      }
 
-    console.log("Sản phẩm đã chọn:", this.cartStore.buyNowProductId);
-    
-    // 4. Hiển thị thông báo và chuyển trang
+      console.log("Sản phẩm đã chọn:", this.cartStore.buyNowProductId);
+      
+    // 6. Hiển thị thông báo và chuyển trang
     this.showNotification = true;
     setTimeout(() => {
       this.showNotification = false;

@@ -1,0 +1,293 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "phone"
+    },
+    {
+      "id": 2,
+      "name": "laptop"
+    },
+    {
+      "id": 3,
+      "name": "camera"
+    }
+  ],
+  "users": [
+    {
+      "email": "user@example2.com",
+      "password": "$2a$10$Y14VK5cCy5HS6qC/yHV3S.7ssxzww4PoERhUPtlp78WQhVJX5eJJa",
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Iphone 8 plus",
+      "views": 200,
+      "src": "/images/iphone8plus.png",
+      "price": 10000000,
+      "categoryId": 1,
+      "description": "Màn hình super retina XDR 6,9 inch; Điều khiển camera - trượt ngón tay",
+      "brand": "Apple"
+    },
+    {
+      "id": 2,
+      "title": "Iphone 13",
+      "views": 200,
+      "src": "/images/iphone13.png",
+      "price": 10000000,
+      "categoryId": 1,
+      "brand": "Apple"
+    },
+    {
+      "id": 3,
+      "title": "Iphone 15 pro",
+      "views": 200,
+      "src": "/images/iphone15pro.png",
+      "price": 10000000,
+      "categoryId": 1,
+      "brand": "Apple"
+    },
+    {
+      "id": 7,
+      "title": "Iphone 16 pro",
+      "views": 200,
+      "src": "/images/iphone16pro.png",
+      "price": 10000000,
+      "categoryId": 1,
+      "brand": "Apple"
+    },
+    {
+      "id": 4,
+      "title": "Dell gaming",
+      "views": 200,
+      "src": "/images/dellGaming.png",
+      "price": 10000000,
+      "categoryId": 2,
+      "brand": "Dell"
+    },
+    {
+      "id": 5,
+      "title": "Asus ROG",
+      "views": 200,
+      "src": "/images/asusROG.png",
+      "price": 10000000,
+      "categoryId": 2,
+      "brand": "Asus"
+    },
+    {
+      "id": 6,
+      "title": "Acer Nitro 5",
+      "views": 200,
+      "src": "/images/AceNitro.png",
+      "price": 10000000,
+      "categoryId": 2,
+      "brand": "Acer"
+    },
+    {
+      "id": 8,
+      "title": "Samsung Galaxy S25 Ultra ",
+      "views": 200,
+      "src": "/images/samsungGalaxyS25Ultra.png",
+      "price": 10000000,
+      "categoryId": 1,
+      "brand": "Samsung"
+    },
+    {
+      "id": 41,
+      "title": "Logitech C920 Webcam",
+      "src": "/images/c920s.png",
+      "quantity": 25,
+      "categoryId": 3,
+      "price": 1200000,
+      "brand": "Logitech"
+    },
+    {
+      "id": 42,
+      "title": "Razer Kiyo X",
+      "src": "/images/razer-kiyo-x.png",
+      "quantity": 40,
+      "categoryId": 3,
+      "price": 1350000,
+      "brand": "Razer"
+    },
+    {
+      "id": 43,
+      "title": "Microsoft LifeCam",
+      "src": "/images/microsoft-lifecam.png",
+      "quantity": 30,
+      "categoryId": 3,
+      "price": 980000,
+      "brand": "Microsoft"
+    },
+    {
+      "id": 44,
+      "title": "Dell Pro Webcam",
+      "src": "/images/dell-pro.png",
+      "quantity": 20,
+      "categoryId": 3,
+      "price": 1150000,
+      "brand": "Dell"
+    },
+    {
+      "id": 45,
+      "title": "HP HD 4310",
+      "src": "/images/hp-hd-webcam.png",
+      "quantity": 50,
+      "categoryId": 3,
+      "price": 890000,
+      "brand": "HP"
+    },
+    {
+      "id": 46,
+      "title": "AverMedia PW513",
+      "src": "/images/PW513.png",
+      "quantity": 60,
+      "categoryId": 3,
+      "price": 2200000,
+      "brand": "AverMedia"
+    },
+    {
+      "id": 47,
+      "title": "Elgato Facecam",
+      "src": "/images/elgato_facecam_pro.png",
+      "quantity": 22,
+      "categoryId": 3,
+      "price": 2500000,
+      "brand": "Elgato"
+    },
+    {
+      "id": 48,
+      "title": "Lenovo FHD Webcam",
+      "src": "/images/Lenovo-FHD-Webcam.png",
+      "quantity": 33,
+      "categoryId": 3,
+      "price": 990000,
+      "brand": "Lenovo"
+    },
+    {
+      "id": 49,
+      "title": "Asus ROG Eye",
+      "src": "/images/Asus-ROG-Eye.png",
+      "quantity": 15,
+      "categoryId": 3,
+      "price": 1800000,
+      "brand": "Asus"
+    },
+    {
+      "id": 50,
+      "title": "Creative Live! Cam",
+      "src": "/images/hero-creative-live-cam.png",
+      "quantity": 45,
+      "categoryId": 3,
+      "price": 1050000,
+      "brand": "Creative"
+    },
+    {
+      "id": 51,
+      "title": "MacBook Air M2",
+      "src": "/images/apple-macbook-air-m2.png",
+      "quantity": 17,
+      "categoryId": 2,
+      "price": 28000000,
+      "brand": "Apple"
+    },
+    {
+      "id": 52,
+      "title": "Dell XPS 13",
+      "src": "/images/dell-xps-13.png",
+      "quantity": 12,
+      "categoryId": 2,
+      "price": 26000000,
+      "brand": "Dell"
+    },
+    {
+      "id": 53,
+      "title": "HP Spectre x360",
+      "src": "/images/HP-Spectre.png",
+      "quantity": 38,
+      "categoryId": 2,
+      "price": 24500000,
+      "brand": "HP"
+    },
+    {
+      "id": 54,
+      "title": "Lenovo ThinkPad X1",
+      "src": "/images/lenovo-thinkpad.png",
+      "quantity": 44,
+      "categoryId": 2,
+      "price": 25500000,
+      "brand": "Lenovo"
+    },
+    {
+      "id": 55,
+      "title": "Asus ZenBook 14",
+      "src": "/images/Asus-ZenBook-14.png",
+      "quantity": 36,
+      "categoryId": 2,
+      "price": 21500000,
+      "brand": "Asus"
+    },
+    {
+      "id": 56,
+      "title": "Acer Swift 3",
+      "src": "/images/Acer-Swift-3.png",
+      "quantity": 29,
+      "categoryId": 2,
+      "price": 19000000,
+      "brand": "Acer"
+    },
+    {
+      "id": 57,
+      "title": "MSI Modern 14",
+      "src": "/images/msi_modern_14_.png",
+      "quantity": 21,
+      "categoryId": 2,
+      "price": 18500000,
+      "brand": "MSI"
+    },
+    {
+      "id": 58,
+      "title": "Samsung Galaxy Book",
+      "src": "/images/Samsung-Galaxy-Book.png",
+      "quantity": 26,
+      "categoryId": 2,
+      "price": 20000000,
+      "brand": "Samsung"
+    },
+    {
+      "id": 59,
+      "title": "Huawei MateBook D15",
+      "src": "/images/huaweimatebookd15.png",
+      "quantity": 30,
+      "categoryId": 2,
+      "price": 17000000,
+      "brand": "Huawei"
+    },
+    {
+      "id": 60,
+      "title": "Razer Blade 14",
+      "src": "/images/razer-blade-14.png",
+      "quantity": 19,
+      "categoryId": 2,
+      "price": 32000000,
+      "brand": "Razer"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "text": "a comment about post 1",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "text": "another comment about post 1",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -9,6 +9,7 @@
                 Add product
             </button>
 
+<<<<<<< HEAD
             <div class=" mb-4">
                 <input
                     type="text"
@@ -19,6 +20,8 @@
                 </div>
 
 
+=======
+>>>>>>> origin/Longkepro
             <table class="table-auto w-full border-collapse border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100 text-left">
@@ -35,7 +38,11 @@
                 </thead>
                 <tbody>
 
+<<<<<<< HEAD
                     <tr v-for="product in filteredProducts" :key="product.id">
+=======
+                    <tr v-for="product in products" :key="product.id">
+>>>>>>> origin/Longkepro
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ product.id }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ product.title }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
@@ -136,7 +143,10 @@ export default {
             error: null,
             isModalOpen: false, // Modal visibility state
             isEditing: false, // Whether we're editing an existing category
+<<<<<<< HEAD
             searchTitle: '',
+=======
+>>>>>>> origin/Longkepro
             form: {
                 id: null,
                 title: '',         // Tên sản phẩm
@@ -229,6 +239,7 @@ export default {
                 alert('Failed to delete product.');
             }
         }
+<<<<<<< HEAD
     },
     // computed: {
     //     filteredProducts() {
@@ -251,6 +262,9 @@ export default {
         });
         }
     },
+=======
+    }
+>>>>>>> origin/Longkepro
 }
 </script>
 

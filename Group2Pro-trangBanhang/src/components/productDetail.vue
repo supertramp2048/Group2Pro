@@ -3,24 +3,24 @@
     <headerPro></headerPro>
     <menuBar></menuBar>
 
-    <button @click="prevPage()" class="text-2xl text-black block">
-      <!-- Icon mũi tên trái -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-10"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-        />
-      </svg>
-    </button>
-
+    <!--
+<button @click="prevPage()" class="text-2xl text-black block">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="size-10"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+    />
+  </svg>
+</button>
+-->
     <div v-if="product" :key="product.id">
       <div
         class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-slate-800 via-slate-500 to-yellow-100 text-white w-full max-w-7xl mx-auto shadow-lg h-full"
@@ -130,7 +130,6 @@
           </div>
         </div>
       </div>
-        
 
       <!-- Cha bao ngoài để canh giữa thanh -->
       <div class="sticky bottom-0 left-0 flex justify-center z-50">
@@ -152,9 +151,13 @@
 
           <!-- Giá tiền -->
           <div class="flex flex-col items-end mr-4">
-            <span class="text-red-600 font-bold text-lg">{{
-              formatPrice(product.price)
-            }}</span>
+            <span v-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+            <span
+              v-else-if="product.price != 0"
+              class="text-red-600 font-bold text-lg"
+              >{{ formatPrice(product.price) }}</span
+            >
+            <span v-else class="text-red-600 font-bold text-lg">Liên Hệ</span>
             <span class="text-gray-400 line-through text-sm">34.990.000₫</span>
           </div>
 
@@ -166,6 +169,7 @@
               Trả góp 0%
             </button>
             <button
+              @click="buyNow(product)"
               class="bg-red-600 text-white px-4 py-2 rounded-md font-semibold"
             >
               Mua Ngay
@@ -174,7 +178,7 @@
               @click="addProduct(product)"
               class="bg-transparent hover:bg-red-600 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-md"
             >
-              Them vao gio hang
+              Thêm vào giỏ hàng
             </button>
 
             <transition name="fade">
@@ -186,7 +190,7 @@
               </div>
             </transition>
 
-             <transition name="fade">
+            <transition name="fade">
               <div
                 v-if="showNotificationErr"
                 class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-red-700 text-white px-4 py-3 rounded-lg shadow-lg z-50"
@@ -194,7 +198,22 @@
                 ❌ Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!
               </div>
             </transition>
-            
+            <transition name="fade">
+              <div
+                v-if="showNotificationContact"
+                class="absolute left-8/12 w-[200px] bottom-24 right-4 bg-red-700 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+              >
+                ❌ Liên hệ với cửa hàng để mua sản phẩm này nha!
+              </div>
+            </transition>
+            <transition name="fade">
+              <div
+                v-if="showNotificationOutOfStock"
+                class="absolute left-8/12 w-[240px] bottom-24 right-4 bg-red-800 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+              >
+                ❌ Sản phẩm này đã hết hàng!
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -211,9 +230,12 @@ export default {
   data() {
     return {
       product: {},
+      selectedItems: [],
       cartStore: null,
       showNotification: false,
       showNotificationErr: false,
+      showNotificationContact: false,
+      showNotificationOutOfStock: false,
       descriptions: [],
     };
   },
@@ -235,7 +257,9 @@ export default {
       window.history.back();
     },
     async loadProduct() {
-      let res = await fetch(`http://localhost:3000/API/index.php?id=${this.id}`);
+      let res = await fetch(
+        `http://localhost:3000/API/index.php?id=${this.id}`
+      );
       //console.log("id=" + this.id);
       const dataObj = await res.json();
       //console.log(dataObj);
@@ -250,16 +274,20 @@ export default {
     },
 
     addProduct(product) {
-      if(localStorage.getItem("username") === null) {
+      if (localStorage.getItem("username") === null) {
         this.showNotificationErr = true; // Hiện thông báo lỗi
         setTimeout(() => {
           this.showNotificationErr = false; // Ẩn thông báo lỗi sau 1 giây
         }, 1000);
         return;
-        
-      }
-      else
-      {
+      } else {
+        if (product.price == 0) {
+          this.showNotificationContact = true; // Hiện thông báo lỗi
+          setTimeout(() => {
+            this.showNotificationContact = false; // Ẩn thông báo lỗi sau 3,5 giây
+          }, 3500);
+          return;
+        }
         //console.log("Thêm sản phẩm vào giỏ hàng:", localStorage.getItem("username"));
         this.cartStore.addToCart(product);
         this.showNotification = true; // Hiện thông báo thành công
@@ -268,10 +296,63 @@ export default {
         }, 1000);
       }
     },
+ async buyNow(product) {
+  if (localStorage.getItem("username") === null) {
+    this.showNotificationErr = true;
+    setTimeout(() => this.showNotificationErr = false, 1000);
+    return;
+  }
+  
+  if (product.price == 0) {
+    this.showNotificationContact = true;
+    setTimeout(() => this.showNotificationContact = false, 3500);
+    return;
+  }
+
+  if (product.quantity == 0) {
+    this.showNotificationOutOfStock = true;
+    setTimeout(() => {
+      this.showNotificationOutOfStock = false;
+    }, 3500);
+    return;
+  }
+
+  try {
+    
+    // 2. Thêm vào giỏ hàng
+    await this.cartStore.addToCart(product);
+    
+    // 2. Đợi cart cập nhật xong
+    await this.cartStore.fetchCart();
+
+    // 3. Đánh dấu sản phẩm mua ngay Sau KHI thêm vào giỏ
+    
+    const addedCartItem = this.cartStore.cart[this.cartStore.cart.length - 1];
+
+      if (addedCartItem) {
+        // ✅ Lưu đúng cart_id vào buyNowProductId
+        this.cartStore.setBuyNowId(addedCartItem.cart_id);
+      } else {
+        console.warn("Không tìm thấy sản phẩm trong giỏ sau khi thêm.");
+      }
+
+      console.log("Sản phẩm đã chọn:", this.cartStore.buyNowProductId);
+      
+    // 6. Hiển thị thông báo và chuyển trang
+    this.showNotification = true;
+    setTimeout(() => {
+      this.showNotification = false;
+      this.$router.push({ name: "bill" });
+    }, 500);
+    
+  } catch (error) {
+    console.error('Lỗi khi mua ngay:', error);
+    alert("Có lỗi xảy ra khi thực hiện mua ngay");
+  }
+},
     subString(string) {
       this.descriptions = string.split(",").filter(Boolean);
       //console.log(this.descriptions);
-
     },
   },
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-4/6 flex relative z-50" ref="searchWrapper">
+  <div class="w-4/6 flex relative z-50 " ref="searchWrapper">
     <form @submit.prevent="showResult()" class="w-full">
       <div class="relative w-full">
         <input

@@ -42,11 +42,10 @@ class productControler {
     }
   }
 
-  /*public function processRequestCategory(string $method, ?string $category) :void {
-    if($category) {
-      $this->processCategoryRequest($method, $category);
-    } 
-  }*/
+  public function processRequestInvoice(string $method,string $userid)
+  {
+    $this->processInvoiceRequest($method, $userid);
+  }
 
   private function processResourceRequest(string $method, string $id) :void {
     // trong bất cứ trường hợp nào, t đều phải kiểm tra id có trong database hay không
@@ -195,6 +194,38 @@ class productControler {
         break;
     }
   }
+
+  private function processInvoiceRequest(string $method, string $userid) :void {
+    switch($method) {
+      case 'GET':
+        echo json_encode($this->gateway->getInvoice($userid));
+        break;
+      case 'POST':
+        $data = json_decode(file_get_contents("php://input"), true);
+         try {
+                $invoiceId = $this->gateway->addInvoice((int)$userid, $data);
+                $this->gateway->addInvoiceItems($invoiceId, $data);
+
+                echo json_encode([
+                    "success" => true,
+                    "invoiceId" => $invoiceId
+                ]);
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode([
+                    "success" => false,
+                    "message" => "Error: " . $e->getMessage()
+                ]);
+            }
+        break;
+
+      default:
+        http_response_code(405); // trả về mã trạng thái 405 Method Not Allowed
+        header('Allow: GET, POST'); // thông báo các phương thức được hỗ trợ
+        break;
+    }
+  }
+
 }
 
 ?>

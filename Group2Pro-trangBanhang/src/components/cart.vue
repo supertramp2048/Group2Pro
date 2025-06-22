@@ -5,23 +5,7 @@
     <div
       class="w-full flex justify-self-center items-center justify-start gap-4 px-4 py-3 border-b border-gray-400"
     >
-      <router-link :to="{ name: 'homePage' }" class="text-2xl text-black block">
-        <!-- Icon mũi tên trái -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-10"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-          />
-        </svg>
-      </router-link>
+      
       <h2
         class="text-3xl font-semibold text-gray-800 leading-16 self-center w-full text-center"
       >
@@ -31,7 +15,7 @@
     <div class="w-full max-w-[80%] flex justify-self-center pt-6">
       <button
         @click="clearAllProduct()"
-        class="bg-red-700 rounded-[10px] text-xl text-amber-50 p-2"
+        class="bg-red-700 rounded-[10px] text-xl text-amber-50 p-2 active:bg-red-500"
       >
         Xóa tất cả
       </button>
@@ -62,11 +46,12 @@
           Tổng số tiền
         <span class="text-red-500 font-bold">{{ formatPrice(total) }}</span>
         </p>
-      <button
-          class="bg-red-700 rounded-[10px] text-xl text-amber-50 p-2 w-fit p-3"
+      <router-link
+          class="bg-red-700 rounded-[10px] text-xl text-amber-50 w-fit p-3 active:bg-red-500"
+          :to="{name: 'bill'}"
         >
           Thanh toan
-      </button>
+      </router-link>
       </div>
     </div>
   </div>
@@ -89,6 +74,7 @@ export default {
   data() {
     return {
       cartStore: useCartStore(),
+      ispressed :false
     };
   },
   computed: {
@@ -99,14 +85,23 @@ export default {
       return this.cart.reduce((sum, product) => sum + product.price, 0);
     },
   },
+  handleClickClearAllProduct() {
+    this.isPressed = true;
+    setTimeout(() => {
+      this.isPressed = false;
+    }, 300); // hiệu ứng 300ms
+    this.clearAllProduct();
+  },
   created() {
     this.cartStore = useCartStore(); // khai báo store 
   },
   methods: {
     remove(data) {
       this.cartStore.removeFromCart(data);
+
     },
     clearAllProduct() {
+      
       this.cartStore.clearCart();
     },
     formatPrice(value) {
@@ -193,5 +188,11 @@ export default {
 .fade-leave-to {
   transform: translateX(-40px);
   opacity: 0;
+}
+.active-pressed {
+  background-color: #c53030 !important; /* màu đỏ nhạt hơn */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  transform: scale(0.96);
+  transition: all 0.2s ease;
 }
 </style>

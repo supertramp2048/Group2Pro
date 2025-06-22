@@ -7,35 +7,49 @@
 
       <article class="flex-1 lg:w-4/6 lg:flex-1 w-full bg-white p-6">
         <!--Nội dung chính -->
-       <div class="flex flex-col lg:flex-row">
+        <div class="flex flex-col lg:flex-row">
           <aside class="w-2/6 hidden lg:block bg-gray-200 p-4">
-          <router-link
-            :to="{ name: 'productDetail', params: { id: 74 } }">
-            <img src="/images/ads4.png" alt="" class="rounded-2xl h-1/3" />
+            <router-link :to="{ name: 'productDetail', params: { id: 74 } }">
+              <img src="/images/ads4.png" alt="" class="rounded-2xl h-1/3" />
             </router-link>
-            <router-link
-              :to="{ name: 'productDetail', params: { id: 73 } }">
-            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+              <img
+                src="/images/ads5.png"
+                alt=""
+                class="mt-1 rounded-2xl h-1/3"
+              />
             </router-link>
-            <router-link
-              :to="{ name: 'productDetail', params: { id: 73 } }">
-            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+              <img
+                src="/images/ads5.png"
+                alt=""
+                class="mt-1 rounded-2xl h-1/3"
+              />
             </router-link>
           </aside>
           <carosel class="z-10"></carosel>
           <aside class="w-2/6 hidden lg:block bg-gray-200 p-4">
-          <router-link :to="{ name: 'productDetail', params: { id: 8 } }">
-            <img src="/images/galaxyM55Ads.png" alt="" class="rounded-2xl h-1/3" />
+            <router-link :to="{ name: 'productDetail', params: { id: 8 } }">
+              <img
+                src="/images/galaxyM55Ads.png"
+                alt=""
+                class="rounded-2xl h-1/3"
+              />
             </router-link>
-            <router-link
-              :to="{ name: 'productDetail', params: { id: 73 } }">
-            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+              <img
+                src="/images/ads5.png"
+                alt=""
+                class="mt-1 rounded-2xl h-1/3"
+              />
             </router-link>
-            <router-link
-              :to="{ name: 'productDetail', params: { id: 73 } }">
-            <img src="/images/ads5.png" alt="" class="mt-1 rounded-2xl h-1/3" />
+            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+              <img
+                src="/images/ads5.png"
+                alt=""
+                class="mt-1 rounded-2xl h-1/3"
+              />
             </router-link>
-            
           </aside>
         </div>
         <cowndownClock></cowndownClock>
@@ -90,7 +104,7 @@
                   class="w-1/5 flex-shrink-0 py-4"
                 >
                   <div
-                    class="bg-white h-full min-h-[400px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
+                    class="bg-white h-full min-h-[350px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
                   >
                     <router-link
                       :to="{
@@ -101,7 +115,7 @@
                       <img
                         :src="product.src"
                         alt=""
-                        class="w-full h-[120px] object-fill rounded-md mb-4 md:h-[220px] xl:h-[320px]"
+                        class="w-full h-[100px] object-fill rounded-md mb-4 md:h-[150px] xl:h-[180px]"
                       />
                       <p
                         class="text-m md:text-2xl lg:text-2xl font-bold text-gray-700 truncate mb-3"
@@ -110,8 +124,13 @@
                       </p>
                       <p class="p-2">
                         <span
-                          class="text-red-600 sm:text-m lg:text-2xl md:text-2xl font-bold"
-                          >Giá {{ formatPrice(product.price) }}
+                          v-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
+                          <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+                          <span
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                          v-else
+                        >
+                          Giá {{ formatPrice(product.price) }}
                         </span>
                       </p>
                     </router-link>
@@ -194,7 +213,7 @@
                   class="w-1/5 flex-shrink-0 py-4"
                 >
                   <div
-                    class="bg-white h-full min-h-[400px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
+                    class="bg-white h-full min-h-[350px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
                   >
                     <router-link
                       :to="{
@@ -205,7 +224,7 @@
                       <img
                         :src="product.src"
                         alt=""
-                        class="w-full h-[220px] object-contain rounded-md mb-4"
+                        class="w-full h-[150px] object-contain rounded-md mb-4"
                       />
                       <p
                         class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3 line-clamp-2"
@@ -214,9 +233,14 @@
                       </p>
                       <p class="pt-2">
                         <span
+                          v-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
+                          <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+                          <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
-                          >Giá {{ formatPrice(product.price) }}</span
+                          v-else
                         >
+                          Giá {{ formatPrice(product.price) }}
+                        </span>
                       </p>
                     </router-link>
                   </div>
@@ -247,7 +271,7 @@
           </div>
           <!-- <-- het laptop -->
 
-          <!-- Laptop nổi bật -->
+          <!-- Camera nổi bật -->
           <div class="flex items-center justify-between px-4 py-2">
             <h2 class="text-2xl font-bold uppercase text-gray-800">
               Camera nổi bật nhất
@@ -260,7 +284,7 @@
             </router-link>
           </div>
 
-          <!-- Carousel cho laptop -->
+          <!-- Carousel cho camera -->
           <div class="relative">
             <!-- Nút điều hướng trái -->
             <button
@@ -297,7 +321,7 @@
                   class="w-1/5 flex-shrink-0 py-4"
                 >
                   <div
-                    class="bg-white h-full min-h-[400px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
+                    class="bg-white h-full min-h-[350px] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] transform scale-100 hover:scale-105 shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-lg p-6 transition duration-300 flex flex-col justify-between"
                   >
                     <router-link
                       :to="{
@@ -308,7 +332,7 @@
                       <img
                         :src="product.src"
                         alt=""
-                        class="w-full h-[120px] rounded-md mb-4 object-fill md:h-[220px] xl:h-[320px]"
+                        class="w-full h-[100px] rounded-md mb-4 object-fill md:h-[150px] xl:h-[180px]"
                       />
                       <p
                         class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3"
@@ -318,8 +342,18 @@
                       <p class="pt-2">
                         <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
-                          >Giá {{ formatPrice(product.price) }}</span
+                          v-if="product.price === '0'"
                         >
+                          Liên Hệ
+                        </span>
+
+                        <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+                        <span
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                          v-else
+                        >
+                          Giá {{ formatPrice(product.price) }}
+                        </span>
                       </p>
                     </router-link>
                   </div>
@@ -351,7 +385,6 @@
         </div>
       </article>
     </section>
-    
   </div>
 </template>
 
@@ -391,7 +424,7 @@ export default {
     async loadProduct() {
       let res = await fetch("http://localhost:3000/API/index.php");
       this.allProducts = await res.json();
-      console.log(localStorage.getItem('username'))
+      console.log(localStorage.getItem("username"));
       this.phoneProducts = this.allProducts
         .filter((p) => p.category === 1)
         .slice(0, 15);
@@ -438,7 +471,7 @@ export default {
         this.laptopCurrentIndex--;
       }
     },
-    // dieu huong camemra
+    // dieu huong camera
 
     nextCams() {
       if (this.camCurrentIndex < this.camProducts.length - 4) {

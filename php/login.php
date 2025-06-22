@@ -47,6 +47,8 @@
           session_start();
           $_SESSION['userName'] = $u['userName'];
           $_SESSION['userId'] = $u['id'];
+          $_SESSION['email'] = $u['email'];
+          $_SESSION['createdDate'] = $u['createdDate'];
           $token = bin2hex(random_bytes(16)); // tạo token giả
           // Chuyển hướng về Vue (ở localhost:5173) và truyền token trong URL
           $redirectUrl = 'http://localhost:5173/login?accessToken=' . $token;

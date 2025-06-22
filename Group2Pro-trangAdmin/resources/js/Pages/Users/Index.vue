@@ -9,6 +9,7 @@
                 Add User
             </button>
 
+<<<<<<< HEAD
             <div class=" mb-4">
                 <input
                     type="text"
@@ -18,6 +19,8 @@
                 />
                 </div>
 
+=======
+>>>>>>> origin/Longkepro
             <table class="table-auto w-full border-collapse border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100 text-left">
@@ -31,7 +34,11 @@
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                     <tr v-for="user in filteredUsers" :key="user.id">
+=======
+                    <tr v-for="user in users" :key="user.id">
+>>>>>>> origin/Longkepro
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ user.id }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ user.userName }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ user.email }}</td>
@@ -107,7 +114,10 @@ export default {
             error: null,
             isModalOpen: false,
             isEditing: false,
+<<<<<<< HEAD
             searchQuery: '',
+=======
+>>>>>>> origin/Longkepro
             form: {
                 id: null,
                 userName: '',
@@ -196,6 +206,7 @@ export default {
                 alert('Failed to delete user.');
             }
         }
+<<<<<<< HEAD
     },
     computed: {
         filteredUsers() {
@@ -208,6 +219,9 @@ export default {
         });
         }
     },
+=======
+    }
+>>>>>>> origin/Longkepro
 };
 </script>
 

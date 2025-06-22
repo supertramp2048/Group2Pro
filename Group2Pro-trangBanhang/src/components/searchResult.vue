@@ -57,7 +57,7 @@
               <img
                 :src="product.src"
                 alt=""
-                class="w-full h-[200px] rounded-md mb-4 object-fill md:h-[240px] lg:h-[250px] xl:h-[400px]"
+                class="w-full h-[150px] rounded-md mb-4 object-fill md:h-[150px] lg:h-[150px] xl:h-[200px]"
               />
               <p class="text-xl font-bold text-gray-700 mb-3">
                 {{ product.title }}
@@ -96,7 +96,7 @@
               <img
                 :src="product.src"
                 alt=""
-                class="w-full h-[200px] rounded-md mb-4 object-fill md:h-[240px] lg:h-[250px] xl:h-[400px]"
+                class="w-full h-[150px] rounded-md mb-4 object-fill md:h-[150px] lg:h-[150px] xl:h-[250px] "
               />
               <p class="text-xl font-bold text-gray-700 mb-3">
                 {{ product.title }}

@@ -9,7 +9,7 @@
         Add User Cart
       </button>
 
-<<<<<<< HEAD
+
       <div class=" mb-4">
                 <input
                     type="text"
@@ -20,8 +20,7 @@
                 </div>
 
 
-=======
->>>>>>> origin/Longkepro
+
       <table class="table-auto w-full border-collapse border border-gray-200">
         <thead>
           <tr class="bg-gray-100 text-left">
@@ -33,11 +32,8 @@
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
           <tr v-for="usercart in filteredCart" :key="usercart.id">
-=======
-          <tr v-for="usercart in usercarts" :key="usercart.id">
->>>>>>> origin/Longkepro
+
             <td class="border border-gray-300 px-4 py-2 text-center">{{ usercart.id }}</td>
             <td class="border border-gray-300 px-4 py-2 text-center">{{ usercart.userId }}</td>
             <td class="border border-gray-300 px-4 py-2 text-center">{{ usercart.productId }}</td>
@@ -92,10 +88,8 @@ export default {
       loading: true,
       isModalOpen: false,
       isEditing: false,
-<<<<<<< HEAD
       searchQuery: '',
-=======
->>>>>>> origin/Longkepro
+
       form: {
         id: null,
         userId: '',
@@ -166,7 +160,6 @@ export default {
         console.error("Error deleting user cart:", error);
       }
     }
-<<<<<<< HEAD
   },
   computed: {
         filteredCart() {
@@ -178,9 +171,6 @@ export default {
         });
         }
     },
-=======
-  }
->>>>>>> origin/Longkepro
 };
 </script>
 

@@ -149,5 +149,105 @@
         $stmt->execute();
         return (int)$stmt->fetchColumn(); // trả về tổng số sản phẩm trong danh mục
     }
+
+    public function getInvoice(int $userid): array {
+        $sql = "SELECT 
+            invoices.id AS invoice_id,
+            invoices.user_id,
+            invoices.name,
+            invoices.phone,
+            invoices.address,
+            invoices.total_price,
+            invoices.note,
+            invoices.created_at,
+
+            invoice_items.product_id,
+            invoice_items.quantity,
+
+            products.title AS product_name,
+            products.price AS product_price,
+            products.src AS product_image
+        FROM invoices
+        LEFT JOIN invoice_items ON invoice_items.invoice_id = invoices.id
+        LEFT JOIN products ON products.id = invoice_items.product_id
+        WHERE invoices.user_id = :userid
+        ORDER BY invoices.id DESC";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":userid", $userid, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $invoices = [];
+
+        foreach ($rows as $row) {
+            $invoiceId = $row['invoice_id'];
+
+            if (!isset($invoices[$invoiceId])) {
+                $invoices[$invoiceId] = [
+                    'invoice_id' => $invoiceId,
+                    'user_id' => $row['user_id'],
+                    'name' => $row['name'],
+                    'phone' => $row['phone'],
+                    'address' => $row['address'],
+                    'total_price' => $row['total_price'],
+                    'note' => $row['note'],
+                    'created_at' => $row['created_at'],
+                    'items' => []
+                ];
+            }
+
+            $invoices[$invoiceId]['items'][] = [
+                'product_id' => $row['product_id'],
+                'quantity' => $row['quantity'],
+                'product_name' => $row['product_name'],
+                'product_price' => $row['product_price'],
+                'product_image' => $row['product_image']
+            ];
+        }
+
+        return array_values($invoices);
+    }
+
+
+    public function addInvoice(int $userId, array $data) : int {
+        $sql = "INSERT INTO invoices(user_id,name,phone,address,note,total_price) VALUES (:user_id, :name, :phone, :address, :note, :total_price)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":user_id", $userId, PDO::PARAM_INT);
+        $stmt->bindValue(":name", $data["name"], PDO::PARAM_STR);
+        $stmt->bindValue(":phone", $data["phone"], PDO::PARAM_STR);
+        $stmt->bindValue(":address", $data["address"], PDO::PARAM_STR);
+        $stmt->bindValue(":note", $data["note"], PDO::PARAM_INT);
+        $stmt->bindValue(":total_price", $data["total_price"], PDO::PARAM_STR );
+        $stmt->execute();
+        return $this->conn->lastInsertId();
+    }
+    public function reduceQuantity(int $quantity, int $product_id){
+         $updateSql = 'UPDATE products 
+                    SET quantity = quantity - :subquantity 
+                    WHERE id = :product_id AND quantity >= :quantity';
+        $updateStmt = $this->conn->prepare($updateSql);
+        $updateStmt->bindValue(':quantity', $quantity, PDO::PARAM_INT);
+         $updateStmt->bindValue(':subquantity', $quantity, PDO::PARAM_INT);
+        $updateStmt->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+        $updateStmt->execute();
+    }
+    public function addInvoiceItems(int $invoice_id,array $dataIN): array{
+        $id_arr = [];
+        foreach($dataIN['items']  as $data)
+        {        
+        //Trừ số lượng trong bảng products
+        $sql = 'INSERT INTO invoice_items (invoice_id, product_id, quantity) VALUES (:invoice_id, :product_id, :quantity) ';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+        $stmt->bindValue(':product_id', $data['product_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':quantity', $data['quantity'], PDO::PARAM_INT);
+        $stmt->execute();
+        $this->reduceQuantity($data['quantity'], $data['product_id']);
+        $id_arr[] = $this->conn->lastInsertId();
+        }
+        return $id_arr;
+    }
+
 }
 ?>

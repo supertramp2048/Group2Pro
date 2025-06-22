@@ -13,7 +13,15 @@
     </div>
 
     <!-- Thanh thông tin - ẩn khi scroll -->
-   
+    <div 
+      :class="[
+        'bg--50 text-xs text-blue-900 px-4 py-2 flex justify-between items-center transition-all duration-300 overflow-hidden',
+        isScrolled ? 'max-h-0 opacity-0' : 'max-h-16 opacity-100'
+      ]"
+    >
+      
+    </div>
+
     <!-- Thanh chính: Logo - Search - Cart (compact khi scroll) -->
     <div 
       :class="[
@@ -38,11 +46,12 @@
       <!-- Search - mở rộng khi scroll -->
       <div 
         :class="[
+        
           'transition-all duration-500 ease-in-out',
           isScrolled ? 'flex-1' : 'flex-1'
         ]"
       >
-        <search class="w-full" />
+        <search class="w-full " />
       </div>
 
       <!-- Cart - thu nhỏ khi scroll -->

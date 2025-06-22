@@ -151,8 +151,9 @@
 
           <!-- Giá tiền -->
           <div class="flex flex-col items-end mr-4">
+            <span v-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
             <span
-              v-if="product.price != 0"
+              v-else-if="product.price != 0"
               class="text-red-600 font-bold text-lg"
               >{{ formatPrice(product.price) }}</span
             >
@@ -205,6 +206,14 @@
                 ❌ Liên hệ với cửa hàng để mua sản phẩm này nha!
               </div>
             </transition>
+            <transition name="fade">
+              <div
+                v-if="showNotificationOutOfStock"
+                class="absolute left-8/12 w-[240px] bottom-24 right-4 bg-red-800 text-white px-4 py-3 rounded-lg shadow-lg z-50"
+              >
+                ❌ Sản phẩm này đã hết hàng!
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -226,6 +235,7 @@ export default {
       showNotification: false,
       showNotificationErr: false,
       showNotificationContact: false,
+      showNotificationOutOfStock: false,
       descriptions: [],
     };
   },
@@ -299,24 +309,35 @@ export default {
     return;
   }
 
+  if (product.quantity == 0) {
+    this.showNotificationOutOfStock = true;
+    setTimeout(() => {
+      this.showNotificationOutOfStock = false;
+    }, 3500);
+    return;
+  }
+
   try {
-    // 1. Đánh dấu sản phẩm mua ngay TRƯỚC KHI thêm vào giỏ
-    this.cartStore.setBuyNowId(product.id);
-    console.log(this.cartStore.buyNowProductId);
     
     // 2. Thêm vào giỏ hàng
     await this.cartStore.addToCart(product);
     
-    // 3. Đợi cart cập nhật xong
+    // 2. Đợi cart cập nhật xong
     await this.cartStore.fetchCart();
+
+    // 3. Đánh dấu sản phẩm mua ngay Sau KHI thêm vào giỏ
     
-    // 4. Tự động chọn sản phẩm trong store
-   // this.cartStore.autoSelectBuyNowProduct();
-    
-    // 5. Kiểm tra kết quả
-    console.log("Sản phẩm đã chọn:", 
-      JSON.parse(JSON.stringify(this.cartStore.buyNowProductId)));
-    
+    const addedCartItem = this.cartStore.cart[this.cartStore.cart.length - 1];
+
+      if (addedCartItem) {
+        // ✅ Lưu đúng cart_id vào buyNowProductId
+        this.cartStore.setBuyNowId(addedCartItem.cart_id);
+      } else {
+        console.warn("Không tìm thấy sản phẩm trong giỏ sau khi thêm.");
+      }
+
+      console.log("Sản phẩm đã chọn:", this.cartStore.buyNowProductId);
+      
     // 6. Hiển thị thông báo và chuyển trang
     this.showNotification = true;
     setTimeout(() => {

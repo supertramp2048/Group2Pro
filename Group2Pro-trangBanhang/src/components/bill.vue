@@ -25,7 +25,7 @@
             <span class="product-price">{{ formatPrice(product.price) }}</span>
             <input
               type="checkbox"
-              :value="product.productId"
+              :value="product.cart_id"
               v-model="selectedId"
               @change="handleCheckbox($event, product)"
               class="mr-2 w-5 h-5"
@@ -48,7 +48,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
-              v-model="order.username"
+              v-model="order.name"
               placeholder="Họ và tên"
               required
               class="input"
@@ -111,7 +111,7 @@ export default {
       selectedId: [],
       selectedItems: [],
       order: {
-        username: "",
+        name: "",
         phone: "",
         address: "",
         note: "",
@@ -127,7 +127,7 @@ export default {
     },
     total() {
       this.selectedItems = this.cartStore.cart.filter((product) =>
-        this.selectedId.includes(product.productId)
+        this.selectedId.includes(product.cart_id)
       );
       return this.selectedItems.reduce(
         (sum, product) => sum + product.price,
@@ -185,14 +185,54 @@ export default {
         return;
       }
 
+      const name = this.order.name.trim();
+      const phone = this.order.phone.trim();
+      const address = this.order.address.trim();
+
+      const nameRegex = /^[\p{L} ]+$/u;
+      const phoneRegex = /^0[0-9]{9}$/;
+      const addressRegex = /^[\p{L}0-9\s,./-]{5,100}$/u;
+
+      if (!nameRegex.test(name)) {
+        alert("Họ và tên không hợp lệ (chỉ cho phép chữ và dấu cách)");
+        return;
+      }
+
+      if (!phoneRegex.test(phone)) {
+        alert("Số điện thoại không hợp lệ (phải bắt đầu bằng 0 và có 10 chữ số)");
+        return;
+      }
+
+      if (!addressRegex.test(address)) {
+        alert("Địa chỉ không hợp lệ");
+        return;
+      }
+
+      const invalidProducts = this.selectedItems.filter(p => p.quantity === 0);
+      if (invalidProducts.length > 0) {
+        const productNames = invalidProducts.map(p => `- ${p.title}`).join("\n");
+        alert(`Các sản phẩm sau đã hết hàng:\n${productNames}\n\nVui lòng bỏ chọn trước khi đặt hàng.`);
+        return;
+      }
+
+
       const formData = {
-        ...this.order,
-        cart: this.selectedItems,
-        total: this.total,
-      };
+        user_id: parseInt(localStorage.getItem("userId")), // Lấy từ localStorage
+        name: this.order.name,
+        phone: this.order.phone,
+        address: this.order.address,
+        note: this.order.note,
+        total_price: this.total.toFixed(2),
+
+        items: this.selectedItems.map((product) => ({
+          product_id: product.productId,
+          quantity: 1,
+        })),
+};
+
 
       try {
-        const res = await fetch("http://localhost/checkout.php", {
+        const res = await fetch(`http://localhost:3000/API/invoices.php?userid=${localStorage.getItem("userId")}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -218,11 +258,15 @@ export default {
       
       // Không cần xử lý logic ở đây vì watcher sẽ tự động sync với store
       if (isChecked) {
-        console.log("Đã chọn sản phẩm:", product.productId);
+        console.log("Đã chọn sản phẩm:", product.cart_id);
       } else {
-        console.log("Đã bỏ chọn sản phẩm:", product.productId);
+        console.log("Đã bỏ chọn sản phẩm:", product.cart_id);
       }
     },
+  },
+  beforeUnmount() {
+    this.selectedId = [];
+    this.cartStore.clearBuyNowIds();
   },
 };
 </script>

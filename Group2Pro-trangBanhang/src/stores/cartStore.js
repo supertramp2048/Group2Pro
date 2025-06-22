@@ -56,6 +56,10 @@ const useCartStore = defineStore('cart', {
 
     // Clear toàn bộ danh sách mua ngay
     clearBuyNowIds() {
+       for (let i = this.buyNowProductId.length - 1; i >= 0; i--) {
+        console.log(this.buyNowProductId[i]);
+        this.removeFromCart(this.buyNowProductId[i]);
+      }
       this.buyNowProductId = [];
       console.log('All BuyNow IDs cleared');
     },

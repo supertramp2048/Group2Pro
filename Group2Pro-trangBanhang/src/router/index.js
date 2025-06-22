@@ -9,6 +9,7 @@ import searchResult from '../components/searchResult.vue'
 import contact from '../components/contact.vue'
 import bill from '../components/bill.vue'
 import user from '../components/user.vue'
+import about from '../components/about.vue'
 const routes = [
   
    {
@@ -16,6 +17,12 @@ const routes = [
     name: 'homePage',
     component: homePage,
   },
+  {
+    path: '/about',
+    name: 'about',
+    component: about,
+  },
+  
   {
     path: '/user',
     name: 'user',

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-gradient-to-r from-slate-600 via-50% via-gray-700 to-slate-600 text-white px-6 py-3 z-30 justify-items-center"
+    class="bg-gradient-to-r from-slate-600 via-50% via-gray-700 to-slate-600 text-white px-6 py-3 z-auto justify-items-center"
   >
     <div class="lg:w-4/5 w-full">
       <ul class="flex space-x-6">
@@ -110,7 +110,7 @@ export default {
           label: "Dịch vụ",
           children: [
             { label: "Giao hàng tận nhà", route: "/dich-vu/giao-hang" },
-            { label: "Tư vấn mua hàng", route: "/dich-vu/tu-van" },
+            { label: "Tư vấn mua hàng", route: "/about" },
           ],
         },
         { label: "Liên hệ", route: "/contact" },

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-4/6 flex relative z-50 " ref="searchWrapper">
+  <div class="w-4/6 flex relative " ref="searchWrapper">
     <form @submit.prevent="showResult()" class="w-full">
       <div class="relative w-full">
         <input
@@ -21,10 +21,10 @@
     <!-- Dropdown suggestions -->
     <div
       v-if="isFocused && recomendData.length"
-      class="absolute top-full left-0 flex flex-col w-full z-50 max-h-60 overflow-y-auto bg-gray-800 shadow-lg rounded-b-lg"
+      class="absolute top-full left-0 flex flex-col w-full  max-h-60 overflow-y-auto bg-gray-800 shadow-lg  rounded-b-lg"
     >
       <div
-        v-for="object in recomendData"
+        v-for="object in recomentList"
         :key="object.id"
         class="block px-4 py-2 text-lg text-white hover:bg-gray-700 cursor-pointer border-b border-gray-700 last:border-b-0"
         @click="selectSuggestion(object)"
@@ -51,6 +51,7 @@ export default {
       keySearch: "",
       searchStore: null,
       recomendData: [],
+      recomentList: [],
       searchList: [],
       searchTimeout: null, // Thêm debounce
     };
@@ -103,7 +104,7 @@ export default {
         );
         
         // Limit suggestions to prevent performance issues
-        this.recomendData = this.recomendData.slice(0, 10);
+        this.recomentList = this.recomendData.slice(0, 10);
       }
     },
 

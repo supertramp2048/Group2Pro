@@ -46,11 +46,12 @@
       <!-- Search - mở rộng khi scroll -->
       <div 
         :class="[
+        
           'transition-all duration-500 ease-in-out',
           isScrolled ? 'flex-1' : 'flex-1'
         ]"
       >
-        <search class="w-full" />
+        <search class="w-full " />
       </div>
 
       <!-- Cart - thu nhỏ khi scroll -->

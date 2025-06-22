@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-row">
+  <div class="flex flex-row bg-[url('/images/BgUser.png')] bg-cover bg-center">
+
+   
     <div class="w-64 min-h-screen flex-shrink-0 bg-white shadow-lg p-4" @click="closeAll" >
       <!-- Tên người dùng -->
       <p class="text-xl font-bold mb-6 text-gray-800" @click="closeAll" >👤 {{ this.userName }}</p>
@@ -24,7 +26,7 @@
       <!-- nội dung của tài khoản user chỗ này t mới lấy đc tên user từ localStorage -->
       <div
         v-if="acconutOpen"
-        class="bg-white p-6 rounded-lg shadow-md w-full max-w-xl mx-auto"
+        class="bg-white p-6 rounded-lg shadow-md w-full max-w-xl mx-auto "
       >
         <h2 class="text-2xl font-semibold mb-4">Thông tin tài khoản</h2>
         <div class="space-y-3 text-gray-700">
@@ -35,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class=" w-full h-auto px-2 py-8" v-show="this.orderOpen">
+    <div class=" w-full h-auto px-2 py-8 bg-white" v-show="this.orderOpen">
       <!-- nội dung lịch sử mua hàng chỗ này vì chưa có đơn hàng nên lấy dữ liệu tĩnh ở bên dưới -->
       
       <h2 class="text-2xl font-semibold mb-4">Lịch sử đơn hàng</h2>

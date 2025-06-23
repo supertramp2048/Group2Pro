@@ -4,8 +4,8 @@
     <menuBar></menuBar>
 
     <!-- noi dung chinh -->
-    <main class="flex-1 w-full md:w-10/12 shadow-sm mx-auto">
-      <div class="w-full md:w-10/12 shadow-sm mx-auto">
+    <main class="flex-1 w-full md:w-4/5 shadow-sm mx-auto">
+      <div class="w-full shadow-sm mx-auto">
         <div class="flex flex-row-reverse">
           <!-- Lắng nghe event từ component con -->
           <filterVue
@@ -282,12 +282,10 @@ export default {
     clearFilter() {
       this.isFiltered = false;
       this.filteredProducts = [];
-
       // Reset filter component
       if (this.$refs.filterVueComp) {
         this.$refs.filterVueComp.removeChecked();
       }
-
       // Reset về trang đầu khi clear filter
       this.currentPage = 1;
       this.loadProduct();
@@ -311,7 +309,6 @@ export default {
 
         const data = await res.json();
         this.products = data;
-
         // Lấy tổng số sản phẩm từ header
         const totalCount = res.headers.get("X-Total-Count");
         console.log("X-Total-Count from header:", totalCount);
@@ -399,7 +396,6 @@ export default {
       this.loading = false;
     },
   },
-
   watch: {
     categoryId: {
       immediate: true,

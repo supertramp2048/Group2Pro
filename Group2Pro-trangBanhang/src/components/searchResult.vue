@@ -1,9 +1,9 @@
 <template>
   <div>
     <headerPro></headerPro>
-    <menuBar ></menuBar>
+    <menuBar></menuBar>
 
-    <div class="w-full md:w-10/12 shadow-sm mx-auto">
+    <div class="w-full md:w-4/5 shadow-sm mx-auto">
       <div class="flex flex-row-reverse justify-between">
         <!-- Lắng nghe event từ component con -->
         <filterVue
@@ -17,10 +17,13 @@
       <div v-if="hasSearchResults && isFiltered == false" class="mb-4">
         <p class="text-green-600 font-semibold">
           Tìm thấy {{ searchProduct.results.length }} kết quả tìm kiếm
-          <span v-if="searchProduct.results.length > searchItemsPerPage" class="text-gray-500">
-            (Hiển thị {{ paginatedSearchResults.length }} kết quả trên trang {{ searchCurrentPage }})
+          <span
+            v-if="searchProduct.results.length > searchItemsPerPage"
+            class="text-gray-500"
+          >
+            (Hiển thị {{ paginatedSearchResults.length }} kết quả trên trang
+            {{ searchCurrentPage }})
           </span>
-         
         </p>
       </div>
 
@@ -51,7 +54,7 @@
             class="mt-3.5"
           >
             <div
-              class="bg-white min-h-[420px] hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300 "
+              class="bg-white min-h-[420px] hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
             >
               <router-link
                 :to="{ name: 'productDetail', params: { id: product.id } }"
@@ -59,15 +62,29 @@
                 <img
                   :src="product.src"
                   alt=""
-                  class="w-full aspect-[3/2] object-cover rounded-md mb-4"
+                  class="w-full aspect-[3/2] object-contain rounded-md mb-4"
                 />
                 <p class="text-xl font-bold text-gray-700 mb-3">
                   {{ product.title }}
                 </p>
                 <p class="pt-2">
-                  <span class="text-red-600 text-2xl font-bold"
-                    >Giá {{ formatPrice(product.price) }}</span
+                  <span
+                    v-if="product.price == 0"
+                    class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                   >
+                    Liên Hệ
+                  </span>
+                  <span
+                    v-else-if="product.quantity == 0"
+                    class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                    >Hết hàng</span
+                  >
+                  <span
+                    class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                    v-else
+                  >
+                    Giá {{ formatPrice(product.price) }}
+                  </span>
                 </p>
               </router-link>
             </div>
@@ -84,14 +101,17 @@
       </div>
 
       <!-- Hiển thị kết quả tìm kiếm với phân trang -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6" v-else-if="hasSearchResults && !isFiltered">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-4 gap-6"
+        v-else-if="hasSearchResults && !isFiltered"
+      >
         <div
           v-for="product in paginatedSearchResults"
           :key="product.id"
           class="mt-3.5"
         >
           <div
-            class="bg-white min-h-[420px] hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
+            class="bg-white  min-h-[420px] hover:shadow-xl transform scale-100 hover:scale-105 shadow-lg rounded-lg p-6 mt-2 transition duration-300"
           >
             <router-link
               :to="{ name: 'productDetail', params: { id: product.id } }"
@@ -99,15 +119,29 @@
               <img
                 :src="product.src"
                 alt=""
-                class="w-full aspect-[3/2] object-cover rounded-md mb-4"
+                class="w-full aspect-[3/2] object-contain rounded-md mb-4"
               />
               <p class="text-xl font-bold text-gray-700 mb-3 overflow-ellipsis">
                 {{ product.title }}
               </p>
               <p class="pt-2">
-                <span class="text-red-600 text-2xl font-bold"
-                  >Giá {{ formatPrice(product.price) }}</span
-                >
+                <span
+                    v-if="product.price == 0"
+                    class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                  >
+                    Liên Hệ
+                  </span>
+                  <span
+                    v-else-if="product.quantity == 0"
+                    class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                    >Hết hàng</span
+                  >
+                  <span
+                    class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                    v-else
+                  >
+                    Giá {{ formatPrice(product.price) }}
+                  </span>
               </p>
             </router-link>
           </div>
@@ -152,8 +186,8 @@
       class="flex justify-center items-center space-x-2 mt-6 sticky bottom-0 bg-white py-4 shadow-md"
     >
       <!-- Nút trang đầu -->
-      <button 
-        @click="goToSearchPage(1)" 
+      <button
+        @click="goToSearchPage(1)"
         :disabled="searchCurrentPage === 1"
         class="px-3 py-1 rounded border disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
       >
@@ -161,8 +195,8 @@
       </button>
 
       <!-- Nút trang trước -->
-      <button 
-        @click="goToSearchPage(searchCurrentPage - 1)" 
+      <button
+        @click="goToSearchPage(searchCurrentPage - 1)"
         :disabled="searchCurrentPage === 1"
         class="px-3 py-1 rounded border disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
       >
@@ -177,7 +211,9 @@
         :disabled="btn === '...'"
         :class="[
           'px-3 py-1 rounded border transition-colors',
-          btn === searchCurrentPage ? 'bg-red-700 text-white border-red-700' : 'bg-gray-200 hover:bg-gray-300',
+          btn === searchCurrentPage
+            ? 'bg-red-700 text-white border-red-700'
+            : 'bg-gray-200 hover:bg-gray-300',
           btn === '...' && 'cursor-default hover:bg-gray-200',
         ]"
       >
@@ -264,18 +300,18 @@ export default {
       currentPage: 1,
       isFiltered: false, // Trạng thái có đang lọc hay không
       searchProduct: null, // Kết quả tìm kiếm
-      
+
       // Phân trang cho search results
       searchCurrentPage: 1,
       searchItemsPerPage: 12, // Số sản phẩm mỗi trang cho search results
-      
+
       // Cấu hình phân trang
       limit: 12, // Số sản phẩm mỗi trang cho products thông thường
       totalItems: 0, // Tổng số items từ API
       maxVisibleButtons: 5, // Số nút hiển thị tối đa
     };
   },
-  
+
   created() {
     this.searchProduct = searchStore();
   },
@@ -284,28 +320,28 @@ export default {
     searchStore() {
       return searchStore(); // lấy store từ Pinia
     },
-    
+
     searchResults() {
       return this.searchStore.results;
     },
-    
+
     hasSearchResults() {
       return this.searchResults && this.searchResults.length > 0;
     },
-    
+
     // Phân trang cho search results
     searchTotalPages() {
       if (!this.hasSearchResults) return 0;
       return Math.ceil(this.searchResults.length / this.searchItemsPerPage);
     },
-    
+
     paginatedSearchResults() {
       if (!this.hasSearchResults) return [];
       const start = (this.searchCurrentPage - 1) * this.searchItemsPerPage;
       const end = start + this.searchItemsPerPage;
       return this.searchResults.slice(start, end);
     },
-    
+
     searchPaginationButtons() {
       const buttons = [];
       const total = this.searchTotalPages;
@@ -321,13 +357,21 @@ export default {
         } else if (current >= total - half - 1) {
           buttons.push(1, "...", total - 3, total - 2, total - 1, total);
         } else {
-          buttons.push(1, "...", current - 1, current, current + 1, "...", total);
+          buttons.push(
+            1,
+            "...",
+            current - 1,
+            current,
+            current + 1,
+            "...",
+            total
+          );
         }
       }
 
       return buttons;
     },
-    
+
     displayProducts() {
       if (this.isFiltered) {
         return this.filteredProducts;
@@ -337,12 +381,12 @@ export default {
         return this.products;
       }
     },
-    
+
     // Phân trang cho products thông thường
     totalPages() {
       return Math.ceil(this.totalItems / this.limit);
     },
-    
+
     paginationButtons() {
       const buttons = [];
       const total = this.totalPages;
@@ -358,7 +402,15 @@ export default {
         } else if (current >= total - half - 1) {
           buttons.push(1, "...", total - 3, total - 2, total - 1, total);
         } else {
-          buttons.push(1, "...", current - 1, current, current + 1, "...", total);
+          buttons.push(
+            1,
+            "...",
+            current - 1,
+            current,
+            current + 1,
+            "...",
+            total
+          );
         }
       }
 
@@ -374,8 +426,8 @@ export default {
           this.searchCurrentPage = 1;
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
 
   methods: {
@@ -436,7 +488,7 @@ export default {
       if (page >= 1 && page <= this.searchTotalPages) {
         this.searchCurrentPage = page;
         // Scroll to top để user thấy kết quả mới
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
 
@@ -446,7 +498,7 @@ export default {
         this.currentPage = page;
         this.loadProduct();
         // Scroll to top để user thấy kết quả mới
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
 
@@ -459,7 +511,7 @@ export default {
         // this.products = data.products;
         // this.totalItems = data.total;
       } catch (error) {
-        console.error('Error loading products:', error);
+        console.error("Error loading products:", error);
       }
     },
 
@@ -470,7 +522,7 @@ export default {
         // const response = await fetch('your-api-endpoint/all');
         // this.originalProducts = await response.json();
       } catch (error) {
-        console.error('Error loading all products:', error);
+        console.error("Error loading all products:", error);
       }
     },
 
@@ -483,18 +535,21 @@ export default {
     // Thống kê search results
     getSearchResultsInfo() {
       if (!this.hasSearchResults) return null;
-      
+
       const start = (this.searchCurrentPage - 1) * this.searchItemsPerPage + 1;
-      const end = Math.min(this.searchCurrentPage * this.searchItemsPerPage, this.searchResults.length);
-      
+      const end = Math.min(
+        this.searchCurrentPage * this.searchItemsPerPage,
+        this.searchResults.length
+      );
+
       return {
         start,
         end,
         total: this.searchResults.length,
         currentPage: this.searchCurrentPage,
-        totalPages: this.searchTotalPages
+        totalPages: this.searchTotalPages,
       };
-    }
+    },
   },
 
   async mounted() {
@@ -513,7 +568,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Smooth transitions cho pagination */
 .transition-colors {
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -533,6 +587,6 @@ button:active:not(:disabled) {
 .sticky {
   position: sticky;
   bottom: 0;
-  z-index: 10;
+  z-index: 50;
 }
 </style>

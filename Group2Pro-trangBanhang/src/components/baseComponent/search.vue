@@ -2,18 +2,20 @@
   <div class="w-4/6 flex relative " ref="searchWrapper">
     <form @submit.prevent="showResult()" class="w-full">
       <div class="relative w-full">
+       
+       
         <input
           type="text"
-          class="block w-full h-12 text-xl pl-4 pr-10 font-medium text-white border border-amber-50 bg-blend-color-burn rounded-2xl placeholder-gray-200"
-          placeholder="Tìm kiếm sản phẩm công nghệ..."
+          class="block bg-white w-full h-12 text-xl placeholder:opacity-100 pl-4 pr-10 font-medium text-black border border-amber-50 bg-blend-color-burn rounded-2xl placeholder-gray-200"
+          placeholder=" Bạn cần tìm gì "
           v-model="keySearch"
           @focus="onFocus"
         />
         <button
           type="submit"
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-white   bg-sky-500 hover:bg-sky-600 rounded-2xl px-4 py-1"
+          class="absolute right-2 top-1/2 -translate-y-1/2    bg-red-600 opacity-50 hover:bg-red-400 rounded-2xl px-4 py-1"
         >
-          Tìm
+         <i class="fa-solid fa-magnifying-glass text-white"></i>
         </button>
       </div>
     </form>

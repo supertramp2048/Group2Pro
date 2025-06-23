@@ -1,20 +1,20 @@
 <template>
   <nav
-    class="bg-gradient-to-r from-slate-600 via-50% via-gray-700 to-slate-600 text-white px-6 py-3 z-auto justify-items-center"
+    class="bg-white shadow-black drop-shadow-xl w-full sm:w-4/5 self-center text-white px-6 py-3 z-auto justify-items-center"
   >
-    <div class="lg:w-4/5 w-full">
+    <div class="w-full">
       <ul class="flex space-x-6">
         <li v-for="(item, index) in menu" :key="index" class="relative group">
           <router-link
             v-if="!item.children"
             :to="item.route"
-            class="hover:bg-gray-700 px-3 py-2 rounded z-30 block"
+            class="hover:bg-gray-200 text-black font-bold px-0 py-2 z-30 block"
           >
             {{ item.label }}
           </router-link>
           <button
             v-else
-            class="hover:bg-gray-700 px-3 py-2 rounded z-30"
+            class="hover:bg-gray-200 px-3 text-black font-bold py-2 z-30"
             @click="toggle(index)"
           >
             {{ item.label }}
@@ -23,13 +23,13 @@
           <!-- Dropdown menu -->
           <ul
             v-if="item.children"
-            class="absolute left-0 top-full mt-1 bg-gray-700 rounded shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
+            class="absolute left-0 top-full text-black font-bold mt-1 bg-gray-200 shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
             :class="{ block: openIndex === index, hidden: openIndex !== index }"
           >
             <li
               v-for="(child, cIndex) in item.children"
               :key="cIndex"
-              class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
+              class="px-4 py-2 hover:bg-gray-400 text-black font-bold cursor-pointer whitespace-nowrap"
             >
               <router-link :to="child.route" class="block w-full">
                 {{ child.label }}
@@ -41,20 +41,21 @@
         <!-- Tài khoản -->
         <li class="relative group ml-auto">
           <button
-            class="hover:bg-gray-700 px-3 py-2 rounded z-30"
+            class="hover:bg-gray-200 text-black font-bold px-3 py-2 z-30"
             @click="toggle(menu.length)"
           >
+            <i class="fa-solid fa-user"></i>
             Tài khoản
           </button>
           <ul
-            class="absolute left-0 top-full mt-1 bg-gray-700 rounded shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
+            class="absolute left-0 top-full mt-1 bg-gray-200 shadow-lg min-w-[150px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-30"
             :class="{
               block: openIndex === menu.length,
               hidden: openIndex !== menu.length,
             }"
           >
             <li
-              class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
+              class="px-4 py-2 text-black font-bold hover:bg-gray-400 cursor-pointer whitespace-nowrap"
             >
               <p v-if="this.login">
                 <router-link
@@ -72,7 +73,7 @@
               </p>
             </li>
             <li
-              class="px-4 py-2 hover:bg-gray-600 cursor-pointer whitespace-nowrap"
+              class="px-4 py-2 hover:bg-gray-400 text-black font-bold cursor-pointer whitespace-nowrap"
               @click="logOut()"
             >
               Đăng xuất
@@ -95,7 +96,7 @@ export default {
       menu: [
         { label: "Trang chủ", route: "/" },
         {
-          label: "Điện Thoại",
+          label: "Điện thoại",
           route: { name: "allProducts", params: { categoryId: 1 } },
         },
         {

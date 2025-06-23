@@ -115,7 +115,7 @@
                       <img
                         :src="product.src"
                         alt=""
-                        class="w-full h-[100px] object-fill rounded-md mb-4 md:h-[150px] xl:h-[180px]"
+                        class="w-full h-[100px] object-contain rounded-md mb-4 md:h-[150px] xl:h-[180px]"
                       />
                       <p
                         class="text-m md:text-2xl lg:text-2xl font-bold text-gray-700 truncate mb-3"
@@ -332,7 +332,7 @@
                       <img
                         :src="product.src"
                         alt=""
-                        class="w-full h-[100px] rounded-md mb-4 object-fill md:h-[150px] xl:h-[180px]"
+                        class="w-full h-[100px] rounded-md mb-4 object-contain md:h-[150px] xl:h-[180px]"
                       />
                       <p
                         class="text-l sm:text-xl lg:text-2xl font-bold text-gray-700 mb-3"

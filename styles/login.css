@@ -27,9 +27,9 @@ body {
 /* Ảnh bên trái */
 .image-section {
   flex: 1;
-  background-image: url('/background-picture/pexels-pixabay-268533.jpg');
+  background-image: url('/background-picture/pexels-n-voitkevich-6214391.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }
 
 /* Form bên phải */

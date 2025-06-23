@@ -9,6 +9,18 @@
                 Add product
             </button>
 
+
+            <div class=" mb-4">
+                <input
+                    type="text"
+                    v-model="searchTitle"
+                    placeholder="Search by title or brand..."
+                    class="w-full p-2 border border-gray-300 rounded "
+                />
+                </div>
+
+
+
             <table class="table-auto w-full border-collapse border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100 text-left">
@@ -25,7 +37,9 @@
                 </thead>
                 <tbody>
 
-                    <tr v-for="product in products" :key="product.id">
+
+                    <tr v-for="product in filteredProducts" :key="product.id">
+
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ product.id }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ product.title }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
@@ -126,6 +140,8 @@ export default {
             error: null,
             isModalOpen: false, // Modal visibility state
             isEditing: false, // Whether we're editing an existing category
+            searchTitle: '',
+
             form: {
                 id: null,
                 title: '',         // Tên sản phẩm
@@ -218,7 +234,30 @@ export default {
                 alert('Failed to delete product.');
             }
         }
-    }
+
+    },
+    // computed: {
+    //     filteredProducts() {
+    //     if (!this.searchTitle.trim()) {
+    //     return this.products;
+    //     }
+    //     return this.products.filter(product =>
+    //     product.title.toLowerCase().includes(this.searchTitle.toLowerCase())
+    //     );
+    // }
+    // },
+    computed: {
+        filteredProducts() {
+        const query = this.searchTitle.toLowerCase();
+        return this.products.filter(product => {
+            return (
+                product.title.toLowerCase().includes(query) ||
+                product.brand.toLowerCase().includes(query)
+            );
+        });
+        }
+    },
+
 }
 </script>
 

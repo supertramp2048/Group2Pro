@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-white shadow-black drop-shadow-xl w-full sm:w-4/5 self-center text-white px-6 py-3 z-auto justify-items-center"
+    class="bg-white shadow-black drop-shadow-xl w-full sm:w-4/5 self-center text-white px-6 py-3 z-30 justify-items-center"
   >
     <div class="w-full">
       <ul class="flex space-x-6">

@@ -587,6 +587,6 @@ button:active:not(:disabled) {
 .sticky {
   position: sticky;
   bottom: 0;
-  z-index: 10;
+  z-index: 50;
 }
 </style>

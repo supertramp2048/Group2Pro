@@ -5,38 +5,27 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
-use App\Models\InvoiceItem;
-use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
-
+    /**
+     * Trả về danh sách tất cả hóa đơn kèm theo các sản phẩm bên trong.
+     */
     public function index()
     {
+        // Lấy tất cả hóa đơn kèm items và sản phẩm trong mỗi item
+        $invoices = Invoice::with('items.product')->get();
 
-        return Invoice::with('items')->get();
+        return response()->json($invoices);
     }
 
-
     /**
-     * Hiển thị 1 hóa đơn cụ thể (kèm items).
+     * Hiển thị 1 hóa đơn cụ thể kèm sản phẩm chi tiết bên trong.
      */
     public function show($id)
     {
-        $invoice = Invoice::with('items')->findOrFail($id);
+        $invoice = Invoice::with('items.product')->findOrFail($id);
+
         return response()->json($invoice);
     }
-
-
-    /**
-     * Xoá hóa đơn (và toàn bộ invoice_items nhờ ON DELETE CASCADE).
-     */
-    public function destroy($id)
-    {
-        $invoice = Invoice::findOrFail($id);
-        $invoice->delete();
-        return response()->noContent();
-    }
-
-
 }

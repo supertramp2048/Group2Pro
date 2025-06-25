@@ -8,17 +8,17 @@
           <router-link
             v-if="!item.children"
             :to="item.route"
-            class="hover:bg-gray-200 text-black font-bold px-0 py-2 z-30 block"
+            class="hover:bg-gray-200 p-1 rounded-2xl text-black font-bold  py-2 z-30 block"
           >
             {{ item.label }}
           </router-link>
-          <button
+          <p
             v-else
-            class="hover:bg-gray-200 px-3 text-black font-bold py-2 z-30"
+            class="hover:bg-gray-200 px-3 rounded-2xl text-black font-bold py-2 z-30"
             @click="toggle(index)"
           >
             {{ item.label }}
-          </button>
+          </p>
 
           <!-- Dropdown menu -->
           <ul
@@ -29,7 +29,7 @@
             <li
               v-for="(child, cIndex) in item.children"
               :key="cIndex"
-              class="px-4 py-2 hover:bg-gray-400 text-black font-bold cursor-pointer whitespace-nowrap"
+              class="px-4 py-2 hover:bg-gray-400  text-black font-bold cursor-pointer rounded-2xl whitespace-nowrap"
             >
               <router-link :to="child.route" class="block w-full">
                 {{ child.label }}
@@ -41,7 +41,7 @@
         <!-- Tài khoản -->
         <li class="relative group ml-auto">
           <button
-            class="hover:bg-gray-200 text-black font-bold px-3 py-2 z-30"
+            class="hover:bg-gray-200 text-black  rounded-2xl font-bold px-3 py-2 z-30"
             @click="toggle(menu.length)"
           >
             <i class="fa-solid fa-user"></i>

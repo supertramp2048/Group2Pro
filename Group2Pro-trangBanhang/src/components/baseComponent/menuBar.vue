@@ -8,7 +8,7 @@
           <router-link
             v-if="!item.children"
             :to="item.route"
-            class="hover:bg-gray-200 text-black font-bold px-0 py-2 z-30 block"
+            class="hover:bg-gray-200 text-black font-bold px-2 py-2 z-30 block"
           >
             {{ item.label }}
           </router-link>

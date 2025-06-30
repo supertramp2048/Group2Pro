@@ -53,6 +53,9 @@
           </aside>
         </div>
         <cowndownClock></cowndownClock>
+        <div>
+          <img src="/images/special.gif" alt="" />
+        </div>
         <div class="flex flex-col">
           <!-- Điện thoại nổi bật -->
           <div class="flex items-center justify-between px-4 py-2">
@@ -124,9 +127,17 @@
                       </p>
                       <p class="p-2">
                         <span
-                          v-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
-                          <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
-                          <span
+                          v-if="product.price == 0"
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                        >
+                          Liên Hệ
+                        </span>
+                        <span
+                          v-else-if="product.quantity == 0"
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                          >Hết hàng</span
+                        >
+                        <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           v-else
                         >
@@ -233,9 +244,17 @@
                       </p>
                       <p class="pt-2">
                         <span
-                          v-if="product.price == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"> Liên Hệ </span>
-                          <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
-                          <span
+                          v-if="product.price == 0"
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                        >
+                          Liên Hệ
+                        </span>
+                        <span
+                          v-else-if="product.quantity == 0"
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                          >Hết hàng</span
+                        >
+                        <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           v-else
                         >
@@ -284,7 +303,6 @@
             </router-link>
           </div>
 
-          <!-- Carousel cho camera -->
           <div class="relative">
             <!-- Nút điều hướng trái -->
             <button
@@ -347,7 +365,11 @@
                           Liên Hệ
                         </span>
 
-                        <span v-else-if="product.quantity == 0" class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold">Hết hàng</span>
+                        <span
+                          v-else-if="product.quantity == 0"
+                          class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
+                          >Hết hàng</span
+                        >
                         <span
                           class="text-red-600 text-l sm:text-xl lg:text-2xl font-bold"
                           v-else
@@ -382,6 +404,20 @@
               </svg>
             </button>
           </div>
+          <!-- Carousel cho camera -->
+          <div class="flex">
+            <cameraCarolsel :categoryId="3"></cameraCarolsel>
+            <cameraCarolsel :categoryId="3"></cameraCarolsel>
+          </div>
+
+          <div>
+            <img src="/images/footerAds.png" class="my-3" alt="" />
+            <div class="grid grid-cols-2 my-3">
+              <img src="/images/footerAds3.png " class="mx-3" alt="">
+              <img src="/images/footerAds2.png" class="mx-3" alt="">
+            </div>
+          </div>
+          <img src="/images/footerAds5.png" alt="">
         </div>
       </article>
     </section>
@@ -391,6 +427,7 @@
 <script>
 import menuBar from "./baseComponent/menuBar.vue";
 import carosel from "./baseComponent/carosel.vue";
+import cameraCarolsel from "./baseComponent/cameraCarolsel.vue";
 import cowndownClock from "./baseComponent/cowdownClock.vue";
 import search from "./baseComponent/search.vue";
 import headerPro from "./baseComponent/headerPro.vue";
@@ -398,6 +435,7 @@ import footerPro from "./baseComponent/footerPro.vue";
 import useCartStore from "../stores/cartStore";
 export default {
   components: {
+    cameraCarolsel,
     menuBar,
     carosel,
     cowndownClock,

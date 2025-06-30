@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-full shadow-md bg-gradient-to-r from-red-800 to-red-700 sticky top-0 z-50 transition-all duration-300"
+    class="w-full shadow-md bg-gradient-to-r from-red-800 to-red-700 sticky top-0  transition-all duration-300"
   >
     <!-- Thanh trên cùng - ẩn khi scroll -->
     <div

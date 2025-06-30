@@ -8,11 +8,7 @@
           <router-link
             v-if="!item.children"
             :to="item.route"
-<<<<<<< HEAD
             class="hover:bg-gray-200 p-1 rounded-2xl text-black font-bold  py-2 z-30 block"
-=======
-            class="hover:bg-gray-200 text-black font-bold px-2 py-2 z-30 block"
->>>>>>> 97a68d0 (them may cai anh vao homepage cho do trong)
           >
             {{ item.label }}
           </router-link>

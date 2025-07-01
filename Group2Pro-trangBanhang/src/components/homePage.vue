@@ -60,7 +60,7 @@
           <!-- Điện thoại nổi bật -->
           <div class="flex items-center justify-between px-4 py-2">
             <h2 class="text-2xl font-bold uppercase text-gray-800">
-              Điện thoại nổi bật nhất
+              Điện thoại nổi bật 
             </h2>
             <router-link
               :to="{ name: 'allProducts', params: { categoryId: 1 } }"
@@ -177,7 +177,7 @@
           <!-- Laptop nổi bật -->
           <div class="flex items-center justify-between px-4 py-2">
             <h2 class="text-2xl font-bold uppercase text-gray-800">
-              Laptop nổi bật nhất
+              Laptop nổi bật 
             </h2>
             <router-link
               :to="{ name: 'allProducts', params: { categoryId: 2 } }"
@@ -293,7 +293,7 @@
           <!-- Camera nổi bật -->
           <div class="flex items-center justify-between px-4 py-2">
             <h2 class="text-2xl font-bold uppercase text-gray-800">
-              Camera nổi bật nhất
+              Camera nổi bật 
             </h2>
             <router-link
               :to="{ name: 'allProducts', params: { categoryId: 3 } }"

@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-full shadow-md bg-gradient-to-r from-red-800 to-red-700 sticky top-0 z-50 transition-all duration-300"
+    class="w-full shadow-md bg-gradient-to-r from-red-800 to-red-700 sticky top-0  transition-all duration-300"
   >
     <!-- Thanh trên cùng - ẩn khi scroll -->
     <div
@@ -54,7 +54,7 @@
       <!-- Cart - thu nhỏ khi scroll -->
       <div class="flex items-center justify-end ml-10">
         <router-link :to="{ name: 'cart' }" class="relative group scale-100 hover:scale-105 transform ">
-         <i class="fa-solid fa-cart-shopping text-3xl"></i>
+         <i class="fa-solid fa-cart-shopping text-3xl text-white"></i>
           <!-- Badge số lượng giỏ hàng -->
           <span
             v-if="cartCount > 0"

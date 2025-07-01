@@ -54,7 +54,7 @@
       <!-- Cart - thu nhỏ khi scroll -->
       <div class="flex items-center justify-end ml-10">
         <router-link :to="{ name: 'cart' }" class="relative group scale-100 hover:scale-105 transform ">
-         <i class="fa-solid fa-cart-shopping text-3xl"></i>
+         <i class="fa-solid fa-cart-shopping text-3xl text-white"></i>
           <!-- Badge số lượng giỏ hàng -->
           <span
             v-if="cartCount > 0"

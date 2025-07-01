@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-container relative h-[30vh] md:h-[50vh] w-full lg:w-4/5 mx-0 box-border overflow-hidden">
+  <div class="carousel-container relative h-[30vh] md:h-[45vh] w-full lg:w-4/5 mx-0 box-border overflow-hidden">
     <!-- Slide show ảnh -->
     <div class="relative h-full w-full overflow-hidden rounded-lg">
       <div 

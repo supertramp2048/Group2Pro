@@ -226,7 +226,7 @@
               <router-link
                 v-if="login"
                 :to="{ name: 'user' }"
-                class="block px-4 py-2 text-red-200 hover:text-black font-medium rounded-lg hover:bg-red-700/20 transition-colors duration-300"
+                class="block px-4 py-2 text-red-400 hover:text-black font-medium rounded-lg hover:bg-red-700/20 transition-colors duration-300"
                 @click="closeMobileMenu"
               >
                 <i class="fa-solid fa-user-circle mr-2"></i>

@@ -2,29 +2,37 @@
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Credentials: true");
     header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
-    header('Access-Control-Allow-Headers: token, Content-Type')
+    header('Access-Control-Allow-Headers: token, Content-Type');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="../styles/login.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../styles/login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <title>Login</title>
 </head>
 <body>
-  <form action="<?php $_SERVER["PHP_SELF"]?>" method="post" class="login-form">
-    <div id="login-title">Sign In</div>
-      <div class="input-box"> <i class="fas fa-user"></i> Username: <br>
-        <input type="text" id="username" name="username"> <br>
+  <div class="container">
+    <!-- Ảnh bên trái -->
+    <div class="image-section"></div>
+
+    <!-- Khung đăng nhập bên phải -->
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-form">
+      <div id="login-title">Sign In</div>
+      <div class="input-box">
+        <i class="fas fa-user"></i> Username: <br />
+        <input type="text" id="username" name="username" />
       </div>
-      <div class="input-box"> <i class="fas fa-lock"></i> Password: <br>
-        <input type="password" id="password" name="password"> <br>
+      <div class="input-box">
+        <i class="fas fa-lock"></i> Password: <br />
+        <input type="password" id="password" name="password" />
       </div>
-      <input type="submit" id="login-btn" name="login" value="Login">
+      <input type="submit" id="login-btn" name="login" value="Login" />
       <p id="signup-recommend">Don't have an account yet? <a href="register.php">Sign Up</a></p>
     </form>
+  </div>
 </body>
 </html>
 <?php

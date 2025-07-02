@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles/register.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../styles/register.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <title>Register</title>
 </head>
 <body>
-  <form action="<?php $_SERVER["PHP_SELF"]?>" method="POST" class="register-form">
-    <div id="signup-title">Sign Up</div>
-    <div class="input-box">
-      <i class="fas fa-user"></i> Username: <br>
-      <input type="text" id="username" name="username"> <br>
-    </div>
-    <div class="input-box">
-      <i class="fas fa-envelope"></i> Email: <br>
-      <input type="email" id="email" name="email"> <br>
-    </div>
-    <div class="input-box">
-      <i class="fas fa-lock"></i> Password: <br>
-      <input type="password" id="password" name="password"> <br>
-    </div>
-    <div class="input-box">
-      <i class="fas fa-lock"></i> Re-enter Password: <br>
-      <input type="password" id="repassword" name="repassword"> <br>
-    </div>
-    <input type="submit" id="register-btn" name="register" value="Sign Up">
-    <div id="signup-recommend">already have an account? <a href="login.php">Log in</a></div>
-  </form>
+  <div class="container">
+    <!-- Ảnh bên trái -->
+    <div class="image-section"></div>
+
+    <!-- Form bên phải -->
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="register-form">
+      <div id="signup-title">Sign Up</div>
+      <div class="input-box">
+        <i class="fas fa-user"></i> Username: <br />
+        <input type="text" id="username" name="username" />
+      </div>
+      <div class="input-box">
+        <i class="fas fa-envelope"></i> Email: <br />
+        <input type="email" id="email" name="email" />
+      </div>
+      <div class="input-box">
+        <i class="fas fa-lock"></i> Password: <br />
+        <input type="password" id="password" name="password" />
+      </div>
+      <div class="input-box">
+        <i class="fas fa-lock"></i> Re-enter Password: <br />
+        <input type="password" id="repassword" name="repassword" />
+      </div>
+      <input type="submit" id="register-btn" name="register" value="Sign Up" />
+      <div id="signup-recommend">
+        Already have an account? <a href="login.php">Log in</a>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
 <?php

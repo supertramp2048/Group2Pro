@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserCartController;
+use App\Http\Controllers\Backend\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +44,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('users', UserController::class);
 Route::resource('products', ProductController::class);
 Route::resource('cart', UserCartController::class);
+Route::resource('invoices', InvoiceController::class);
 
 require __DIR__.'/auth.php';

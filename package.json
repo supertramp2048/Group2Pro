@@ -16,5 +16,10 @@
     "url": "https://github.com/supertramp2048/Group2Pro/issues"
   },
   "homepage": "https://github.com/supertramp2048/Group2Pro#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8"
+  }
 }

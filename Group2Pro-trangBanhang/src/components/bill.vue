@@ -174,7 +174,7 @@ export default {
   methods: {
     clearAllProduct() {
       this.selectedId = [];
-      this.cartStore.clearBuyNowIds(); // Clear store cũng
+      this.cartStore.clearBuyNow(); // Clear store cũng
     },
     formatPrice(value) {
       return typeof value === "number" ? value.toLocaleString("vi-VN") : "N/A";
@@ -230,7 +230,7 @@ export default {
         })),
 };
 
-
+ 
       try {
         const res = await fetch(`http://localhost:3000/API/invoices.php?userid=${localStorage.getItem("userId")}`, {
           method: "POST",
@@ -266,7 +266,7 @@ export default {
   },
   beforeUnmount() {
     this.selectedId = [];
-    this.cartStore.clearBuyNowIds();
+    this.cartStore.clearBuyNow();
   },
 };
 </script>

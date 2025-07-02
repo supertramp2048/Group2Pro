@@ -63,6 +63,9 @@ const useCartStore = defineStore('cart', {
       this.buyNowProductId = [];
       console.log('All BuyNow IDs cleared');
     },
+    clearBuyNow() {
+      this.buyNowProductId = [];
+    },
 
     // Thêm nhiều IDs vào danh sách mua ngay
     addMultipleBuyNowIds(ids) {
@@ -140,7 +143,7 @@ const useCartStore = defineStore('cart', {
 
         if (response.ok) {
           await this.fetchCart(); // Tải lại dữ liệu
-          this.clearBuyNowIds(); // Clear luôn buyNowProductId
+          this.clearBuyNow(); // Clear luôn buyNowProductId
           console.log('Cart cleared successfully');
         } else {
           console.error('Failed to clear cart');

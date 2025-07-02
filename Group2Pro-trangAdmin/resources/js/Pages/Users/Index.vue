@@ -9,6 +9,15 @@
                 Add User
             </button>
 
+            <div class=" mb-4">
+                <input
+                    type="text"
+                    v-model="searchQuery"
+                    placeholder="Search by username or email..."
+                    class="w-full p-2 border border-gray-300 rounded "
+                />
+                </div>
+
             <table class="table-auto w-full border-collapse border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100 text-left">
@@ -22,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="user in users" :key="user.id">
+                    <tr v-for="user in filteredUsers" :key="user.id">
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ user.id }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ user.userName }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">{{ user.email }}</td>
@@ -98,6 +107,7 @@ export default {
             error: null,
             isModalOpen: false,
             isEditing: false,
+            searchQuery: '',
             form: {
                 id: null,
                 userName: '',
@@ -186,7 +196,18 @@ export default {
                 alert('Failed to delete user.');
             }
         }
-    }
+    },
+    computed: {
+        filteredUsers() {
+        const query = this.searchQuery.toLowerCase();
+        return this.users.filter(user => {
+            return (
+                user.userName.toLowerCase().includes(query) ||
+                user.email.toLowerCase().includes(query)
+            );
+        });
+        }
+    },
 };
 </script>
 

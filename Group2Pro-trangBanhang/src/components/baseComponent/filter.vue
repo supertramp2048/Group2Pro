@@ -12,7 +12,7 @@
       <!-- Khung filter -->
       <div
         v-show="filterShow"
-        class="bg-white w-[500px] h-[600px] absolute right-0 rounded-2xl shadow-2xl border border-gray-200 z-50 overflow-hidden"
+        class="bg-white w-[500px] h-auto absolute right-0 rounded-2xl shadow-2xl border border-gray-200 z-50 overflow-hidden"
       >
         <!-- Header -->
         <div class="bg-gradient-to-r from-red-700 to-red-700 text-white p-4 rounded-t-2xl">
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Content -->
-        <div class="p-4 h-[480px] overflow-y-auto">
+        <div class="p-4 h-[400px] lg:h-[350px] overflow-y-auto">
           <!-- Filter Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">
             <!-- Price & Condition Filters -->

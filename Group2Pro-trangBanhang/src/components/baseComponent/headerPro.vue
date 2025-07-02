@@ -23,7 +23,7 @@
         :to="{path: '/'}"
         :class="[
           'flex',
-          'flex-shrink-0 transition-all duration-500 ease-in-out overflow-hidden',
+          'flex-shrink-0  transition-all duration-500 ease-in-out overflow-hidden',
           isScrolled ? 'w-0 opacity-0 mr-0' : 'w-auto opacity-100 ',
         ]"
       >
@@ -35,7 +35,7 @@
       </router-link>
       <div
         :class="[
-          'ml-0 text-white italic font-bold  text-2xl transition-all duration-500 ease-in-out mr-14 ',
+          'ml-0 text-white hidden sm:block italic font-bold  text-2xl transition-all duration-500 ease-in-out mr-14   ',
           isScrolled ? 'opacity-0 w-0' : 'opacity-100 w-auto',
         ]"
       >

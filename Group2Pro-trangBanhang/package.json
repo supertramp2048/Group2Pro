@@ -10,7 +10,13 @@
     "server": "json-server --watch db.json -m ./node_modules/json-server-auth --port 4000",
     "start": "concurrently \"npm run dev\" \"npm run server\""
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
     "@tailwindcss/vite": "^4.1.7",

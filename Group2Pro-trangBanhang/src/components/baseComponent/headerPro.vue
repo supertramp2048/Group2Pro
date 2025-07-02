@@ -1,78 +1,68 @@
 <template>
-  <header class="w-full shadow-md bg-slate-500 sticky top-0 z-50 transition-all duration-300">
+  <header
+    class="w-full shadow-md bg-gradient-to-r from-red-800 to-red-700 sticky top-0  transition-all duration-300"
+  >
     <!-- Thanh trên cùng - ẩn khi scroll -->
-    <div 
+    <div
       :class="[
         ' text-white text-sm px-1 py-0 flex justify-between transition-all duration-300 overflow-hidden',
-        isScrolled ? 'max-h-0 opacity-0' : 'max-h-20 opacity-100'
+        isScrolled ? 'max-h-0 opacity-0' : 'max-h-20 opacity-100',
       ]"
-    >
-      <div class="text-3xl">
-        <img src="/images/logoName.png" class="h-[80px]" alt="Logo Name" />
-      </div>
-    </div>
+    ></div>
 
-    <!-- Thanh thông tin - ẩn khi scroll -->
-    <div 
-      :class="[
-        'bg--50 text-xs text-blue-900 px-4 py-2 flex justify-between items-center transition-all duration-300 overflow-hidden',
-        isScrolled ? 'max-h-0 opacity-0' : 'max-h-16 opacity-100'
-      ]"
-    >
-      
-    </div>
-
+   
     <!-- Thanh chính: Logo - Search - Cart (compact khi scroll) -->
-    <div 
+    <div
       :class="[
-        'container w-full mx-auto px-4 flex items-center justify-between transition-all duration-500 ease-in-out',
-        isScrolled ? 'py-2 min-h-[60px]' : 'py-1 min-h-[80px]'
+        'container w-4/5 mx-auto px-4 flex items-center justify-between transition-all duration-500 ease-in-out',
+        isScrolled ? 'py-0' : 'py-0 min-h-[80px]',
       ]"
     >
       <!-- Logo - ẩn khi scroll -->
-      <div 
+      <router-link
+        :to="{path: '/'}"
         :class="[
+          'flex',
           'flex-shrink-0 transition-all duration-500 ease-in-out overflow-hidden',
-          isScrolled ? 'w-0 opacity-0 mr-0' : 'w-[200px] opacity-100 mr-4'
+          isScrolled ? 'w-0 opacity-0 mr-0' : 'w-auto opacity-100 ',
         ]"
       >
         <img
           src="/images/logo.png"
           alt="Logo"
-          class="w-[180px] h-[80px] object-contain transition-all duration-500"
+          class="w-[80px] h-[70px] object-contain transition-all duration-500"
         />
-      </div>
-
-      <!-- Search - mở rộng khi scroll -->
-      <div 
+      </router-link>
+      <div
         :class="[
-        
-          'transition-all duration-500 ease-in-out',
-          isScrolled ? 'flex-1' : 'flex-1'
+          'ml-0 text-white italic font-bold  text-2xl transition-all duration-500 ease-in-out mr-14 ',
+          isScrolled ? 'opacity-0 w-0' : 'opacity-100 w-auto',
         ]"
       >
-        <search class="w-full " />
+       WHALER
+      </div>
+      <!-- Search - mở rộng khi scroll -->
+      <div
+        :class="[
+          'transition-all duration-500 ease-in-out',
+          isScrolled ? 'flex-1' : 'flex-1',
+        ]"
+      >
+        <search class="w-full" />
       </div>
 
       <!-- Cart - thu nhỏ khi scroll -->
-      <div class="flex items-center justify-end ml-4">
-        <router-link :to="{ name: 'cart' }" class="relative group">
-          <img
-            src="/images/cart.png"
-            alt="Cart"
-            :class="[
-              'transition-all duration-500 ease-in-out group-hover:scale-110',
-              isScrolled ? 'w-[50px] h-[50px]' : 'w-[80px] h-[80px]'
-            ]"
-          />
+      <div class="flex items-center justify-end ml-10">
+        <router-link :to="{ name: 'cart' }" class="relative group scale-100 hover:scale-105 transform ">
+         <i class="fa-solid fa-cart-shopping text-3xl text-white"></i>
           <!-- Badge số lượng giỏ hàng -->
           <span
             v-if="cartCount > 0"
             :class="[
               'absolute bg-red-600 text-white font-bold rounded-full flex items-center justify-center shadow-md transition-all duration-500 ease-in-out',
-              isScrolled 
-                ? '-top-1 -right-1 min-w-[16px] h-[16px] text-[10px] px-1' 
-                : '-top-1 -right-1 min-w-[20px] h-[20px] text-xs px-1'
+              isScrolled
+                ? '-top-2 -right-1 min-w-[16px] h-[16px] text-[10px] px-1'
+                : '-top-2 -right-1 min-w-[20px] h-[20px] text-xs px-1',
             ]"
           >
             {{ cartCount }}
@@ -84,47 +74,52 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from 'vue'
-import search from './search.vue'
-import useCartStore from '../../stores/cartStore'
+import { computed, ref, onMounted, onUnmounted } from "vue";
+import search from "./search.vue";
+import useCartStore from "../../stores/cartStore";
 
 // Reactive state
-const isScrolled = ref(false)
-const scrollThreshold = 1 // Giảm ngưỡng scroll để responsive hơn
+const isScrolled = ref(false);
+const scrollThreshold = 1; // Giảm ngưỡng scroll để responsive hơn
 
 // Store
-const cartStore = useCartStore()
+const cartStore = useCartStore();
 
 // Computed
-const cartCount = computed(() => cartStore.cart.length)
+const cartCount = computed(() => cartStore.cart.length);
 
 // Scroll handler với throttling để tránh giật
-let ticking = false
+let ticking = false;
 const handleScroll = () => {
   if (!ticking) {
     requestAnimationFrame(() => {
-      isScrolled.value = window.scrollY > scrollThreshold
-      ticking = false
-    })
-    ticking = true
+      isScrolled.value = window.scrollY > scrollThreshold;
+      ticking = false;
+    });
+    ticking = true;
   }
-}
+};
 
 // Lifecycle
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true })
-})
+  window.addEventListener("scroll", handleScroll, { passive: true });
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped>
 /* Custom animations */
 @keyframes color-change {
-  0%, 100% { color: #dc2626; }
-  50% { color: #f59e0b; }
+  0%,
+  100% {
+    color: #dc2626;
+  }
+  50% {
+    color: #f59e0b;
+  }
 }
 
 .animate-color-change {

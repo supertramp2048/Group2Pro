@@ -2,7 +2,7 @@
 
 
 <template>
-   <div class="min-h-screen flex flex-col">
+   <div class="min-h-screen flex flex-col bg-gray-100">
     
     <router-view class="flex flex-col grow"></router-view>
     <footerPro></footerPro>

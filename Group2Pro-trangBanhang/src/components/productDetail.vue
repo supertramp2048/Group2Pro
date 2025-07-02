@@ -23,7 +23,7 @@
 -->
     <div v-if="product" :key="product.id">
       <div
-        class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-r from-slate-800 via-slate-500 to-yellow-100 text-white w-full max-w-7xl mx-auto shadow-lg h-full"
+        class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-br via-65% from-red-600 via-red-400 to-yellow-100 text-white w-full sm:w-4/5 mx-auto shadow-lg h-full"
       >
         <!-- Ảnh sản phẩm -->
         <div class="flex-shrink-0 bg-white rounded-2xl p-4 w-4/12 h-4/12">
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="w-full max-w-7xl mx-auto shadow-lg h-full p-4">
+      <div class="w-full sm:w-4/5 mx-auto shadow-lg h-full p-4">
         <h2 class="text-xl font-semibold mb-4">Cam kết sản phẩm</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Box 1 -->

@@ -65,6 +65,7 @@ export default {
       { src: "/images/ads.png", route: { name: "productDetail", params: { id: 3 } } },
       { src: "/images/ads2.png", route: { name: "productDetail", params: { id: 1 } } },
       { src: "/images/ads3.png", route: { name: "productDetail", params: { id: 8 } } },
+      { src: "/images/ads6.png", route: { name: "productDetail", params: { id: 8 } } },
     ];
     
     const currentIndex = ref(0);

@@ -9,6 +9,18 @@
         Add User Cart
       </button>
 
+
+      <div class=" mb-4">
+                <input
+                    type="text"
+                    v-model="searchQuery"
+                    placeholder="Search by UserId..."
+                    class="w-full p-2 border border-gray-300 rounded "
+                />
+                </div>
+
+
+
       <table class="table-auto w-full border-collapse border border-gray-200">
         <thead>
           <tr class="bg-gray-100 text-left">
@@ -20,7 +32,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="usercart in usercarts" :key="usercart.id">
+          <tr v-for="usercart in filteredCart" :key="usercart.id">
+
             <td class="border border-gray-300 px-4 py-2 text-center">{{ usercart.id }}</td>
             <td class="border border-gray-300 px-4 py-2 text-center">{{ usercart.userId }}</td>
             <td class="border border-gray-300 px-4 py-2 text-center">{{ usercart.productId }}</td>
@@ -75,6 +88,8 @@ export default {
       loading: true,
       isModalOpen: false,
       isEditing: false,
+      searchQuery: '',
+
       form: {
         id: null,
         userId: '',
@@ -145,7 +160,17 @@ export default {
         console.error("Error deleting user cart:", error);
       }
     }
-  }
+  },
+  computed: {
+        filteredCart() {
+        const query = this.searchQuery.toLowerCase();
+        return this.usercarts.filter(user => {
+            return (
+                user.userId.toString().toLowerCase().includes(query)
+            );
+        });
+        }
+    },
 };
 </script>
 

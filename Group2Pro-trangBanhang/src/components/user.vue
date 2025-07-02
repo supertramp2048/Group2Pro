@@ -33,7 +33,7 @@
           <p><span class="font-semibold">👤 Họ tên:</span> {{ userName }}</p>
           <p><span class="font-semibold">📧 Email:</span> {{ userEmail }}</p>
           <p><span class="font-semibold">📅 Ngày tạo:</span> {{ createdDate }}</p>
-          <p><span class="font-semibold">User ID:</span> {{ userId }}</p>
+         
         </div>
       </div>
     </div>

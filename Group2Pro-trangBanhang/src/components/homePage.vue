@@ -9,45 +9,45 @@
         <!--Nội dung chính -->
         <div class="flex flex-col lg:flex-row">
           <aside class="w-2/6 hidden lg:block bg-transparent p-0 pr-0.5 rounded-2xl ">
-            <router-link :to="{ name: 'productDetail', params: { id: 74 } }">
-              <img src="/images/ads4.png" alt="" class="rounded-2xl h-1/3" />
+            <router-link class="h-1/3" :to="{ name: 'productDetail', params: { id: 74 } }">
+              <img src="/images/ads4.png" alt="" class="rounded-2xl object-cover" />
             </router-link>
             <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
               <img
                 src="/images/ads5.png"
                 alt=""
-                class="mt-1 rounded-2xl h-1/3"
+                class="mt-1 rounded-2xl object-cover"
               />
             </router-link>
-            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+            <router-link class="h-1/3" :to="{ name: 'productDetail', params: { id: 73 } }">
               <img
                 src="/images/ads5.png"
                 alt=""
-                class="mt-1 rounded-2xl h-1/3"
+                class="mt-1 rounded-2xl object-cover"
               />
             </router-link>
           </aside>
           <carosel class="z-10"></carosel>
           <aside class="w-2/6 hidden lg:block bg-transparent p-0 pl-0.5">
-            <router-link :to="{ name: 'productDetail', params: { id: 8 } }">
+            <router-link class="h-1/3" :to="{ name: 'productDetail', params: { id: 8 } }">
               <img
                 src="/images/galaxyM55Ads.png"
                 alt=""
-                class="rounded-2xl h-1/3"
+                class="rounded-2xl  object-cover"
               />
             </router-link>
-            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+            <router-link class="h-1/3" :to="{ name: 'productDetail', params: { id: 73 } }">
               <img
                 src="/images/ads5.png"
                 alt=""
-                class="mt-1 rounded-2xl h-1/3"
+                class="mt-1 rounded-2xl object-cover"
               />
             </router-link>
-            <router-link :to="{ name: 'productDetail', params: { id: 73 } }">
+            <router-link class="h-1/3" :to="{ name: 'productDetail', params: { id: 73 } }">
               <img
                 src="/images/ads5.png"
                 alt=""
-                class="mt-1 rounded-2xl h-1/3"
+                class="mt-1 rounded-2xl  object-cover"
               />
             </router-link>
           </aside>
@@ -170,7 +170,7 @@
                       >
                         <!-- Container hình ảnh với chiều cao cố định -->
                         <div
-                          class="relative overflow-hidden rounded-lg mb-3 bg-gray-50 flex-shrink-0 h-[10px]"
+                          class="relative overflow-hidden rounded-lg mb-3 bg-gray-50 flex-shrink-0 "
                           style="height: 120px; sm:height: 150px; lg:height: 180px;"
                         >
                           <img

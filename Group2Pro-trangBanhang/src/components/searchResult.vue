@@ -183,7 +183,7 @@
     <!-- Phân trang cho kết quả tìm kiếm -->
     <div
       v-if="hasSearchResults && !isFiltered && searchTotalPages > 1"
-      class="flex justify-center items-center space-x-2 mt-6 sticky bottom-0 bg-white py-4 shadow-md"
+      class="flex justify-center items-center space-x-2 mt-6 sticky bottom-0 z-30 bg-white py-4 shadow-md"
     >
       <!-- Nút trang đầu -->
       <button
@@ -587,6 +587,6 @@ button:active:not(:disabled) {
 .sticky {
   position: sticky;
   bottom: 0;
-  z-index: 50;
+  z-index: 40;
 }
 </style>

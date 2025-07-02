@@ -23,7 +23,7 @@
     <!-- Dropdown suggestions -->
     <div
       v-if="isFocused && recomendData.length"
-      class="absolute top-full left-0 flex flex-col w-full  max-h-60 overflow-y-auto bg-gray-800 shadow-lg  rounded-b-lg"
+      class="absolute top-full left-0 flex flex-col w-full  max-h-60 overflow-y-auto bg-gray-800 shadow-lg z-50 rounded-b-lg"
     >
       <div
         v-for="object in recomentList"

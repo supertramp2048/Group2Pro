@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="hover:bg-gray-200 relative">
+  <div >
+    <div class="hover:bg-gray-200 relative ">
       <!-- Nút mở/đóng toàn bộ filter -->
       <img
         src="/images/filterImg.png"

@@ -23,14 +23,14 @@
 -->
     <div v-if="product" :key="product.id">
       <div
-        class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-br via-65% from-red-600 via-red-400 to-yellow-100 text-white w-full sm:w-4/5 mx-auto shadow-lg h-full"
+        class="flex items-center justify-between p-6 rounded-2xl bg-gradient-to-br via-65% from-blue-200 via-slate-400 to-yellow-100 text-white w-full sm:w-4/5 mx-auto shadow-lg h-full"
       >
         <!-- Ảnh sản phẩm -->
-        <div class="flex-shrink-0 bg-white rounded-2xl p-4 w-4/12 h-4/12">
+        <div class="flex-shrink-0 bg-white justify-center rounded-2xl p-4 w-[300px] h-[300px]">
           <img
             :src="product.src"
             alt="iPhone"
-            class="w-auto h-auto object-cover"
+            class=" object-cover "
           />
         </div>
 

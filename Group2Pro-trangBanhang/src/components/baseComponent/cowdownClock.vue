@@ -34,7 +34,11 @@
 export default {
   data() {
     return {
+<<<<<<< HEAD
       targetDate: new Date(2025, 7, 1, 0, 0, 0), // 15/06/2025 00:00:00
+=======
+      targetDate: new Date(2025, 6, 30, 0, 0, 0), // 15/06/2025 00:00:00
+>>>>>>> origin/huyBranch2
       days: 0,
       hours: 0,
       minutes: 0,

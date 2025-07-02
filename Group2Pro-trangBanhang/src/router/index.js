@@ -11,8 +11,8 @@ import bill from '../components/bill.vue'
 import user from '../components/user.vue'
 import about from '../components/about.vue'
 const routes = [
-  
-   {
+
+  {
     path: '/',
     name: 'homePage',
     component: homePage,
@@ -22,7 +22,7 @@ const routes = [
     name: 'about',
     component: about,
   },
-  
+
   {
     path: '/user',
     name: 'user',
@@ -46,24 +46,24 @@ const routes = [
   {
     path: '/productDetail/:id',
     name: 'productDetail',
-    component :productDetail,
+    component: productDetail,
     props: true
   },
   {
-   path: '/login',
-   name: 'login',
-   component: login
+    path: '/login',
+    name: 'login',
+    component: login
   },
   {
     path: '/cart',
     name: 'cart',
-    component :cart,
-     meta: { requiresAuth: true }
+    component: cart,
+    meta: { requiresAuth: true }
   },
   {
     path: '/allProducts/:categoryId',
     name: 'allProducts',
-    component :allProducts,
+    component: allProducts,
     props: true
   },
 
@@ -72,6 +72,10 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // Luôn cuộn lên đầu trang khi chuyển route
+    return { top: 0 }
+  }
 });
 router.beforeEach((to, from, next) => {
   const tokenInLocal = localStorage.getItem("accessToken");
@@ -79,9 +83,9 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = !!tokenInLocal; // || !!tokenInSession;
 
   if (to.meta.requiresAuth && !isLoggedIn) {
-     window.location.href = 'http://localhost:3000/php/login.php';
-     return; // dừng lại không cho đi tiếp
-  } 
+    window.location.href = 'http://localhost:3000/php/login.php';
+    return; // dừng lại không cho đi tiếp
+  }
   next(); // tiếp tục đi đến route
 });
 

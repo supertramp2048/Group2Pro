@@ -98,11 +98,7 @@ export default {
   background: linear-gradient(135deg, #151515 0%, #0e0e0e 100%);
   color: #ecf0f1;
   padding: 40px 0 0;
-<<<<<<< HEAD
-  margin-top: auto;
-=======
   margin-top: 30px;
->>>>>>> origin/huyBranch2
 }
 
 .footer-container {

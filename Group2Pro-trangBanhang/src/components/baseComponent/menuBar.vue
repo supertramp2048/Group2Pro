@@ -25,11 +25,7 @@
           <router-link
             v-if="!item.children"
             :to="item.route"
-<<<<<<< HEAD
-            class="hover:bg-gray-200 text-black font-bold px-2 py-2 z-30 block"
-=======
             class="relative px-4 py-2 text-black font-semibold text-sm uppercase tracking-wide transition-all duration-300 hover:text-red-500 hover:scale-105 rounded-lg hover:bg-white/10 backdrop-blur-sm border border-transparent hover:border-red-400/50 hover:shadow-lg hover:shadow-red-500/25"
->>>>>>> origin/huyBranch2
           >
             {{ item.label }}
             <span class="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-red-400 to-red-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>

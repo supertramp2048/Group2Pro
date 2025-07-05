@@ -17,7 +17,7 @@
     <section class="hero-section">
       <div class="hero-background">
         <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=800&fit=crop" alt="Technology Background" class="hero-img">
-        <div class="hero-overlay"></div>
+        <div class="hero-overly"></div>
       </div>
       <div class="hero-content">
         <div class="container">

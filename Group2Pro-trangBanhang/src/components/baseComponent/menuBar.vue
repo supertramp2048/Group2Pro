@@ -278,7 +278,7 @@ export default {
           label: "Dịch vụ",
           children: [
             { label: "Giao hàng tận nhà", route: "/dich-vu/giao-hang" },
-            { label: "Tư vấn mua hàng", route: "/about" },
+            { label: "Về chúng tôi", route: "/about" },
           ],
         },
         { label: "Liên hệ", route: "/contact" },
